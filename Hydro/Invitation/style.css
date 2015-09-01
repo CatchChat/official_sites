@@ -1,0 +1,123 @@
+*,*:before,*:after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+html{
+    height: 100%;
+    user-select: none;
+    background-color: white;
+}
+
+body{
+    height: 100%;
+    background-image: linear-gradient(0deg, #35475A 0%, #162533 100%);
+    overflow: hidden;
+}
+
+a,a:link,a:hover,a:visited,a:active,a:focus{
+    display: block;
+    text-decoration: none;
+}
+
+
+#map{
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
+#logo{
+    position: relative;
+    margin-top: 10px;
+    margin-left: -100px;
+    left: 50%;
+}
+
+input{
+    position: relative;
+    display: block;
+    margin: 20px;
+    width: 240px;
+    height: 50px;
+    background-color: transparent;
+    border: 2px solid #68D3CA;
+    border-radius: 30px;
+    left: 50%;
+    margin-left: -120px;
+    color: white;
+    font-size: 18px;
+    padding: 7px;
+    text-align: center;
+    background-image: url(images/pw.svg);
+    background-repeat: no-repeat;
+    font-family: avenir, 'helvetica Neue',helvetica,arial;
+}
+
+::-webkit-input-placeholder{
+    color: #305E65;
+}
+
+button{
+    position: absolute;
+    left: 50%;
+    margin-left: -120px;
+    bottom: 50px;
+    display: block;
+    width: 240px;
+    height: 60px;
+    background-image: linear-gradient(-180deg, #0089FF 0%, #00BBFF 100%);
+    border-radius: 30px;    
+    font-size: 22px;
+    color: white;
+    font-family: avenir, 'helvetica Neue',helvetica,arial;
+    text-shadow: 0px 2px 4px rgba(0,0,0,0.10);
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+}
+
+button:active{
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+}
+
+
+
+
+
+@media screen and (min-width: 1024px){
+    body{
+        position: absolute;
+        margin-left: -320px !important;
+        margin-top: -350px !important;
+        left: 50%;
+        top: 50%;
+        width: 640px;
+        height: 700px;
+        margin: 0 auto;
+        border-radius: 10px;
+    }
+
+    #map{
+        width: 640px;
+        border-radius: 10px;
+    }
+
+    #logo{
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+    button{
+        position: relative;
+        margin-top: 100px;
+    }
+
+}
+
+
+
+

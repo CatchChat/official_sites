@@ -1,0 +1,9 @@
+*,:after,:before{margin:0;padding:0;border:0;outline:0;box-sizing:border-box}
+html{width:100%;height:100%;-webkit-user-select:none}
+body{width:100%;height:100%;font:100% Avenir,"Helvetica neue",Helvetica,Arial;color:#fff;background-color:#35475A;background-image:-webkit-gradient(linear,left top,left bottom,from(#172533),to(#35475A));background-image:-webkit-linear-gradient(top,#172533,#35475A);background-image:-moz-linear-gradient(top,#172533,#35475A);background-image:-ms-linear-gradient(top,#172533,#35475A);background-image:-o-linear-gradient(top,#172533,#35475A);background-image:linear-gradient(top,#172533,#35475A);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0, StartColorStr='#172533', EndColorStr='#35475A')}
+#container{position:absolute;z-index:1;width:200px;height:400px;left:50%;top:50%;margin-left:-100px;margin-top:-200px;text-align:center}
+#container img{width:200px}
+#container h1{display:block;width:200px;height:70px;font-weight:100;font-size:50px}
+#container #download{width:200px;height:60px;background-image:url(../images/btn_en.svg);margin:70px 0 0}
+#background{background-image:url(../images/worldmap.svg);background-repeat:no-repeat;background-size:100%;background-position:top center;opacity:.1;width:100%;height:100%}
+a{display:block}

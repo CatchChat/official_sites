@@ -1,0 +1,83 @@
+/* style.scss */
+
+@import 'mixins';
+
+$font-stack: "Avenir" ,"Helvetica neue", Helvetica, Arial;
+$container-width: 200px;
+$container-height: 400px;
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+    // transition: all 0.25s ease-out;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    -webkit-user-select: none;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font: 100% $font-stack;
+    color: white;
+    @include linear-gradient(#172533, #35475A);
+}
+
+#container {
+    position: absolute;
+    z-index: 1;
+    width: $container-width;
+    height: $container-height;
+    left: 50%;
+    top: 50%;
+    margin-left: - $container-width / 2;
+    margin-top: - $container-height / 2;
+    text-align: center;
+    
+    img {
+        width: 200px;
+    }
+    
+
+    h1 {
+        display: block;
+        width: $container-width;
+        height: 70px;
+        font-weight: 100;
+        font-size: 50px;
+    }
+
+    #download {
+        width: 200px;
+        height: 60px;
+        background-image: url(../images/btn_en.svg);
+        margin: ($container-width - 200px) / 2;
+        margin-top: 70px;
+    }
+
+}
+
+
+#background {
+    background-image: url(../images/worldmap.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: top center;
+    opacity: 0.1;
+    width: 100%;
+    height: 100%;
+}
+
+a {display: block;}
+
+
+
+
