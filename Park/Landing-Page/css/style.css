@@ -1,0 +1,396 @@
+/* style.scss */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  background-repeat: no-repeat; }
+
+body {
+  font: 100% "Lantinghei SC", "Avenir", "Helvetica Neue", Helvetica, Arial; }
+
+a {
+  display: block; }
+
+.wrapper {
+  width: 100%; }
+  .wrapper div {
+    display: block;
+    position: relative; }
+
+#cover {
+  width: 100%;
+  height: 100%;
+  min-height: 900px;
+  max-height: 1200px;
+  background-image: url(../images/cover.jpg);
+  background-position: center;
+  background-size: cover; }
+  #cover .container {
+    width: 768px;
+    height: 680px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -384px;
+    margin-top: -340px; }
+    #cover .container .logo {
+      width: 500px;
+      height: 250px;
+      background-image: url(../images/sprite.svg);
+      background-size: 500px;
+      margin: 0 auto; }
+    #cover .container .slogan {
+      background-image: url(../images/slogan.svg);
+      width: 768px;
+      height: 120px;
+      margin: 0 auto;
+      margin-top: 50px; }
+    #cover .container .play {
+      width: 200px;
+      height: 130px;
+      background-image: url(../images/video.jpg);
+      border-radius: 10px;
+      margin: 0 auto;
+      margin-top: 20px;
+      margin-bottom: 50px; }
+      #cover .container .play a {
+        background-image: url(../images/sprite.svg);
+        width: 100px;
+        height: 100px;
+        background-position: -200px -800px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0; }
+  #cover .hint {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -50px;
+    background-image: url(../images/sprite.svg);
+    background-position: -300px -800px;
+    cursor: pointer;
+    -webkit-animation: hint 2s infinite;
+    -moz-animation: hint 2s infinite;
+    -o-animation: hint 2s infinite;
+    animation: hint 2s infinite; }
+@-webkit-keyframes hint {
+  0%, 100% {
+    bottom: 0px;
+    opacity: 1; }
+  50% {
+    bottom: 30px;
+    opacity: 0; } }
+@-moz-keyframes hint {
+  0%, 100% {
+    bottom: 0px;
+    opacity: 1; }
+  50% {
+    bottom: 30px;
+    opacity: 0; } }
+@-o-keyframes hint {
+  0%, 100% {
+    bottom: 0px;
+    opacity: 1; }
+  50% {
+    bottom: 30px;
+    opacity: 0; } }
+@keyframes hint {
+  0%, 100% {
+    bottom: 0px;
+    opacity: 1; }
+  50% {
+    bottom: 30px;
+    opacity: 0; } }
+.download {
+  width: 420px;
+  height: 60px;
+  margin: 0 auto; }
+  .download > a {
+    width: 200px;
+    height: 60px;
+    float: left;
+    background-image: url(../images/sprite.svg); }
+  .download .ios {
+    background-position: 0 -900px;
+    margin-right: 10px; }
+  .download .apk {
+    background-position: -200px -900px;
+    margin-left: 10px; }
+
+#screenshot {
+  height: 1000px;
+  margin: 0 auto;
+  background-color: white; }
+  #screenshot .iphone {
+    width: 400px;
+    height: 800px;
+    background-image: url(../images/sprite.svg);
+    background-position: 0 -960px;
+    margin-top: 100px;
+    margin-right: 50px;
+    position: absolute;
+    right: 50%; }
+    #screenshot .iphone .screen {
+      width: 320px;
+      height: 568px;
+      background-color: #3b3b3b;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -160px;
+      margin-top: -284px;
+      overflow: hidden; }
+      #screenshot .iphone .screen .images {
+        width: 1280px;
+        height: 568px;
+        display: block; }
+        #screenshot .iphone .screen .images img {
+          width: 320px;
+          float: left; }
+    #screenshot .iphone i {
+      content: '';
+      height: 100px;
+      width: 100px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -50px;
+      margin-left: -50px;
+      background-image: url(../images/sprite.svg);
+      cursor: pointer; }
+    #screenshot .iphone i.left {
+      margin-left: -300px;
+      background-position: 0 -800px; }
+    #screenshot .iphone i.right {
+      margin-left: 200px;
+      background-position: -100 -800px; }
+  #screenshot .container {
+    width: 400px;
+    height: 800px;
+    position: absolute;
+    left: 50%;
+    margin-top: 100px;
+    margin-left: 50px; }
+    #screenshot .container .bigicon {
+      width: 150px;
+      height: 150px;
+      background-image: url(../images/sprite.svg);
+      background-position: 0 -450px;
+      background-size: 600px;
+      margin-top: 100px; }
+    #screenshot .container .descs {
+      width: 400px;
+      height: 200px; }
+      #screenshot .container .descs h1 {
+        color: #404040;
+        font-size: 72px;
+        margin-left: 20px; }
+      #screenshot .container .descs h2 {
+        color: #808080;
+        font-size: 18px;
+        line-height: 30px;
+        margin-left: 20px; }
+    #screenshot .container .icons {
+      width: 460px;
+      height: 140px;
+      margin-top: 50px; }
+      #screenshot .container .icons li {
+        width: 100px;
+        height: 100px;
+        list-style: none;
+        float: left;
+        margin-right: 15px;
+        background-image: url(../images/sprite.svg);
+        background-position-y: -200px;
+        opacity: 0.4;
+        cursor: pointer; }
+        #screenshot .container .icons li span {
+          display: block;
+          width: 100px;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          margin-top: 100px; }
+      #screenshot .container .icons li.active {
+        opacity: 6; }
+      #screenshot .container .icons .home {
+        background-position-x: 0; }
+      #screenshot .container .icons .group {
+        background-position-x: -100px; }
+      #screenshot .container .icons .chat {
+        background-position-x: -200px; }
+      #screenshot .container .icons .nearby {
+        background-position-x: -300px; }
+
+#features {
+  width: 100%;
+  height: 680px;
+  margin: 0 auto; }
+  #features > div {
+    width: 50%;
+    height: 50%;
+    float: left;
+    background-size: cover;
+    background-position: center; }
+    #features > div .mask {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.2); }
+      #features > div .mask .icon {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        left: 50%;
+        margin-left: -100px;
+        margin-top: 30px;
+        background-image: url(../images/sprite.svg); }
+      #features > div .mask h3, #features > div .mask p {
+        position: absolute;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        display: block;
+        text-align: center;
+        color: white; }
+      #features > div .mask h3 {
+        font-size: 30px;
+        top: 240px; }
+      #features > div .mask p {
+        top: 280px;
+        opacity: 0.75;
+        font-size: 14px; }
+  #features .send {
+    background-image: url(../images/features/1.jpg); }
+    #features .send .icon {
+      background-position: 0 -400px; }
+  #features .video {
+    background-image: url(../images/features/2.jpg); }
+    #features .video .icon {
+      background-position: -200px -400px; }
+  #features .time {
+    background-image: url(../images/features/3.jpg); }
+    #features .time .icon {
+      background-position: 0 -600px; }
+  #features .lbs {
+    background-image: url(../images/features/4.jpg); }
+    #features .lbs .icon {
+      background-position: -200px -600px; }
+
+#download {
+  background-color: #f5f5f5;
+  height: 500px; }
+  #download .container {
+    width: 500px;
+    height: 400px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; }
+    #download .container .appicon {
+      width: 200px;
+      height: 200px;
+      background-image: url(../images/appicon.png);
+      background-size: 100%;
+      margin: 0 auto; }
+    #download .container p {
+      color: #2BA9EC;
+      font-size: 30px;
+      font-weight: bold;
+      padding: 40px 0;
+      text-align: center; }
+
+#footer {
+  background-color: white;
+  height: 100px;
+  border-top: 1px solid #ebebeb; }
+  #footer .nav {
+    height: 100px;
+    width: 600px;
+    line-height: 100px;
+    padding-left: 30px;
+    position: absolute;
+    left: 0; }
+    #footer .nav a {
+      text-decoration: none;
+      display: inline;
+      color: #808080;
+      float: left;
+      padding: 0 20px; }
+  #footer .social {
+    width: 110px;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    margin: 25px; }
+    #footer .social a {
+      background-image: url(../images/sprite.svg);
+      background-position-y: -1760px;
+      width: 50px;
+      height: 50px;
+      float: left;
+      opacity: 0.2; }
+    #footer .social .twitter {
+      margin-right: 10px; }
+    #footer .social .weibo {
+      background-position-x: -50px; }
+
+@media screen and (max-width: 768px) {
+  #cover .container {
+    width: 500px;
+    margin-left: -250px; }
+    #cover .container .logo, #cover .container .slogan {
+      -webkit-transform: scale(0.6);
+      transform: scale(0.6); }
+    #cover .container .slogan {
+      margin-top: -50px !important; }
+
+  #screenshot {
+    height: 1200px; }
+    #screenshot .iphone {
+      margin-right: -200px; }
+    #screenshot .container {
+      width: 460px;
+      height: 140px;
+      margin-left: -220px;
+      top: 850px; }
+      #screenshot .container .bigicon, #screenshot .container .descs {
+        display: none; }
+      #screenshot .container .icons {
+        margin-top: 0; } }

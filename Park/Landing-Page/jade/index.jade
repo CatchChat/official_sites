@@ -1,0 +1,95 @@
+- var name = "Park"
+- var desc = "155 characters goes here"
+- var keyw = "Blah,Blah,Blah"
+
+//- Download Links:
+- var ios = "#"
+- var apk = "#"
+
+html(lang="en")
+    head
+        title #{name}
+        meta(charset="UTF-8")
+        meta(name="description", content="#{desc}")
+        meta(name="keywords", content="#{keyw}")
+        meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
+        link(href="favicon.ico", rel="shortcut icon", type="image/x-icon")
+        link(href="./css/style.css", rel='stylesheet')
+    body
+        div.wrapper
+            div#cover
+                div.container
+                    div.logo
+                    div.slogan
+                    div.play
+                        a(href="#")
+                    div.download
+                        a.ios(href="#{ios}")
+                        a.apk(href="#{apk}")
+                div.hint
+            div#screenshot
+                div.iphone
+                    i.left
+                    div.screen
+                        div.images
+                            img(src="./images/screenshots/1.jpg")
+                            img(src="./images/screenshots/2.jpg")
+                            img(src="./images/screenshots/3.jpg")
+                            img(src="./images/screenshots/4.jpg")
+                    i.right
+                div.container
+                    div.bigicon
+                    div.descs
+                    ul.icons
+                        li.home.active
+                            span 主页
+                        li.group
+                            span 群组
+                        li.chat
+                            span 聊天
+                        li.nearby
+                            span 附近
+            div#features
+                div.send
+                    div.mask
+                        div.icon
+                        h3 一触即发
+                        p 一触即发一触即发一触即发一触即发一触即发
+                div.video
+                    div.mask
+                        div.icon
+                        h3 群组视频
+                        p 群组视频群组视频群组视频群组视频群组视频
+                div.time
+                    div.mask
+                        div.icon
+                        h3 24 小时
+                        p 你还可以在这之前选择保存
+                div.lbs
+                    div.mask
+                        div.icon
+                        h3 LBS 频道
+                        p 哇，竟然还有 LBS 频道，真的有哦！
+            div#download
+                div.container
+                    div.appicon
+                    p Start Yuepao Today!!
+                    div.download
+                        a.ios(href="#{ios}")
+                        a.apk(href="#{apk}")
+            div#footer
+                div.nav
+                    a(href="/about/") About
+                    a(href="/blog/") Blog
+                    a(href="/press/") Press
+                    a(href="/partners/") Partners
+                    a(href="/terms/") Terms
+                    a(href="/privacy/") Privacy
+                div.social
+                    a(href="http://twitter.com/").twitter
+                    a(href="http://weibo.com/").weibo
+
+        script(src="./js/jquery-2.1.3.min.js")
+        script(src="./js/script.js")
+
+
