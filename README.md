@@ -1,1 +1,1 @@
-# Websites goes here
+# All websites goes here
