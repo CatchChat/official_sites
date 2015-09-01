@@ -1,0 +1,117 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Avenir,Helvetica,Arial;
+}
+
+html{
+  width: 100%;
+  height: 100%;
+}
+
+a,a:link,a:hover,a:visited,a:active,a:focus{text-decoration: none;}
+
+
+body{
+  background-image: -o-linear-gradient(-45deg, #FF1B36 0%, #FF5375 100%);
+  background-image: -moz-linear-gradient(-45deg, #FF1B36 0%, #FF5375 100%);
+  background-image: -ms-linear-gradient(-45deg, #FF1B36 0%, #FF5375 100%);
+  background-image: linear-gradient(-45deg, #FF1B36 0%, #FF5375 100%);
+}
+
+#logo{
+  width: 200px;
+  height: 154px;
+  background: url(logo.svg) center no-repeat;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  margin-left: -90px;
+  margin-top: -77px;
+  color: white;
+}
+
+#logo p{
+  width: 200px;
+  font-size: 40px;
+  margin-top: 175px;
+  text-align: center;
+}
+
+#logo a{
+  width: 200px;
+  font-size: 20px;
+  text-align: center;
+  display: inline-block;
+  opacity: .5;
+}
+
+
+
+
+.animated{
+  -webkit-animation-fill-mode:both;
+  -moz-animation-fill-mode:both;
+  -ms-animation-fill-mode:both;
+  -o-animation-fill-mode:both;
+  animation-fill-mode:both;
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  -ms-animation-duration:1s;
+  -o-animation-duration:1s;
+  animation-duration:1s;
+}
+
+
+@-webkit-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+  } 100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+
+@-moz-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -moz-transform: translateY(20px);
+  }
+  
+  100% {
+    opacity: 1;
+    -moz-transform: translateY(0);
+  }
+}
+
+@-o-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -o-transform: translateY(20px);
+  }
+  
+  100% {
+    opacity: 1;
+    -o-transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  -moz-animation-name: fadeInUp;
+  -o-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}
