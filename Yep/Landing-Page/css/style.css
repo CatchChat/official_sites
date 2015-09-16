@@ -76,7 +76,8 @@ html body {
   position: absolute;
   left: 50%;
   margin-left: -240px;
-  text-align: center; }
+  text-align: center;
+  z: 10; }
   .buttons > a {
     display: inline-block;
     width: 200px;
