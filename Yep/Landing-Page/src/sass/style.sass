@@ -41,6 +41,7 @@ html
     width: 400px + 20 * 4
     +centerX(400px + 20 * 4, 0)
     text-align: center
+    z: 10
 
     & > a
         display: inline-block
@@ -64,9 +65,8 @@ html
 
 
 @media (-webkit-max-device-pixel-ratio: 1)
-    non-retina
+    // non-retina
 @media only screen and (max-device-width: 1024px)
-    // w<1000px
     .container
         width: 120px * 2 + 200px
         height: 120px * 2 + 200px

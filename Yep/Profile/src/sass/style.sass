@@ -1,0 +1,208 @@
+@import 'reset'
+
+*
+    box-sizing: border-box
+    outline: none
+
+html
+    &, body, canvas
+        width: 100%
+        height: 100%
+        // overflow: hidden
+    body
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+        background-color: #FBFCFD
+
+=centerX($width, $mLeft)
+    position: absolute
+    left: 50%
+    margin-left: -($width / 2) + $mLeft
+
+=centerY($height, $mTop)
+    position: absolute
+    top: 50%
+    margin-top: -($height / 2) + $mTop
+
+canvas
+    position: fixed
+    z-index: 0
+
+
+.container
+    width: 400px
+    height: 100%
+    min-height: 660px
+    z-index: 1
+    position: absolute
+
+    +centerX(400px, 0)
+    
+    .card
+        width: 400px
+        border-radius: 8px
+        background-color: white
+        box-shadow: 0px 50px 50px 0px rgba(20,70,129,0.10)
+        padding: 50px
+        text-align: center
+        transition: margin-top 0.5s ease
+        +centerY(500px,-50px)
+
+        & > div, a
+            margin: 0 auto
+            display: block
+            position: relative
+        
+        @keyframes spin
+            0%
+                transform: rotate(0deg)
+            100%
+                transform: rotate(360deg)
+        
+        .spinner
+            width: 30px
+            height: 30px
+            border-radius: 50%
+            border: 2px solid #51A7F7
+            border-left-color: transparent
+            display: block
+            animation: spin 1000ms infinite linear
+
+
+        .avatar
+            width: 100px
+            height: 100px
+            border-radius: 50%
+            background-size: 100px 100px
+            background-repeat: no-repeat
+        
+        .badge
+            width: 22px
+            height: 22px
+            border-radius: 50%
+            margin-top: -14px
+            background-color: white
+            background-size: 15px
+            background-repeat: no-repeat
+            background-position: center
+
+        .nickname
+            font-size: 22px
+            color: #404040
+            line-height: 26px
+            margin-top: 20px
+            margin-bottom: 10px
+
+        .location
+            font-size: 14px
+            color: #BFBFBF
+            font-weight: 200
+            background-image: url(../img/icon_location.png)
+            background-size: 12px 15px
+            background-repeat: no-repeat
+            padding-left: 15px
+            display: inline-block
+            margin-bottom: 30px
+            opacity: 0
+
+        .links
+            & > a
+                width: 22px
+                height: 22px
+                display: none
+                margin: 0 20px 20px
+                background-size: 22px 22px
+                background-repeat: no-repeat
+
+
+            .github
+                background-image: url(../img/social_github.png)
+            .dribbble
+                background-image: url(../img/social_dribbble.png)
+            .instagram
+                background-image: url(../img/social_instagram.png)
+            .behance
+                background-image: url(../img/social_behance.png)
+
+        .intro
+            font-size: 14px
+            color: #8E8E93
+            line-height: 22px
+            font-weight: 200
+
+
+        .master:before
+            content: 'Master'
+        .learn:before
+            content: 'Learning'
+
+        .skills
+            text-align: left
+            word-spacing: 5px
+            margin-top: 20px
+            opacity: 0
+
+            .skill
+                height: 24px
+                line-height: 24px
+                font-size: 14px
+                color: white
+                padding: 0 10px
+                margin: 5px
+                background-color: #51AAF5
+                border-radius: 12px
+                display: inline-block
+
+            &:before
+                display: block
+                font-size: 20px
+                margin-bottom: 10px
+                margin-left: 5px
+
+
+
+    .footer
+        position: absolute
+        bottom: 20px
+        width: 400px
+        height: 50px
+
+        .appicon
+            width: 50px
+            height: 50px
+            float: left
+            margin-right: 10px
+        h5
+            width: 200px
+            font-size: 18px
+            color: #808080
+            line-height: 30px
+        h6
+            width: 200px
+            font-size: 14px
+            color: #808080
+            font-weight: 200
+
+        a
+            display: inline-block
+            width: 100px
+            height: 30px
+            background-size: 100%
+            position: relative
+            top: 0
+            float: right
+            margin-top: 10px
+            margin-left: 10px
+
+
+        .ios
+            background-image: url("../img/btn_ios_en.png")
+        .android
+            background-image: url("../img/btn_android_en.png")
+
+
+
+@media (max-height: 800px)
+    .container
+        .card
+            margin-top: 0 !important
+            top: 50px
