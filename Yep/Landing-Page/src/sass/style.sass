@@ -64,8 +64,8 @@ html
 
 
 @media (-webkit-max-device-pixel-ratio: 1)
-    // non-retina
-@media (max-width: 1000px)
+    non-retina
+@media only screen and (max-device-width: 1024px)
     // w<1000px
     .container
         width: 120px * 2 + 200px
@@ -84,6 +84,3 @@ html
         & > a
             width: 200px * 2
             height: 60px * 2
-
-
-

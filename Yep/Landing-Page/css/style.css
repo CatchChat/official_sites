@@ -46,7 +46,6 @@ table {
 
 * {
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
           box-sizing: border-box; }
 
 html, html body, html canvas {
@@ -91,7 +90,7 @@ html body {
   .buttons .android {
     background-image: url(../img/btn_android_en.svg); }
 
-@media (max-width: 1000px) {
+@media only screen and (max-device-width: 1024px) {
   .container {
     width: 440px;
     height: 440px;
