@@ -68,7 +68,7 @@ gulp.task('coffee', function() {
         }))
 });
 
-gulp.task('default', ['browser-sync'], function() {
+gulp.task('default', ['browser-sync','jade','sass','coffee'], function() {
     gulp.watch("src/jade/**/*.jade", ['jade']);
     gulp.watch("src/sass/**/*.sass", ['sass']);
     gulp.watch("src/coffee/**/*.coffee", ['coffee']);

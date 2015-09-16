@@ -39,7 +39,7 @@ updateCardHeight = ->
         $('.container').css
             minHeight: cardHeight + footHeight + 50
 
-
+alert "asd"
 
 
 # --- USER DATA RENDERING ---
