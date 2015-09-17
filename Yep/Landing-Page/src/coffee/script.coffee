@@ -1,19 +1,4 @@
-window.$$ = document.querySelectorAll.bind(document)
-Node::on = window.on = (name, fn) ->
-    @addEventListener name, fn
-    return
-
-NodeList::__proto__ = Array.prototype
-NodeList::on = NodeList::addEventListener = (name, fn) ->
-    @forEach (elem, i) ->
-        elem.on name, fn
-        return
-    return
-
-document.ontouchmove = (event)->
-    event.preventDefault()
-
-
+# --- LOOK AND FEEL ---
 
 dpr   = window.devicePixelRatio || 1
 speed = 0.1
@@ -36,13 +21,32 @@ new Zodiac 'zodiac',
     linkWidth: dpr
 
 
-if os.android
-    $$('.ios')[0].style['display'] = 'none'
-    $$('#zodiac')[0].style.display = 'none'
 
-if os.ios
-    $$('.android')[0].style['display'] = 'none'
 
-alert window.devicePixelRatio
+
+
+# --- RESPONSIVE LAYOUT ---
+
+# if $.os.android then $('.ios').remove()
+# if $.os.ios then $('.android').remove()
+
+# if $.os.phone
+#     $('#zodiac').remove()
+#     $('.container').css
+#         width: "100%"
+#         height: "100%"
+#         margin: 0
+#         left: 0
+#     $('.card').css
+#         padding: "50px 20px"
+#         width: "100%"
+#         boxShadow: "none"
+#         top: 0
+#     $('.footer').css
+#         width: "100%"
+#         padding: "0 20px"
+
+
+
 
 

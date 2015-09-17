@@ -1,15 +1,16 @@
-@import 'reset'
+@import reset
 
 *
     box-sizing: border-box
+    outline: none
 
 html
     &, body, canvas
         width: 100%
         height: 100%
-        overflow: hidden
     body
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+        background-color: #FBFCFD
 
 =centerX($width, $mLeft)
     position: absolute
@@ -21,66 +22,186 @@ html
     top: 50%
     margin-top: -($height / 2) + $mTop
 
+canvas
+    position: fixed
+    z-index: 0
+
 
 .container
-    width: 120px + 200px
-    height: 120px + 200px
-    // background-color: #ff0000
+    width: 400px
+    height: 100%
+    min-height: 660px
+    z-index: 1
+    position: absolute
 
-    padding: (320px - 120px) / 2
+    +centerX(400px, 0)
+    
+    .card
+        width: 400px
+        border-radius: 8px
+        background-color: white
+        box-shadow: 0px 50px 50px 0px rgba(20,70,129,0.10)
+        padding: 50px
+        text-align: center
+        transition: all 0.5s ease
+        +centerY(500px,-50px)
 
-    +centerX(320px, 0)
-    +centerY(320px, -100px)
-
-    .icon
-        filter: drop-shadow( 0 30px 30px rgba(89, 103, 116, 0.07))
-
-.buttons
-    bottom: 100px
-    height: 60px
-    width: 400px + 20 * 4
-    +centerX(400px + 20 * 4, 0)
-    text-align: center
-    z: 10
-
-    & > a
-        display: inline-block
-        width: 200px
-        height: 60px
-        background-repeat: no-repeat
-        cursor: pointer
-        margin: 0 20px
-        background-size: 100%
-
-    .ios
-        background-image: url(../img/btn_ios_en.svg)
-    .android
-        background-image: url(../img/btn_android_en.svg)
-
-
-
-
-// canvas
-    // border: 2px solid red
-
-
-@media (-webkit-max-device-pixel-ratio: 1)
-    // non-retina
-@media only screen and (max-device-width: 1024px)
-    .container
-        width: 120px * 2 + 200px
-        height: 120px * 2 + 200px
-        padding: ((120px * 2 + 200px) - 120px * 2) / 2
+        & > div, a
+            margin: 0 auto
+            display: block
+            position: relative
         
-        +centerX(120px * 2 + 200px, 0)
-        +centerY(120px * 2 + 200px, -200px)
+        @keyframes spin
+            0%
+                transform: rotate(0deg)
+            100%
+                transform: rotate(360deg)
+        
+        .spinner
+            width: 30px
+            height: 30px
+            border-radius: 50%
+            border: 2px solid #51A7F7
+            border-left-color: transparent
+            display: block
+            animation: spin 1000ms infinite linear
 
-        .icon
-            width: 120px * 2
 
-    .buttons
-        height: 120px
+        .avatar
+            width: 100px
+            height: 100px
+            border-radius: 50%
+            background-size: 100px 100px
+            background-repeat: no-repeat
+        
+        .badge
+            width: 22px
+            height: 22px
+            border-radius: 50%
+            margin-top: -14px
+            background-color: white
+            background-size: 15px
+            background-repeat: no-repeat
+            background-position: center
 
-        & > a
-            width: 200px * 2
-            height: 60px * 2
+        .nickname
+            font-size: 22px
+            color: #404040
+            line-height: 26px
+            margin-top: 20px
+            margin-bottom: 10px
+
+        .location
+            font-size: 14px
+            color: #BFBFBF
+            font-weight: 200
+            background-image: url(../img/icon_location.png)
+            background-size: 12px 15px
+            background-repeat: no-repeat
+            padding-left: 15px
+            display: inline-block
+            margin-bottom: 30px
+            opacity: 0
+
+        .links
+            & > a
+                width: 22px
+                height: 22px
+                display: none
+                margin: 0 20px 20px
+                background-size: 22px 22px
+                background-repeat: no-repeat
+
+
+            .github
+                background-image: url(../img/icon_github.png)
+            .dribbble
+                background-image: url(../img/icon_dribbble.png)
+            .instagram
+                background-image: url(../img/icon_instagram.png)
+            .behance
+                background-image: url(../img/icon_behance.png)
+
+        .intro
+            font-size: 14px
+            color: #8E8E93
+            line-height: 22px
+            font-weight: 200
+
+
+        .master:before
+            content: 'Master'
+        .learn:before
+            content: 'Learning'
+
+        .skills
+            text-align: left
+            word-spacing: 5px
+            margin-top: 20px
+            opacity: 0
+
+            .skill
+                height: 24px
+                line-height: 24px
+                font-size: 14px
+                color: white
+                padding: 0 10px
+                margin: 5px
+                background-color: #51AAF5
+                border-radius: 12px
+                display: inline-block
+
+            &:before
+                display: block
+                font-size: 20px
+                margin-bottom: 10px
+                margin-left: 5px
+
+
+
+    .footer
+        position: absolute
+        bottom: 20px
+        width: 400px
+        height: 50px
+
+        .appicon
+            width: 50px
+            height: 50px
+            float: left
+            margin-right: 10px
+        h5
+            width: 200px
+            font-size: 18px
+            color: #808080
+            line-height: 30px
+        h6
+            width: 200px
+            font-size: 14px
+            color: #808080
+            font-weight: 200
+
+        a
+            display: inline-block
+            width: 100px
+            height: 30px
+            background-size: 100%
+            position: relative
+            top: 0
+            float: right
+            margin-top: 10px
+            margin-left: 10px
+
+
+        .ios
+            background-image: url("../img/button_ios.png")
+        .android
+            background-image: url("../img/button_android.png")
+
+
+
+@media (max-height: 800px)
+    .container
+        .card
+            margin-top: 0 !important
+            top: 50px

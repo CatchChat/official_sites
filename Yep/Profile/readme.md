@@ -18,5 +18,6 @@ Uncomment `Line 48` in `script.coffee`
 
 
 ## Todo
-
+- App Download Links
+- <del>Google Analytics</del>
 - Behance (Future)
