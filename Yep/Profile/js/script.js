@@ -42,8 +42,6 @@ updateCardHeight = function() {
 
 username = window.location.pathname.split("/").pop();
 
-username = "kevinzhow";
-
 api = "http://park.catchchatchina.com/api/v1/users/" + username + "/profile?callback=?";
 
 $.getJSON(api, function(json) {
@@ -71,7 +69,7 @@ $.getJSON(api, function(json) {
           icon.attr("href", value.user.html_url);
           break;
         case "instagram":
-          icon.attr("href", "这里还没好");
+          icon.attr("href", "http://instagram.com/" + value.media[0].user.username);
       }
     }
   }

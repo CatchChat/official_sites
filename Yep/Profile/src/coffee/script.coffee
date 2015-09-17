@@ -45,7 +45,7 @@ updateCardHeight = ->
 # --- USER DATA RENDERING ---
 
 username = window.location.pathname.split("/").pop()
-username = "kevinzhow"
+# username = "kevinzhow"
 api = "http://park.catchchatchina.com/api/v1/users/#{username}/profile?callback=?"
 
 $.getJSON api, (json)->
@@ -70,8 +70,9 @@ $.getJSON api, (json)->
                 when "dribbble"
                     icon.attr "href", value.user.html_url
                 when "instagram"
-                    icon.attr "href", "这里还没好"
+                    icon.attr "href", "http://instagram.com/" + value.media[0].user.username
                 # when "behance"
+                    # icon.attr "href", value.
 
     for index, skill of json.master_skills
         $('.master').append $('<div>').addClass('skill').html(skill.name)
