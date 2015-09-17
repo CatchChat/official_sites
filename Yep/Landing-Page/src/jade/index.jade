@@ -2,7 +2,6 @@
 - var desc = "Meet Genius"
 - var keyw = "Yep, App"
 
-- var BDMapKey = "P8qeoPmMSc6FKpMvbLKWVrR0"
 - var iTunesLink = "#"
 - var AndroidApk = "#"
 
@@ -13,16 +12,26 @@ html(lang="en")
     meta(charset='UTF-8')
     meta(name="keywords" content="#{keyw}")
     meta(name='description' content='#{desc}')
-    meta(name="viewport" content="width=device-width user-scalable=no initial-scale=1 minimum-scale=1 maximum-scale=1")
+    meta(name="viewport" content="width=device-width height=device-height user-scalable=no initial-scale=0.5 minimum-scale=0.5 maximum-scale=0.5 target-densitydpi=device-dpi")
     link(rel='shortcut icon' href='favicon.png' type='image/x-icon') 
     link(href='css/style.css' type='text/css' rel='stylesheet')
   body
     .container
-      
+      img(src="img/icon.svg").icon
+      h1 Yep
+      h5 Meet Genius
+
+    .buttons
+      a(href="iTunesLink", target="_blank").ios
+        img(src="img/ios.svg")
+      a(href="AndroidApk", target="_blank").android
+        img(src="img/android.svg")
+
     canvas#zodiac
 
+
+    script(type="application/javascript", src="lib/detect.js")
     script(type="application/javascript", src="lib/zodiac.min.js")
-    script(type="application/javascript", src="lib/zepto.min.js")
     script(type="application/javascript", src="http://api.map.baidu.com/api?v=2.0&ak=#{BDMapKey}")
     script(type="application/javascript", src="js/script.js")
     script(type='text/javascript').

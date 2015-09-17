@@ -1,5 +1,7 @@
 var dpr, speed;
 
+window.$ = document.querySelectorAll.bind(document);
+
 dpr = window.devicePixelRatio || 1;
 
 speed = 0.1;
@@ -19,3 +21,18 @@ new Zodiac('zodiac', {
   linkDistance: 50 + (30 * dpr),
   linkWidth: dpr
 });
+
+if (os.android) {
+  $('.ios')[0].style.display = "none";
+}
+
+if (os.ios) {
+  $('.android')[0].style.display = "none";
+}
+
+$('.buttons')[0].style.display = "block";
+
+if (!os.phone && dpr === 1) {
+  $('.container')[0].classList.add('scale');
+  $('.buttons')[0].classList.add('scale');
+}

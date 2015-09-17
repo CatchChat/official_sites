@@ -1,3 +1,5 @@
+window.$ = document.querySelectorAll.bind(document)
+
 # --- LOOK AND FEEL ---
 
 dpr   = window.devicePixelRatio || 1
@@ -23,28 +25,17 @@ new Zodiac 'zodiac',
 
 
 
-
-
 # --- RESPONSIVE LAYOUT ---
 
-# if $.os.android then $('.ios').remove()
-# if $.os.ios then $('.android').remove()
+if os.android then $('.ios')[0].style.display = "none"
+if os.ios then $('.android')[0].style.display = "none"
+$('.buttons')[0].style.display = "block"
 
-# if $.os.phone
-#     $('#zodiac').remove()
-#     $('.container').css
-#         width: "100%"
-#         height: "100%"
-#         margin: 0
-#         left: 0
-#     $('.card').css
-#         padding: "50px 20px"
-#         width: "100%"
-#         boxShadow: "none"
-#         top: 0
-#     $('.footer').css
-#         width: "100%"
-#         padding: "0 20px"
+if not os.phone and dpr is 1
+    $('.container')[0].classList.add('scale')
+    $('.buttons')[0].classList.add('scale')
+
+
 
 
 
