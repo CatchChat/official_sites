@@ -19,6 +19,4 @@ Uncomment `Line 48` in `script.coffee`
 
 ## Todo
 
-- Getting Instagram user url
-- <del>Favicon</del>
 - Behance (Future)
