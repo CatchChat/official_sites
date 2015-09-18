@@ -1,19 +1,6 @@
-window.$$ = document.querySelectorAll.bind(document)
-Node::on = window.on = (name, fn) ->
-    @addEventListener name, fn
-    return
+window.$ = document.querySelectorAll.bind(document)
 
-NodeList::__proto__ = Array.prototype
-NodeList::on = NodeList::addEventListener = (name, fn) ->
-    @forEach (elem, i) ->
-        elem.on name, fn
-        return
-    return
-
-document.ontouchmove = (event)->
-    event.preventDefault()
-
-
+# --- LOOK AND FEEL ---
 
 dpr   = window.devicePixelRatio || 1
 speed = 0.1
@@ -36,13 +23,21 @@ new Zodiac 'zodiac',
     linkWidth: dpr
 
 
-if os.android
-    $$('.ios')[0].style['display'] = 'none'
-    $$('#zodiac')[0].style.display = 'none'
 
-if os.ios
-    $$('.android')[0].style['display'] = 'none'
 
-alert window.devicePixelRatio
+# --- RESPONSIVE LAYOUT ---
+
+if os.android then $('.ios')[0].style.display = "none"
+if os.ios then $('.android')[0].style.display = "none"
+$('.buttons')[0].style.display = "block"
+
+if not os.phone and dpr is 1
+    $('.container')[0].classList.add('scale')
+    $('.buttons')[0].classList.add('scale')
+
+
+
+
+
 
 

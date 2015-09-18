@@ -1,1 +1,38 @@
-(function(){var o,e;window.$$=document.querySelectorAll.bind(document),Node.prototype.on=window.on=function(o,e){this.addEventListener(o,e)},NodeList.prototype.__proto__=Array.prototype,NodeList.prototype.on=NodeList.prototype.addEventListener=function(o,e){this.forEach(function(t,n){t.on(o,e)})},document.ontouchmove=function(o){return o.preventDefault()},o=window.devicePixelRatio||1,e=.1,new Zodiac("zodiac",{dotColor:"#3F87E5",linkColor:"#A8DEFF",directionX:0,directionY:0,velocityX:[e/2,2*e],velocityY:[e/2,2*e],bounceX:!0,bounceY:!0,density:1e4*o,dotRadius:[1.2*o,1.2*o],backgroundColor:"#FAFCFD",linkDistance:50+30*o,linkWidth:o}),os.android&&($$(".ios")[0].style.display="none",$$("#zodiac")[0].style.display="none"),os.ios&&($$(".android")[0].style.display="none"),alert(window.devicePixelRatio)}).call(this);
+var dpr, speed;
+
+window.$ = document.querySelectorAll.bind(document);
+
+dpr = window.devicePixelRatio || 1;
+
+speed = 0.1;
+
+new Zodiac('zodiac', {
+  dotColor: '#3F87E5',
+  linkColor: '#A8DEFF',
+  directionX: 0,
+  directionY: 0,
+  velocityX: [speed / 2, speed * 2],
+  velocityY: [speed / 2, speed * 2],
+  bounceX: true,
+  bounceY: true,
+  density: 10000 * dpr,
+  dotRadius: [dpr * 1.2, dpr * 1.2],
+  backgroundColor: '#FAFCFD',
+  linkDistance: 50 + (30 * dpr),
+  linkWidth: dpr
+});
+
+if (os.android) {
+  $('.ios')[0].style.display = "none";
+}
+
+if (os.ios) {
+  $('.android')[0].style.display = "none";
+}
+
+$('.buttons')[0].style.display = "block";
+
+if (!os.phone && dpr === 1) {
+  $('.container')[0].classList.add('scale');
+  $('.buttons')[0].classList.add('scale');
+}

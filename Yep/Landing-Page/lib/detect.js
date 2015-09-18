@@ -55,4 +55,4 @@ os.tablet = !!(ipad || playbook || (android && !ua.match(/Mobile/)) ||
   (firefox && ua.match(/Tablet/)) || (ie && !ua.match(/Phone/) && ua.match(/Touch/)))
 os.phone  = !!(!os.tablet && !os.ipod && (android || iphone || webos || blackberry || bb10 ||
   (chrome && ua.match(/Android/)) || (chrome && ua.match(/CriOS\/([\d.]+)/)) ||
-  (firefox && ua.match(/Mobile/)) || (ie && ua.match(/Touch/))))
+  (firefox && ua.match(/Mobile/)) || (ie && ua.match(/Touch/)))) 

@@ -1,15 +1,17 @@
-@import 'reset'
+@import reset
 
 *
     box-sizing: border-box
+    outline: none
 
 html
     &, body, canvas
         width: 100%
         height: 100%
-        overflow: hidden
+        z-index: -1
     body
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+        background-color: #FBFCFD
 
 =centerX($width, $mLeft)
     position: absolute
@@ -21,66 +23,55 @@ html
     top: 50%
     margin-top: -($height / 2) + $mTop
 
+// canvas
 
 .container
-    width: 120px + 200px
-    height: 120px + 200px
-    // background-color: #ff0000
-
-    padding: (320px - 120px) / 2
-
-    +centerX(320px, 0)
-    +centerY(320px, -100px)
+    width: 600px
+    height: 460px
+    position: absolute
+    +centerX(600px,0)
+    +centerY(460px,-100px)
+    z-index: 1
+    text-align: center
 
     .icon
-        filter: drop-shadow( 0 30px 30px rgba(89, 103, 116, 0.07))
+        width: 240px
+        height: 240px
+        margin: 0 180px
+        filter: drop-shadow(0px 50px 50px rgba(20,70,129,0.1))
+
+    h1
+        font-size: 80px
+        color: #404040
+        margin-top: 50px
+        font-weight: 200
+
+    h5
+        font-size: 40px
+        color: #808080
+        margin-top: 20px
+        font-weight: 200
 
 .buttons
+    position: absolute
     bottom: 100px
-    height: 60px
-    width: 400px + 20 * 4
-    +centerX(400px + 20 * 4, 0)
+    width: 600px
+    +centerX(600px,0)
     text-align: center
-    z: 10
+    z-index: 1
+    display: none
 
-    & > a
-        display: inline-block
-        width: 200px
-        height: 60px
-        background-repeat: no-repeat
-        cursor: pointer
-        margin: 0 20px
-        background-size: 100%
+    img
+        width: 400px
 
-    .ios
-        background-image: url(../img/btn_ios_en.svg)
-    .android
-        background-image: url(../img/btn_android_en.svg)
+.scale
+    transform: scale(0.5)
+    &.buttons
+        width: 1000px
+        +centerX(1000px,0)
+        .android
+            margin-left: 100px
 
 
 
 
-// canvas
-    // border: 2px solid red
-
-
-@media (-webkit-max-device-pixel-ratio: 1)
-    // non-retina
-@media only screen and (max-device-width: 1024px)
-    .container
-        width: 120px * 2 + 200px
-        height: 120px * 2 + 200px
-        padding: ((120px * 2 + 200px) - 120px * 2) / 2
-        
-        +centerX(120px * 2 + 200px, 0)
-        +centerY(120px * 2 + 200px, -200px)
-
-        .icon
-            width: 120px * 2
-
-    .buttons
-        height: 120px
-
-        & > a
-            width: 200px * 2
-            height: 60px * 2

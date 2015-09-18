@@ -50,7 +50,7 @@ api = "http://park.catchchatchina.com/api/v1/users/#{username}/profile?callback=
 
 $.getJSON api, (json)->
     $('.avatar').css 'background-image', "url(#{json.avatar_url})"
-    $('.badge').css 'background-image', "url(../img/badge/#{json.badge}.png)"
+    $('.badge').css 'background-image', "url(../img/badge_#{json.badge}.png)"
     $('.nickname').html json.nickname
     $('.intro').html json.introduction
 
@@ -70,8 +70,9 @@ $.getJSON api, (json)->
                 when "dribbble"
                     icon.attr "href", value.user.html_url
                 when "instagram"
-                    icon.attr "href", "这里还没好"
+                    icon.attr "href", "http://instagram.com/" + value.media[0].user.username
                 # when "behance"
+                    # icon.attr "href", value.
 
     for index, skill of json.master_skills
         $('.master').append $('<div>').addClass('skill').html(skill.name)
