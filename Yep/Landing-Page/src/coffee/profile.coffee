@@ -50,9 +50,11 @@ api = "http://park.catchchatchina.com/api/v1/users/#{username}/profile?callback=
 
 $.getJSON api, (json)->
     $('.avatar').css 'background-image', "url(#{json.avatar_url})"
-    $('.badge').css 'background-image', "url(../Profile/img/badge_#{json.badge}.png)"
     $('.nickname').html json.nickname
     $('.intro').html json.introduction
+
+    if json.badge is null then $('.badge').css('display', 'none')
+    else $('.badge').css 'background-image', "url(../img/badge_#{json.badge}.png)"
 
     point = new BMap.Point(json.longitude, json.latitude)
     geoc = new BMap.Geocoder()
@@ -74,11 +76,13 @@ $.getJSON api, (json)->
                 # when "behance"
                     # icon.attr "href", value.
 
-    for index, skill of json.master_skills
-        $('.master').append $('<div>').addClass('skill').html(skill.name)
-
-    for index, skill of json.learning_skills
+    if json.learning_skills < 1 then $('.learn').css('display', 'none')
+    else for index, skill of json.learning_skills
         $('.learn').append $('<div>').addClass('skill').html(skill.name)
+    
+    if json.master_skills < 1 then $('.master').css('display', 'none')
+    else for index, skill of json.master_skills
+        $('.master').append $('<div>').addClass('skill').html(skill.name)
 
     updateCardHeight()
 

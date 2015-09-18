@@ -47,9 +47,13 @@ api = "http://park.catchchatchina.com/api/v1/users/" + username + "/profile?call
 $.getJSON(api, function(json) {
   var geoc, icon, index, key, point, skill, value, _ref, _ref1, _ref2;
   $('.avatar').css('background-image', "url(" + json.avatar_url + ")");
-  $('.badge').css('background-image', "url(../Profile/img/badge_" + json.badge + ".png)");
   $('.nickname').html(json.nickname);
   $('.intro').html(json.introduction);
+  if (json.badge === null) {
+    $('.badge').css('display', 'none');
+  } else {
+    $('.badge').css('background-image', "url(../img/badge_" + json.badge + ".png)");
+  }
   point = new BMap.Point(json.longitude, json.latitude);
   geoc = new BMap.Geocoder();
   geoc.getLocation(point, function(rs) {
@@ -73,15 +77,23 @@ $.getJSON(api, function(json) {
       }
     }
   }
-  _ref1 = json.master_skills;
-  for (index in _ref1) {
-    skill = _ref1[index];
-    $('.master').append($('<div>').addClass('skill').html(skill.name));
+  if (json.learning_skills < 1) {
+    $('.learn').css('display', 'none');
+  } else {
+    _ref1 = json.learning_skills;
+    for (index in _ref1) {
+      skill = _ref1[index];
+      $('.learn').append($('<div>').addClass('skill').html(skill.name));
+    }
   }
-  _ref2 = json.learning_skills;
-  for (index in _ref2) {
-    skill = _ref2[index];
-    $('.learn').append($('<div>').addClass('skill').html(skill.name));
+  if (json.master_skills < 1) {
+    $('.master').css('display', 'none');
+  } else {
+    _ref2 = json.master_skills;
+    for (index in _ref2) {
+      skill = _ref2[index];
+      $('.master').append($('<div>').addClass('skill').html(skill.name));
+    }
   }
   return updateCardHeight();
 });
