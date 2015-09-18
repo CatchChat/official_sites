@@ -1,1 +1,263 @@
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}body{line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}table{border-collapse:collapse;border-spacing:0;}*{box-sizing:border-box;outline:none;}html,html body,html canvas{width:100%;height:100%;}html body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;background-color:#FBFCFD;}canvas{position:fixed;z-index:0;}.container{width:400px;height:100%;min-height:660px;z-index:1;position:absolute;position:absolute;left:50%;margin-left:-200px;}.container .card{width:400px;border-radius:8px;background-color:white;box-shadow:0px 50px 50px 0px rgba(20, 70, 129, 0.1);padding:50px;text-align:center;-webkit-transition:all 0.5s ease;transition:all 0.5s ease;position:absolute;top:50%;margin-top:-300px;@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}}@keyframes spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}}}.container .card>div,.container .card a{margin:0 auto;display:block;position:relative;}.container .card .spinner{width:30px;height:30px;border-radius:50%;border:2px solid #51A7F7;border-left-color:transparent;display:block;-webkit-animation:spin 1000ms infinite linear;animation:spin 1000ms infinite linear;}.container .card .avatar{width:100px;height:100px;border-radius:50%;background-size:100px 100px;background-repeat:no-repeat;}.container .card .badge{width:22px;height:22px;border-radius:50%;margin-top:-14px;background-color:white;background-size:15px;background-repeat:no-repeat;background-position:center;}.container .card .nickname{font-size:22px;color:#404040;line-height:26px;margin-top:20px;margin-bottom:10px;}.container .card .location{font-size:14px;color:#BFBFBF;font-weight:200;background-image:url(../img/icon_location.png);background-size:12px 15px;background-repeat:no-repeat;padding-left:15px;display:inline-block;margin-bottom:30px;opacity:0;}.container .card .links>a{width:22px;height:22px;display:none;margin:0 20px 20px;background-size:22px 22px;background-repeat:no-repeat;}.container .card .links .github{background-image:url(../img/icon_github.png);}.container .card .links .dribbble{background-image:url(../img/icon_dribbble.png);}.container .card .links .instagram{background-image:url(../img/icon_instagram.png);}.container .card .links .behance{background-image:url(../img/icon_behance.png);}.container .card .intro{font-size:14px;color:#8E8E93;line-height:22px;font-weight:200;}.container .card .master:before{content:'Master';}.container .card .learn:before{content:'Learning';}.container .card .skills{text-align:left;word-spacing:5px;margin-top:20px;opacity:0;}.container .card .skills .skill{height:24px;line-height:24px;font-size:14px;color:white;padding:0 10px;margin:5px;background-color:#51AAF5;border-radius:12px;display:inline-block;}.container .card .skills:before{display:block;font-size:20px;margin-bottom:10px;margin-left:5px;}.container .footer{position:absolute;bottom:20px;width:400px;height:50px;}.container .footer .appicon{width:50px;height:50px;float:left;margin-right:10px;}.container .footer h5{width:200px;font-size:18px;color:#808080;line-height:30px;}.container .footer h6{width:200px;font-size:14px;color:#808080;font-weight:200;}.container .footer a{display:inline-block;width:100px;height:30px;background-size:100%;position:relative;top:0;float:right;margin-top:10px;margin-left:10px;}.container .footer .ios{background-image:url("../img/button_ios.png");}.container .footer .android{background-image:url("../img/button_android.png");}@media (max-height: 800px){.container .card{margin-top:0 !important;top:50px;}}
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain) */
+/* line 17, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+/* line 27, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/reset */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+/* line 30, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/reset */
+body {
+  line-height: 1; }
+
+/* line 33, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/reset */
+ol, ul {
+  list-style: none; }
+
+/* line 36, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/reset */
+blockquote, q {
+  quotes: none; }
+
+/* line 40, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/reset */
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none; }
+
+/* line 44, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/reset */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* line 3, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+* {
+  box-sizing: border-box;
+  outline: none; }
+
+/* line 8, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+html, html body {
+  z-index: -1; }
+/* line 11, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+html body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #FBFCFD;
+  overflow: auto; }
+/* line 16, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+html canvas {
+  width: 100%;
+  height: 100%; }
+
+/* line 30, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+canvas {
+  position: fixed;
+  z-index: 0; }
+
+/* line 35, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+.container {
+  width: 400px;
+  height: 100%;
+  min-height: 660px;
+  z-index: 1;
+  position: absolute;
+  position: absolute;
+  left: 50%;
+  margin-left: -200px; }
+  /* line 44, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+  .container .card {
+    width: 400px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0px 50px 50px 0px rgba(20, 70, 129, 0.1);
+    padding: 50px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    margin-top: -300px; }
+    /* line 53, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card > div, .container .card a {
+      margin: 0 auto;
+      display: block;
+      position: relative; }
+    /* line 60, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card .spinner {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #51A7F7;
+      border-left-color: transparent;
+      display: block;
+      -webkit-animation: spin 1000ms infinite linear;
+              animation: spin 1000ms infinite linear; }
+    /* line 70, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-size: 100px 100px;
+      background-repeat: no-repeat; }
+    /* line 77, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card .badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      margin-top: -14px;
+      background-color: white;
+      background-size: 15px;
+      background-repeat: no-repeat;
+      background-position: center; }
+    /* line 87, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card .nickname {
+      font-size: 22px;
+      color: #404040;
+      line-height: 26px;
+      margin-top: 20px;
+      margin-bottom: 10px; }
+    /* line 94, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card .location {
+      font-size: 14px;
+      color: #BFBFBF;
+      font-weight: 200;
+      background-image: url(../img/icon_location.png);
+      background-size: 12px 15px;
+      background-repeat: no-repeat;
+      padding-left: 15px;
+      display: inline-block;
+      margin-bottom: 30px;
+      opacity: 0; }
+    /* line 107, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card .links > a {
+      width: 22px;
+      height: 22px;
+      display: none;
+      margin: 0 20px 20px;
+      background-size: 22px 22px;
+      background-repeat: no-repeat; }
+    /* line 116, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card .links .github {
+      background-image: url(../img/icon_github.png); }
+    /* line 118, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card .links .dribbble {
+      background-image: url(../img/icon_dribbble.png); }
+    /* line 120, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card .links .instagram {
+      background-image: url(../img/icon_instagram.png); }
+    /* line 122, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card .links .behance {
+      background-image: url(../img/icon_behance.png); }
+    /* line 125, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card .intro {
+      font-size: 14px;
+      color: #8E8E93;
+      line-height: 22px;
+      font-weight: 200; }
+    /* line 132, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card .master:before {
+      content: 'Master'; }
+    /* line 134, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card .learn:before {
+      content: 'Learning'; }
+    /* line 137, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .card .skills {
+      text-align: left;
+      word-spacing: 5px;
+      margin-top: 20px;
+      opacity: 0; }
+      /* line 143, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+      .container .card .skills .skill {
+        height: 24px;
+        line-height: 24px;
+        font-size: 14px;
+        color: white;
+        padding: 0 10px;
+        margin: 5px;
+        background-color: #51AAF5;
+        border-radius: 12px;
+        display: inline-block; }
+      /* line 154, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+      .container .card .skills:before {
+        display: block;
+        font-size: 20px;
+        margin-bottom: 10px;
+        margin-left: 5px; }
+  /* line 162, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+  .container .footer {
+    position: absolute;
+    bottom: 20px;
+    width: 400px;
+    height: 50px; }
+    /* line 168, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .footer .appicon {
+      width: 50px;
+      height: 50px;
+      float: left;
+      margin-right: 10px; }
+    /* line 173, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .footer h5 {
+      width: 200px;
+      font-size: 18px;
+      color: #808080;
+      line-height: 30px; }
+    /* line 178, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .footer h6 {
+      width: 200px;
+      font-size: 14px;
+      color: #808080;
+      font-weight: 200; }
+    /* line 184, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .footer a {
+      display: inline-block;
+      width: 100px;
+      height: 30px;
+      background-size: 100%;
+      position: relative;
+      top: 0;
+      float: right;
+      margin-top: 10px;
+      margin-left: 10px; }
+    /* line 196, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .footer .ios {
+      background-image: url("../img/button_ios.png"); }
+    /* line 198, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+    .container .footer .android {
+      background-image: url("../img/button_android.png"); }
+
+@-webkit-keyframes spin {
+  /* line 202, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+
+  /* line 204, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+@keyframes spin {
+  /* line 202, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+
+  /* line 204, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+@media (max-height: 800px) {
+  /* line 209, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+  .container .card {
+    margin-top: 0 !important;
+    top: 50px; } }
+
+@media (max-height: 400px) {
+  /* line 214, /Users/ray/Develop/official_sites/Yep/Landing-Page/src/sass/profile.sass */
+  .container {
+    width: 100%; } }

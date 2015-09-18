@@ -34,10 +34,11 @@ updateCardHeight = function() {
     minHeight: cardHeight + footHeight + 50 * 2 + 20 * 2
   });
   if ($.os.phone) {
-    return $('.container').css({
+    $('.container').css({
       minHeight: cardHeight + footHeight + 50
     });
   }
+  return $('body').css('height', $('.container').height());
 };
 
 username = window.location.pathname.split("/")[1];
