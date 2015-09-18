@@ -44,7 +44,7 @@ updateCardHeight = ->
 
 # --- USER DATA RENDERING ---
 
-username = window.location.pathname.split("/").pop()
+username = window.location.pathname.split("/")[1]
 # username = "kevinzhow"
 api = "http://park.catchchatchina.com/api/v1/users/#{username}/profile?callback=?"
 
