@@ -39,7 +39,7 @@ updateCardHeight = ->
         $('.container').css
             minHeight: cardHeight + footHeight + 50
 
-
+    $('body').css('height', $('.container').height())
 
 
 # --- USER DATA RENDERING ---
