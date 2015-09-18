@@ -30,6 +30,18 @@ gulp.task('jade', function() {
         .pipe(browserSync.reload({
             stream: true
         }))
+    gulp.src(['Profile/src/jade/**/*.jade'])
+        .pipe(plumber({
+            errorHandler: function(error) {
+                console.log(error.message);
+                this.emit('end');
+            }
+        }))
+        .pipe(jade())
+        .pipe(gulp.dest('Profile/'))
+        .pipe(browserSync.reload({
+            stream: true
+        }))
 });
 gulp.task('sass', function() {
     gulp.src(['src/sass/**/*.sass'])
