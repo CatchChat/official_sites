@@ -1,4 +1,4 @@
-var dpr, speed;
+var dpr, scaleElements, speed;
 
 window.$ = document.querySelectorAll.bind(document);
 
@@ -32,7 +32,11 @@ if (os.ios) {
 
 $('.buttons')[0].style.display = "block";
 
-if (!os.phone && dpr === 1) {
+scaleElements = function() {
   $('.container')[0].classList.add('scale');
-  $('.buttons')[0].classList.add('scale');
+  return $('.buttons')[0].classList.add('scale');
+};
+
+if (!os.phone && !os.tablet && (dpr = 2)) {
+  scaleElements();
 }

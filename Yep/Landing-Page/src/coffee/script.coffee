@@ -31,10 +31,13 @@ if os.android then $('.ios')[0].style.display = "none"
 if os.ios then $('.android')[0].style.display = "none"
 $('.buttons')[0].style.display = "block"
 
-if not os.phone and dpr is 1
+scaleElements = ->
     $('.container')[0].classList.add('scale')
     $('.buttons')[0].classList.add('scale')
 
+if not os.phone and not os.tablet and dpr = 2
+    # Non-Retina Desktops
+    scaleElements()
 
 
 

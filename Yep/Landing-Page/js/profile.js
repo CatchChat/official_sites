@@ -46,7 +46,7 @@ username = window.location.pathname.split("/")[1];
 api = "http://park.catchchatchina.com/api/v1/users/" + username + "/profile?callback=?";
 
 $.getJSON(api, function(json) {
-  var geoc, icon, index, key, point, skill, value, _ref, _ref1, _ref2;
+  var geoc, icon, index, key, point, ref, ref1, ref2, skill, value;
   $('.avatar').css('background-image', "url(" + json.avatar_url + ")");
   $('.nickname').html(json.nickname);
   $('.intro').html(json.introduction);
@@ -60,9 +60,9 @@ $.getJSON(api, function(json) {
   geoc.getLocation(point, function(rs) {
     return $('.location').html(rs.addressComponents.city);
   });
-  _ref = json.providers;
-  for (key in _ref) {
-    value = _ref[key];
+  ref = json.providers;
+  for (key in ref) {
+    value = ref[key];
     if (value !== null) {
       icon = $("." + key);
       icon.css("display", "inline-block");
@@ -81,18 +81,18 @@ $.getJSON(api, function(json) {
   if (json.learning_skills < 1) {
     $('.learn').css('display', 'none');
   } else {
-    _ref1 = json.learning_skills;
-    for (index in _ref1) {
-      skill = _ref1[index];
+    ref1 = json.learning_skills;
+    for (index in ref1) {
+      skill = ref1[index];
       $('.learn').append($('<div>').addClass('skill').html(skill.name));
     }
   }
   if (json.master_skills < 1) {
     $('.master').css('display', 'none');
   } else {
-    _ref2 = json.master_skills;
-    for (index in _ref2) {
-      skill = _ref2[index];
+    ref2 = json.master_skills;
+    for (index in ref2) {
+      skill = ref2[index];
       $('.master').append($('<div>').addClass('skill').html(skill.name));
     }
   }
