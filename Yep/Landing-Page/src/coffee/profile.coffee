@@ -54,7 +54,7 @@ $.getJSON api, (json)->
     $('.intro').html json.introduction
 
     if json.badge is null then $('.badge').css('display', 'none')
-    else $('.badge').css 'background-image', "url(../img/badge_#{json.badge}.png)"
+    else $('.badge').css 'background-image', "url(/img/badge_#{json.badge}.png)"
 
     point = new BMap.Point(json.longitude, json.latitude)
     geoc = new BMap.Geocoder()

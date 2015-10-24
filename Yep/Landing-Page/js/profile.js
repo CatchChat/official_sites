@@ -53,7 +53,7 @@ $.getJSON(api, function(json) {
   if (json.badge === null) {
     $('.badge').css('display', 'none');
   } else {
-    $('.badge').css('background-image', "url(../img/badge_" + json.badge + ".png)");
+    $('.badge').css('background-image', "url(/img/badge_" + json.badge + ".png)");
   }
   point = new BMap.Point(json.longitude, json.latitude);
   geoc = new BMap.Geocoder();
