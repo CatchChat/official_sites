@@ -1,0 +1,56 @@
+- var name = "Yep"
+- var desc = "Meet Genius"
+- var keyw = "Yep, App"
+
+- var download_ios = "#"
+- var download_android = "#"
+
+doctype html
+html(lang="en")
+    head
+        title #{name} - #{desc}
+        meta(charset='UTF-8')
+        meta(name="keywords" content="#{keyw}")
+        meta(name='description' content='#{desc}')
+        meta(name="viewport" content="width=device-width height=device-height user-scalable=no initial-scale=1 minimal-ui")
+        link(rel='shortcut icon' href='favicon.png' type='image/x-icon') 
+        link(href='lib/slick.css' type='text/css' rel='stylesheet')
+        link(href='css/slick-theme.css' type='text/css' rel='stylesheet')
+        link(href='css/style.css' type='text/css' rel='stylesheet')
+    body
+        .gallery
+            .slick
+
+        .container
+            .topic
+                .info
+                    .avatar
+                    .nickname
+                    .time
+                .text Loading...
+                .images
+            .chat
+                .table
+                    .cell.text.template
+                        .avatar
+                        .flex
+                            .nickname nickname
+                            .bubble
+                                .content text_content
+                        .avatar
+        .footer
+            .wrapper
+                .appicon
+                .appname Yep
+                .appdesc Meet Genius
+                .buttons
+                    a.ios(href="#{download_ios}" target="_blank")
+                    a.android(href="#{download_android}" target="_blank")
+
+        script(type="application/javascript", src="lib/jquery-2.1.4.min.js")
+        script(type="application/javascript", src="lib/detect.js")
+        script(type="application/javascript", src="lib/url.min.js")
+        script(type="application/javascript", src="lib/slick.min.js")
+        script(type="application/javascript", src="lib/jquery.timeago.js")
+        script(type="application/javascript", src="lib/jquery.tap.js")
+        script(type="application/javascript", src="js/script.js")
