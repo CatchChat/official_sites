@@ -1,9 +1,4 @@
 $ ->
-# --- LOOK AND FEEL ---
-
-# --- RESPONSIVE LAYOUT ---
-    $(".android").hide() if os.ios
-    $(".ios").hide() if os.android
 
 # --- DATA RENDERING ---
     url = "https://park.catchchatchina.com/api/v1/circles/shared_messages"
@@ -37,7 +32,7 @@ $ ->
             $("<img/>", src: attachment.file.url).appendTo(".gallery .slick")
             # End of for loop
 
-        $(".gallery .slick").slick(
+        $(".viewer.gallery .slick").slick(
             speed: 200
             centerPadding: '10%'
             centerMode: true
@@ -54,35 +49,62 @@ $ ->
                 # Center align vertically
                 $(".slick-list").css "top", ($(".gallery").height() - $(".slick-list").height()) / 2
 
-        $(".topic .images img").tap ->
+        $(".topic .images img").on "tap", ->
             index = $(this).index()
             $(".gallery .slick").slick('slickGoTo', index)
             $(".gallery").fadeIn(100)
+            $(".gallery .slick").toggleClass("show")
 
-        $(".gallery .slick").tap ->
+
+        $(".viewer.gallery .slick").on "tap", ->
             $(".gallery").fadeOut(100)
+            $(".gallery .slick").toggleClass("show")
 
-        $(".gallery .slick").children().tap -> return false
+        $(".viewer.gallery .slick").children().on "tap", -> return false
 
 
         # Latest Conversations
         for msg in messages
-            # console.log msg
-            # $("<div/>", class: "cell text").appendTo(".table")
+
+            element = $(".template.cell").clone().removeClass("template")
+            $(element).find(".avatar").css "background-image", "url(#{msg.sender.avatar_url})"
+            $(element).find(".nickname").html(msg.sender.nickname)
 
             switch msg.media_type
                 when "text"
-                    element = $(".template.cell.text").clone().removeClass("template")
-                    $(element).find(".avatar").css "background-image", "url(#{msg.sender.avatar_url})"
-                    $(element).find(".nickname").html(msg.sender.nickname)
-                    $(element).find(".content").html(msg.text_content)
-                    $(element).appendTo(".table")
-                # when "image"
+                    $(element).find(".content").addClass("text").html(msg.text_content)
+                
+                when "image"
+                    attachment = msg.attachments[0]
+                    metadata = $.parseJSON attachment.metadata
+                    $(element).find(".content").addClass("image").append $("<img/>", src: attachment.file.url)
+                
+                when "audio"
+                    $(element).find(".content").addClass("audio")
+                
+                when "location"
+                    $(element).find(".content").addClass("location")
 
 
+            $(element).appendTo(".table")
+
+        # Viewer - Image
+        $(".chat .bubble .image").on "tap", ->
+            src = $(this).find("img").attr "src"
+
+            # $("<img/>", src: src).appendTo(".media.viewer")
+            $(".media.viewer").html($("<img/>", src: src))
+            $(".media.viewer").fadeIn(100)
+            $(".media.viewer").find("img").toggleClass("show")
+
+        $(".media.viewer").on "tap", ->
+            $(".media.viewer").find("img").toggleClass("show")
+            $(this).fadeOut(100)
 
 
-
+# --- RESPONSIVE LAYOUT ---
+    $(".android").hide() if os.ios
+    $(".ios").hide() if os.android
 
 
 

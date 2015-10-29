@@ -18,9 +18,9 @@ html(lang="en")
         link(href='css/slick-theme.css' type='text/css' rel='stylesheet')
         link(href='css/style.css' type='text/css' rel='stylesheet')
     body
-        .gallery
+        .gallery.viewer
             .slick
-
+        .media.viewer
         .container
             .topic
                 .info
@@ -31,12 +31,12 @@ html(lang="en")
                 .images
             .chat
                 .table
-                    .cell.text.template
+                    .cell.template
                         .avatar
                         .flex
-                            .nickname nickname
+                            .nickname
                             .bubble
-                                .content text_content
+                                .content
                         .avatar
         .footer
             .wrapper
@@ -52,5 +52,6 @@ html(lang="en")
         script(type="application/javascript", src="lib/url.min.js")
         script(type="application/javascript", src="lib/slick.min.js")
         script(type="application/javascript", src="lib/jquery.timeago.js")
-        script(type="application/javascript", src="lib/jquery.tap.js")
+        //- script(type="application/javascript", src="lib/jquery.tap.js")
+        script(type="application/javascript", src="lib/jquery.finger.min.js")
         script(type="application/javascript", src="js/script.js")

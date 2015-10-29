@@ -1,15 +1,9 @@
 $(function() {
   var param, url;
-  if (os.ios) {
-    $(".android").hide();
-  }
-  if (os.android) {
-    $(".ios").hide();
-  }
   url = "https://park.catchchatchina.com/api/v1/circles/shared_messages";
   param = "?token=" + $.url("?token") + "&callback=?";
-  return $.getJSON(url + param, function(response) {
-    var attachment, element, i, j, len, len1, messages, metadata, msg, prefix, ref, results, thumbnail, topic;
+  $.getJSON(url + param, function(response) {
+    var attachment, element, i, j, len, len1, messages, metadata, msg, prefix, ref, thumbnail, topic;
     topic = response.topic;
     messages = response.messages;
     $(".topic .avatar").css("background-image", "url(" + topic.user.avatar_url + ")");
@@ -29,7 +23,7 @@ $(function() {
         src: attachment.file.url
       }).appendTo(".gallery .slick");
     }
-    $(".gallery .slick").slick({
+    $(".viewer.gallery .slick").slick({
       speed: 200,
       centerPadding: '10%',
       centerMode: true,
@@ -48,33 +42,62 @@ $(function() {
     }).on('setPosition', function() {
       return $(".slick-list").css("top", ($(".gallery").height() - $(".slick-list").height()) / 2);
     });
-    $(".topic .images img").tap(function() {
+    $(".topic .images img").on("tap", function() {
       var index;
       index = $(this).index();
       $(".gallery .slick").slick('slickGoTo', index);
-      return $(".gallery").fadeIn(100);
+      $(".gallery").fadeIn(100);
+      return $(".gallery .slick").toggleClass("show");
     });
-    $(".gallery .slick").tap(function() {
-      return $(".gallery").fadeOut(100);
+    $(".viewer.gallery .slick").on("tap", function() {
+      $(".gallery").fadeOut(100);
+      return $(".gallery .slick").toggleClass("show");
     });
-    $(".gallery .slick").children().tap(function() {
+    $(".viewer.gallery .slick").children().on("tap", function() {
       return false;
     });
-    results = [];
     for (j = 0, len1 = messages.length; j < len1; j++) {
       msg = messages[j];
+      element = $(".template.cell").clone().removeClass("template");
+      $(element).find(".avatar").css("background-image", "url(" + msg.sender.avatar_url + ")");
+      $(element).find(".nickname").html(msg.sender.nickname);
       switch (msg.media_type) {
         case "text":
-          element = $(".template.cell.text").clone().removeClass("template");
-          $(element).find(".avatar").css("background-image", "url(" + msg.sender.avatar_url + ")");
-          $(element).find(".nickname").html(msg.sender.nickname);
-          $(element).find(".content").html(msg.text_content);
-          results.push($(element).appendTo(".table"));
+          $(element).find(".content").addClass("text").html(msg.text_content);
           break;
-        default:
-          results.push(void 0);
+        case "image":
+          attachment = msg.attachments[0];
+          metadata = $.parseJSON(attachment.metadata);
+          $(element).find(".content").addClass("image").append($("<img/>", {
+            src: attachment.file.url
+          }));
+          break;
+        case "audio":
+          $(element).find(".content").addClass("audio");
+          break;
+        case "location":
+          $(element).find(".content").addClass("location");
       }
+      $(element).appendTo(".table");
     }
-    return results;
+    $(".chat .bubble .image").on("tap", function() {
+      var src;
+      src = $(this).find("img").attr("src");
+      $(".media.viewer").html($("<img/>", {
+        src: src
+      }));
+      $(".media.viewer").fadeIn(100);
+      return $(".media.viewer").find("img").toggleClass("show");
+    });
+    return $(".media.viewer").on("tap", function() {
+      $(".media.viewer").find("img").toggleClass("show");
+      return $(this).fadeOut(100);
+    });
   });
+  if (os.ios) {
+    $(".android").hide();
+  }
+  if (os.android) {
+    return $(".ios").hide();
+  }
 });

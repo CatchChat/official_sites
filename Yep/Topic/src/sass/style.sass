@@ -9,6 +9,16 @@ $gray: #E6E6E6
        -moz-overflow-scrolling: $value
             overflow-scrolling: $value
 
+=ajaxLoader($size:40px)
+    background-image: url("/lib/ajax-loader.gif")
+    background-size: $size $size
+    background-repeat: no-repeat
+    background-position: center center
+    background-color: white
+
+=transitionAll($duration:0.25s)
+    transition: all $duration ease-out
+
 *, *:before, *:after
     box-sizing: border-box
     -webkit-font-smoothing: antialiased
@@ -119,13 +129,11 @@ html
                     &:first-of-type
                         flex-shrink: 0
                     &:last-of-type
-                        // background-color: green
                         opacity: 0
 
                 .flex
                     height: 100%
                     width: 50px
-                    // background-color: blue
                     float: left
                     flex-grow: 1
                     flex-shrink: 0
@@ -134,22 +142,35 @@ html
                         width: 100%
                         height: 20px
                         color: #808080
-                        // background-color: yellow
 
                     .bubble
                         max-width: 100%
-                        min-height: 40px
-                        // min-width: 80px
                         background-color: $gray
                         display: inline-block
                         border-radius: 20px
+                        overflow: hidden
+                        border: 1px solid $gray
 
                         .content
+                            min-width: 40px
+                            min-height: 40px
+
+                        .content:not(.text)
+                            display: block
+                            +ajaxLoader(20px)
+
+                        .content.text
                             color: black
                             display: inline-block
                             line-height: 20px
-                            padding: 10px 20px
-                            // background-color: green
+                            padding: 10px 15px
+
+                        .content.image
+                            img
+                                display: block
+                                max-width: 200px
+                                max-height: 200px
+
 
             .template
                 display: none
@@ -203,8 +224,7 @@ html
             .android
                 background-image: url("/img/button_android.svg")
                 
-
-.gallery
+.viewer
     width: 100%
     height: 100%
     position: fixed
@@ -212,8 +232,16 @@ html
     background-color: rgba(black, 0.9)
     display: none
 
+.gallery
     .slick
         min-height: 100%
+
+        transform: scale(0)
+
+        &.show
+            transform: scale(1)
+
+        +transitionAll
 
         img
             max-width: 80%
@@ -236,6 +264,23 @@ html
             li.slick-active
                 background-color: rgba(white, 1)
     
+.media
+    // border: 10px solid red
+    img
+        max-width: 90%
+        max-height: 90%
+        margin: auto
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        transform: scale(0)
 
+        &.show
+            transform: scale(1)
+
+        +transitionAll
+    
 
 
