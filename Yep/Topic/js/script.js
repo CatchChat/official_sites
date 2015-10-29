@@ -9,7 +9,7 @@ $(function() {
   url = "https://park.catchchatchina.com/api/v1/circles/shared_messages";
   param = "?token=" + $.url("?token") + "&callback=?";
   return $.getJSON(url + param, function(response) {
-    var attachment, i, j, len, len1, messages, metadata, msg, prefix, ref, results, thumbnail, topic;
+    var attachment, element, i, j, len, len1, messages, metadata, msg, prefix, ref, results, thumbnail, topic;
     topic = response.topic;
     messages = response.messages;
     $(".topic .avatar").css("background-image", "url(" + topic.user.avatar_url + ")");
@@ -63,8 +63,17 @@ $(function() {
     results = [];
     for (j = 0, len1 = messages.length; j < len1; j++) {
       msg = messages[j];
-      console.log(msg);
-      results.push($(".template.cell.text").clone().appendTo(".table").removeClass("template"));
+      switch (msg.media_type) {
+        case "text":
+          element = $(".template.cell.text").clone().removeClass("template");
+          $(element).find(".avatar").css("background-image", "url(" + msg.sender.avatar_url + ")");
+          $(element).find(".nickname").html(msg.sender.nickname);
+          $(element).find(".content").html(msg.text_content);
+          results.push($(element).appendTo(".table"));
+          break;
+        default:
+          results.push(void 0);
+      }
     }
     return results;
   });

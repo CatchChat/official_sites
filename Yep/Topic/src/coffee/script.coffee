@@ -67,11 +67,17 @@ $ ->
 
         # Latest Conversations
         for msg in messages
-            console.log msg
-
+            # console.log msg
             # $("<div/>", class: "cell text").appendTo(".table")
 
-            $(".template.cell.text").clone().appendTo(".table").removeClass("template")
+            switch msg.media_type
+                when "text"
+                    element = $(".template.cell.text").clone().removeClass("template")
+                    $(element).find(".avatar").css "background-image", "url(#{msg.sender.avatar_url})"
+                    $(element).find(".nickname").html(msg.sender.nickname)
+                    $(element).find(".content").html(msg.text_content)
+                    $(element).appendTo(".table")
+                # when "image"
 
 
 
@@ -80,8 +86,8 @@ $ ->
 
 
 
-        # $("body").on "touchmove", (e)->
-            # e.preventDefault()
+
+
 
   
 
