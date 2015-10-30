@@ -22,14 +22,14 @@ $ ->
 
         # Image Tumbnails
         prefix = "data:image/jpeg;base64,"          
-        for attachment in topic.attachments
-            metadata = $.parseJSON attachment.metadata
-            thumbnail = prefix + metadata.thumbnail_string
-            $("<img/>", src: thumbnail).appendTo(".images")
+        for topic_attachment in topic.attachments
+            topic_metadata = $.parseJSON topic_attachment.metadata
+            topic_thumbnail = prefix + topic_metadata.thumbnail_string
+            $("<img/>", src: topic_thumbnail).appendTo(".images")
 
 
         # Image Gallery
-            $("<img/>", src: attachment.file.url).appendTo(".gallery .slick")
+            $("<img/>", src: topic_attachment.file.url).appendTo(".gallery .slick")
             # End of for loop
 
         $(".viewer.gallery .slick").slick(
@@ -67,32 +67,44 @@ $ ->
         for msg in messages
 
             element = $(".template.cell").clone().removeClass("template")
-            $(element).find(".avatar").css "background-image", "url(#{msg.sender.avatar_url})"
-            $(element).find(".nickname").html(msg.sender.nickname)
+            content = element.find(".content")
+
+            element.find(".avatar").css "background-image", "url(#{msg.sender.avatar_url})"
+            element.find(".nickname").html(msg.sender.nickname)
+
+            attachment = msg.attachments[0]
+            metadata = if attachment then $.parseJSON attachment.metadata else undefined
 
             switch msg.media_type
                 when "text"
-                    $(element).find(".content").addClass("text").html(msg.text_content)
+                    content.addClass("text").html(msg.text_content)
                 
                 when "image"
-                    attachment = msg.attachments[0]
-                    metadata = $.parseJSON attachment.metadata
-                    $(element).find(".content").addClass("image").append $("<img/>", src: attachment.file.url)
-                
+                    content.addClass("image")
+                    .append $("<img/>", src: attachment.file.url)
+
                 when "audio"
-                    $(element).find(".content").addClass("audio")
-                
+                    duration = metadata.audio_duration
+                    
+                    audio_element = $("<audio controls>", src: attachment.file.url)
+                    audio_element.append $("<source>", src: attachment.file.url, type: "audio/mp4")
+                    
+
+                    content.addClass("audio").append audio_element
+
+                    content.addClass("audio").append $("<button/>")
+                    content.addClass("audio").append $("<progress/>", max: 10, value: 5)
+                    content.addClass("audio").append $("<label/>").html("10")
+
                 when "location"
-                    $(element).find(".content").addClass("location")
+                    content.addClass("location")
 
-
-            $(element).appendTo(".table")
+            element.appendTo(".table")
 
         # Viewer - Image
         $(".chat .bubble .image").on "tap", ->
             src = $(this).find("img").attr "src"
 
-            # $("<img/>", src: src).appendTo(".media.viewer")
             $(".media.viewer").html($("<img/>", src: src))
             $(".media.viewer").fadeIn(100)
             $(".media.viewer").find("img").toggleClass("show")
@@ -100,6 +112,9 @@ $ ->
         $(".media.viewer").on "tap", ->
             $(".media.viewer").find("img").toggleClass("show")
             $(this).fadeOut(100)
+
+        # Player - Voice
+        # $(".chat .bubble .audio").on "tap", ->
 
 
 # --- RESPONSIVE LAYOUT ---

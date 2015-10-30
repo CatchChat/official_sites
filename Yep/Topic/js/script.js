@@ -3,7 +3,7 @@ $(function() {
   url = "https://park.catchchatchina.com/api/v1/circles/shared_messages";
   param = "?token=" + $.url("?token") + "&callback=?";
   $.getJSON(url + param, function(response) {
-    var attachment, element, i, j, len, len1, messages, metadata, msg, prefix, ref, thumbnail, topic;
+    var attachment, audio_element, content, duration, element, i, j, len, len1, messages, metadata, msg, prefix, ref, topic, topic_attachment, topic_metadata, topic_thumbnail;
     topic = response.topic;
     messages = response.messages;
     $(".topic .avatar").css("background-image", "url(" + topic.user.avatar_url + ")");
@@ -13,14 +13,14 @@ $(function() {
     prefix = "data:image/jpeg;base64,";
     ref = topic.attachments;
     for (i = 0, len = ref.length; i < len; i++) {
-      attachment = ref[i];
-      metadata = $.parseJSON(attachment.metadata);
-      thumbnail = prefix + metadata.thumbnail_string;
+      topic_attachment = ref[i];
+      topic_metadata = $.parseJSON(topic_attachment.metadata);
+      topic_thumbnail = prefix + topic_metadata.thumbnail_string;
       $("<img/>", {
-        src: thumbnail
+        src: topic_thumbnail
       }).appendTo(".images");
       $("<img/>", {
-        src: attachment.file.url
+        src: topic_attachment.file.url
       }).appendTo(".gallery .slick");
     }
     $(".viewer.gallery .slick").slick({
@@ -59,26 +59,41 @@ $(function() {
     for (j = 0, len1 = messages.length; j < len1; j++) {
       msg = messages[j];
       element = $(".template.cell").clone().removeClass("template");
-      $(element).find(".avatar").css("background-image", "url(" + msg.sender.avatar_url + ")");
-      $(element).find(".nickname").html(msg.sender.nickname);
+      content = element.find(".content");
+      element.find(".avatar").css("background-image", "url(" + msg.sender.avatar_url + ")");
+      element.find(".nickname").html(msg.sender.nickname);
+      attachment = msg.attachments[0];
+      metadata = attachment ? $.parseJSON(attachment.metadata) : void 0;
       switch (msg.media_type) {
         case "text":
-          $(element).find(".content").addClass("text").html(msg.text_content);
+          content.addClass("text").html(msg.text_content);
           break;
         case "image":
-          attachment = msg.attachments[0];
-          metadata = $.parseJSON(attachment.metadata);
-          $(element).find(".content").addClass("image").append($("<img/>", {
+          content.addClass("image").append($("<img/>", {
             src: attachment.file.url
           }));
           break;
         case "audio":
-          $(element).find(".content").addClass("audio");
+          duration = metadata.audio_duration;
+          audio_element = $("<audio controls>", {
+            src: attachment.file.url
+          });
+          audio_element.append($("<source>", {
+            src: attachment.file.url,
+            type: "audio/mp4"
+          }));
+          content.addClass("audio").append(audio_element);
+          content.addClass("audio").append($("<button/>"));
+          content.addClass("audio").append($("<progress/>", {
+            max: 10,
+            value: 5
+          }));
+          content.addClass("audio").append($("<label/>").html("10"));
           break;
         case "location":
-          $(element).find(".content").addClass("location");
+          content.addClass("location");
       }
-      $(element).appendTo(".table");
+      element.appendTo(".table");
     }
     $(".chat .bubble .image").on("tap", function() {
       var src;

@@ -150,20 +150,19 @@ html
                         border-radius: 20px
                         overflow: hidden
                         border: 1px solid $gray
+                        +ajaxLoader(20px)
 
                         .content
                             min-width: 40px
                             min-height: 40px
-
-                        .content:not(.text)
                             display: block
-                            +ajaxLoader(20px)
 
                         .content.text
                             color: black
                             display: inline-block
                             line-height: 20px
                             padding: 10px 15px
+                            background-color: $gray
 
                         .content.image
                             img
@@ -171,6 +170,57 @@ html
                                 max-width: 200px
                                 max-height: 200px
 
+                        .content.audio
+                            min-width: 100px
+                            background-color: $gray
+                            white-space: nowrap
+                            height: 40px
+                            overflow: hidden
+
+                            audio
+                                display: none
+
+                            button
+                                display: block
+                                float: left
+                                height: 40px
+                                width: 40px
+                                outline: none
+                                cursor: pointer
+                                padding: 0
+                                border: none
+                                background-color: $gray
+                                background-image: url("/img/sprite.svg")
+                                background-position: -0px -40px
+                                background-repeat: no-repeat
+                            
+                                &.pause
+                                    background-position: -40px -40px
+                            
+                            progress
+                                float: left
+                                width: 20px
+                                margin: (40px - 6px)/2 6px
+                                border-radius: 2px
+                                background-color: white
+
+                                -webkit-appearance: none
+                                appearance: none
+                                height: 4px
+
+                                &::-webkit-progress-bar
+                                    background-color: darken($gray, 10)
+                                &::-webkit-progress-value
+                                    background-color: darken($gray, 30)
+                            
+                            label
+                                float: left
+                                height: 40px
+                                display: inline-block
+                                line-height: 40px
+                                text-align: center
+                                padding-right: 15px
+                                padding-left: 5px
 
             .template
                 display: none
@@ -235,9 +285,7 @@ html
 .gallery
     .slick
         min-height: 100%
-
         transform: scale(0)
-
         &.show
             transform: scale(1)
 
@@ -281,6 +329,8 @@ html
             transform: scale(1)
 
         +transitionAll
+
+    
     
 
 
