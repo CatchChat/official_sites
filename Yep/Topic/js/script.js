@@ -88,7 +88,7 @@ $(function() {
             max: 10,
             value: 5
           }));
-          content.addClass("audio").append($("<label/>").html("10"));
+          content.addClass("audio").append($("<label/>").html("10″"));
           break;
         case "location":
           content.addClass("location");
@@ -104,9 +104,27 @@ $(function() {
       $(".media.viewer").fadeIn(100);
       return $(".media.viewer").find("img").toggleClass("show");
     });
-    return $(".media.viewer").on("tap", function() {
+    $(".media.viewer").on("tap", function() {
       $(".media.viewer").find("img").toggleClass("show");
       return $(this).fadeOut(100);
+    });
+    return $(".chat .bubble .audio").on("tap", function() {
+      var button, time, voice;
+      voice = $(this).find("audio");
+      button = $(this).find("button");
+      time = voice.prop("currentTime");
+      if (time === 0) {
+        voice.trigger("play");
+        button.addClass("playing");
+      } else {
+        voice.trigger("pause");
+        button.removeClass("playing");
+        voice.prop("currentTime", 0);
+      }
+      return voice.on("ended", function() {
+        button.removeClass("playing");
+        return voice.prop("currentTime", 0);
+      });
     });
   });
   if (os.ios) {

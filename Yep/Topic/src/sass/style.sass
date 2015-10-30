@@ -142,6 +142,7 @@ html
                         width: 100%
                         height: 20px
                         color: #808080
+                        padding-left: 14px
 
                     .bubble
                         max-width: 100%
@@ -194,19 +195,16 @@ html
                                 background-position: -0px -40px
                                 background-repeat: no-repeat
                             
-                                &.pause
+                                &.playing
                                     background-position: -40px -40px
                             
                             progress
                                 float: left
                                 width: 20px
-                                margin: (40px - 6px)/2 6px
-                                border-radius: 2px
-                                background-color: white
-
+                                margin: (40px - 4px)/2 6px
+                                height: 4px
                                 -webkit-appearance: none
                                 appearance: none
-                                height: 4px
 
                                 &::-webkit-progress-bar
                                     background-color: darken($gray, 10)

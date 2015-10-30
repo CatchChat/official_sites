@@ -94,7 +94,7 @@ $ ->
 
                     content.addClass("audio").append $("<button/>")
                     content.addClass("audio").append $("<progress/>", max: 10, value: 5)
-                    content.addClass("audio").append $("<label/>").html("10")
+                    content.addClass("audio").append $("<label/>").html("10″")
 
                 when "location"
                     content.addClass("location")
@@ -114,8 +114,24 @@ $ ->
             $(this).fadeOut(100)
 
         # Player - Voice
-        # $(".chat .bubble .audio").on "tap", ->
+        $(".chat .bubble .audio").on "tap", ->
+            voice = $(this).find("audio")
+            button = $(this).find("button")
+            time = voice.prop("currentTime")
 
+            if time is 0
+                # not playing
+                voice.trigger("play")
+                button.addClass("playing")
+            else
+                # is playing
+                voice.trigger("pause")
+                button.removeClass("playing")
+                voice.prop("currentTime", 0)
+
+            voice.on "ended", ->
+                button.removeClass("playing")
+                voice.prop("currentTime", 0)
 
 # --- RESPONSIVE LAYOUT ---
     $(".android").hide() if os.ios
