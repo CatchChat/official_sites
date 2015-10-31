@@ -1,3 +1,32 @@
+# --- UTILITY FUNCTIONS ---
+modulate = (value, rangeA, rangeB, limit=false) ->
+
+    [fromLow, fromHigh] = rangeA
+    [toLow, toHigh] = rangeB
+
+    result = toLow + (((value - fromLow) / (fromHigh - fromLow)) * (toHigh - toLow))
+
+    if limit is true
+        if toLow < toHigh
+            return toLow if result < toLow
+            return toHigh if result > toHigh
+        else
+            return toLow if result > toLow
+            return toHigh if result < toHigh
+    result
+
+
+
+
+
+
+
+
+
+
+
+
+
 $ ->
 
 # --- DATA RENDERING ---
@@ -84,17 +113,15 @@ $ ->
                     .append $("<img/>", src: attachment.file.url)
 
                 when "audio"
-                    duration = metadata.audio_duration
-                    
+                    audio_duration = Math.round metadata.audio_duration
                     audio_element = $("<audio controls>", src: attachment.file.url)
                     audio_element.append $("<source>", src: attachment.file.url, type: "audio/mp4")
                     
-
                     content.addClass("audio").append audio_element
 
                     content.addClass("audio").append $("<button/>")
-                    content.addClass("audio").append $("<progress/>", max: 10, value: 5)
-                    content.addClass("audio").append $("<label/>").html("10″")
+                    content.addClass("audio").append $("<progress/>", max: 100, value: 0).css "width", "#{audio_duration * 20}px"
+                    content.addClass("audio").append $("<label/>").html("#{audio_duration}″")
 
                 when "location"
                     content.addClass("location")
@@ -103,9 +130,9 @@ $ ->
 
         # Viewer - Image
         $(".chat .bubble .image").on "tap", ->
-            src = $(this).find("img").attr "src"
+            image_src = $(this).find("img").attr "src"
 
-            $(".media.viewer").html($("<img/>", src: src))
+            $(".media.viewer").html($("<img/>", src: image_src))
             $(".media.viewer").fadeIn(100)
             $(".media.viewer").find("img").toggleClass("show")
 
@@ -114,35 +141,33 @@ $ ->
             $(this).fadeOut(100)
 
         # Player - Voice
-        $(".chat .bubble .audio").on "tap", ->
-            voice = $(this).find("audio")
+        $(".chat .bubble .audio").on "click", ->
+
+            voice = $.media $(this).find("audio")
             button = $(this).find("button")
-            time = voice.prop("currentTime")
+            bar = $(this).find("progress")
 
-            if time is 0
-                # not playing
-                voice.trigger("play")
+            voice.playPause()
+
+            voice.play ->
                 button.addClass("playing")
-            else
-                # is playing
-                voice.trigger("pause")
-                button.removeClass("playing")
-                voice.prop("currentTime", 0)
 
-            voice.on "ended", ->
+            voice.pause ->
                 button.removeClass("playing")
-                voice.prop("currentTime", 0)
+
+            voice.ended ->
+                button.removeClass("playing")
+                voice.stop()
+
+            voice.time ->
+                progress = modulate this.time(), [0,this.duration()], [0,100], true
+                bar.attr "value", progress
+
 
 # --- RESPONSIVE LAYOUT ---
     $(".android").hide() if os.ios
     $(".ios").hide() if os.android
 
-
-
-
-
-
-  
 
 
 

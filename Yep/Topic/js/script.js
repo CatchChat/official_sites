@@ -1,9 +1,39 @@
+var modulate;
+
+modulate = function(value, rangeA, rangeB, limit) {
+  var fromHigh, fromLow, result, toHigh, toLow;
+  if (limit == null) {
+    limit = false;
+  }
+  fromLow = rangeA[0], fromHigh = rangeA[1];
+  toLow = rangeB[0], toHigh = rangeB[1];
+  result = toLow + (((value - fromLow) / (fromHigh - fromLow)) * (toHigh - toLow));
+  if (limit === true) {
+    if (toLow < toHigh) {
+      if (result < toLow) {
+        return toLow;
+      }
+      if (result > toHigh) {
+        return toHigh;
+      }
+    } else {
+      if (result > toLow) {
+        return toLow;
+      }
+      if (result < toHigh) {
+        return toHigh;
+      }
+    }
+  }
+  return result;
+};
+
 $(function() {
   var param, url;
   url = "https://park.catchchatchina.com/api/v1/circles/shared_messages";
   param = "?token=" + $.url("?token") + "&callback=?";
   $.getJSON(url + param, function(response) {
-    var attachment, audio_element, content, duration, element, i, j, len, len1, messages, metadata, msg, prefix, ref, topic, topic_attachment, topic_metadata, topic_thumbnail;
+    var attachment, audio_duration, audio_element, content, element, i, j, len, len1, messages, metadata, msg, prefix, ref, topic, topic_attachment, topic_metadata, topic_thumbnail;
     topic = response.topic;
     messages = response.messages;
     $(".topic .avatar").css("background-image", "url(" + topic.user.avatar_url + ")");
@@ -74,7 +104,7 @@ $(function() {
           }));
           break;
         case "audio":
-          duration = metadata.audio_duration;
+          audio_duration = Math.round(metadata.audio_duration);
           audio_element = $("<audio controls>", {
             src: attachment.file.url
           });
@@ -85,10 +115,10 @@ $(function() {
           content.addClass("audio").append(audio_element);
           content.addClass("audio").append($("<button/>"));
           content.addClass("audio").append($("<progress/>", {
-            max: 10,
-            value: 5
-          }));
-          content.addClass("audio").append($("<label/>").html("10″"));
+            max: 100,
+            value: 0
+          }).css("width", (audio_duration * 20) + "px"));
+          content.addClass("audio").append($("<label/>").html(audio_duration + "″"));
           break;
         case "location":
           content.addClass("location");
@@ -96,10 +126,10 @@ $(function() {
       element.appendTo(".table");
     }
     $(".chat .bubble .image").on("tap", function() {
-      var src;
-      src = $(this).find("img").attr("src");
+      var image_src;
+      image_src = $(this).find("img").attr("src");
       $(".media.viewer").html($("<img/>", {
-        src: src
+        src: image_src
       }));
       $(".media.viewer").fadeIn(100);
       return $(".media.viewer").find("img").toggleClass("show");
@@ -108,22 +138,26 @@ $(function() {
       $(".media.viewer").find("img").toggleClass("show");
       return $(this).fadeOut(100);
     });
-    return $(".chat .bubble .audio").on("tap", function() {
-      var button, time, voice;
-      voice = $(this).find("audio");
+    return $(".chat .bubble .audio").on("click", function() {
+      var bar, button, voice;
+      voice = $.media($(this).find("audio"));
       button = $(this).find("button");
-      time = voice.prop("currentTime");
-      if (time === 0) {
-        voice.trigger("play");
-        button.addClass("playing");
-      } else {
-        voice.trigger("pause");
+      bar = $(this).find("progress");
+      voice.playPause();
+      voice.play(function() {
+        return button.addClass("playing");
+      });
+      voice.pause(function() {
+        return button.removeClass("playing");
+      });
+      voice.ended(function() {
         button.removeClass("playing");
-        voice.prop("currentTime", 0);
-      }
-      return voice.on("ended", function() {
-        button.removeClass("playing");
-        return voice.prop("currentTime", 0);
+        return voice.stop();
+      });
+      return voice.time(function() {
+        var progress;
+        progress = modulate(this.time(), [0, this.duration()], [0, 100], true);
+        return bar.attr("value", progress);
       });
     });
   });
