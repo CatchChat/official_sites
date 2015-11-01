@@ -177,6 +177,7 @@ html
                             white-space: nowrap
                             height: 40px
                             overflow: hidden
+                            display: flex
 
                             audio
                                 display: none
@@ -194,6 +195,8 @@ html
                                 background-image: url("/img/sprite.svg")
                                 background-position: -0px -40px
                                 background-repeat: no-repeat
+                                flex-grow: 1
+                                flex-shrink: 0
                             
                                 &.playing
                                     background-position: -40px -40px
@@ -205,6 +208,8 @@ html
                                 height: 4px
                                 -webkit-appearance: none
                                 appearance: none
+                                flex-grow: 1
+                                flex-shrink: 1
 
                                 &::-webkit-progress-bar
                                     background-color: darken($gray, 10)
@@ -291,9 +296,11 @@ html
 
         img
             max-width: 80%
+            // min-height: 300px
             margin: 5px
             outline: none
             background-color: rgba(white, 0.1)
+            +ajaxLoader(20px)
 
         .slick-dots
             position: fixed

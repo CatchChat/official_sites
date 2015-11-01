@@ -1,25 +1,13 @@
 # --- UTILITY FUNCTIONS ---
-modulate = (value, rangeA, rangeB, limit=false) ->
-
-    [fromLow, fromHigh] = rangeA
-    [toLow, toHigh] = rangeB
-
+modulate = (value, fromLow, fromHigh, toLow, toHigh) ->
     result = toLow + (((value - fromLow) / (fromHigh - fromLow)) * (toHigh - toLow))
-
-    if limit is true
-        if toLow < toHigh
-            return toLow if result < toLow
-            return toHigh if result > toHigh
-        else
-            return toLow if result > toLow
-            return toHigh if result < toHigh
+    if toLow < toHigh
+        return toLow if result < toLow
+        return toHigh if result > toHigh
+    else
+        return toLow if result > toLow
+        return toHigh if result < toHigh
     result
-
-
-
-
-
-
 
 
 
@@ -58,7 +46,8 @@ $ ->
 
 
         # Image Gallery
-            $("<img/>", src: topic_attachment.file.url).appendTo(".gallery .slick")
+            $("<img/>", data_src: topic_attachment.file.url, data_height: topic_metadata.image_height)
+            .appendTo(".gallery .slick")
             # End of for loop
 
         $(".viewer.gallery .slick").slick(
@@ -79,6 +68,11 @@ $ ->
                 $(".slick-list").css "top", ($(".gallery").height() - $(".slick-list").height()) / 2
 
         $(".topic .images img").on "tap", ->
+            
+            $(".gallery .slick .slick-track img").each (index, element)->
+                $(element).attr "src", $(element).attr("data_src")
+                $(element).css "height", $(element).attr("data_height") / 2 + "px"
+
             index = $(this).index()
             $(".gallery .slick").slick('slickGoTo', index)
             $(".gallery").fadeIn(100)
@@ -90,6 +84,7 @@ $ ->
             $(".gallery .slick").toggleClass("show")
 
         $(".viewer.gallery .slick").children().on "tap", -> return false
+
 
 
         # Latest Conversations
@@ -114,8 +109,8 @@ $ ->
 
                 when "audio"
                     audio_duration = Math.round metadata.audio_duration
-                    audio_element = $("<audio controls>", src: attachment.file.url)
-                    audio_element.append $("<source>", src: attachment.file.url, type: "audio/mp4")
+                    audio_element = $("<audio controls>", src: attachment.file.url, preload: "auto")
+                    audio_element.append $("<source>", src: attachment.file.url, type: "audio/mpeg")
                     
                     content.addClass("audio").append audio_element
 
@@ -141,7 +136,7 @@ $ ->
             $(this).fadeOut(100)
 
         # Player - Voice
-        $(".chat .bubble .audio").on "click", ->
+        $(".chat .bubble .audio").on "tap", ->
 
             voice = $.media $(this).find("audio")
             button = $(this).find("button")
@@ -160,9 +155,8 @@ $ ->
                 voice.stop()
 
             voice.time ->
-                progress = modulate this.time(), [0,this.duration()], [0,100], true
+                progress = modulate this.time(), 0, this.duration(), 0, 100
                 bar.attr "value", progress
-
 
 # --- RESPONSIVE LAYOUT ---
     $(".android").hide() if os.ios

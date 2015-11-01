@@ -1,28 +1,21 @@
 var modulate;
 
-modulate = function(value, rangeA, rangeB, limit) {
-  var fromHigh, fromLow, result, toHigh, toLow;
-  if (limit == null) {
-    limit = false;
-  }
-  fromLow = rangeA[0], fromHigh = rangeA[1];
-  toLow = rangeB[0], toHigh = rangeB[1];
+modulate = function(value, fromLow, fromHigh, toLow, toHigh) {
+  var result;
   result = toLow + (((value - fromLow) / (fromHigh - fromLow)) * (toHigh - toLow));
-  if (limit === true) {
-    if (toLow < toHigh) {
-      if (result < toLow) {
-        return toLow;
-      }
-      if (result > toHigh) {
-        return toHigh;
-      }
-    } else {
-      if (result > toLow) {
-        return toLow;
-      }
-      if (result < toHigh) {
-        return toHigh;
-      }
+  if (toLow < toHigh) {
+    if (result < toLow) {
+      return toLow;
+    }
+    if (result > toHigh) {
+      return toHigh;
+    }
+  } else {
+    if (result > toLow) {
+      return toLow;
+    }
+    if (result < toHigh) {
+      return toHigh;
     }
   }
   return result;
@@ -50,7 +43,8 @@ $(function() {
         src: topic_thumbnail
       }).appendTo(".images");
       $("<img/>", {
-        src: topic_attachment.file.url
+        data_src: topic_attachment.file.url,
+        data_height: topic_metadata.image_height
       }).appendTo(".gallery .slick");
     }
     $(".viewer.gallery .slick").slick({
@@ -74,6 +68,10 @@ $(function() {
     });
     $(".topic .images img").on("tap", function() {
       var index;
+      $(".gallery .slick .slick-track img").each(function(index, element) {
+        $(element).attr("src", $(element).attr("data_src"));
+        return $(element).css("height", $(element).attr("data_height") / 2 + "px");
+      });
       index = $(this).index();
       $(".gallery .slick").slick('slickGoTo', index);
       $(".gallery").fadeIn(100);
@@ -106,11 +104,12 @@ $(function() {
         case "audio":
           audio_duration = Math.round(metadata.audio_duration);
           audio_element = $("<audio controls>", {
-            src: attachment.file.url
+            src: attachment.file.url,
+            preload: "auto"
           });
           audio_element.append($("<source>", {
             src: attachment.file.url,
-            type: "audio/mp4"
+            type: "audio/mpeg"
           }));
           content.addClass("audio").append(audio_element);
           content.addClass("audio").append($("<button/>"));
@@ -138,7 +137,7 @@ $(function() {
       $(".media.viewer").find("img").toggleClass("show");
       return $(this).fadeOut(100);
     });
-    return $(".chat .bubble .audio").on("click", function() {
+    return $(".chat .bubble .audio").on("tap", function() {
       var bar, button, voice;
       voice = $.media($(this).find("audio"));
       button = $(this).find("button");
@@ -156,7 +155,7 @@ $(function() {
       });
       return voice.time(function() {
         var progress;
-        progress = modulate(this.time(), [0, this.duration()], [0, 100], true);
+        progress = modulate(this.time(), 0, this.duration(), 0, 100);
         return bar.attr("value", progress);
       });
     });
