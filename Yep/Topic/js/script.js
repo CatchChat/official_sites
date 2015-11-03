@@ -26,13 +26,18 @@ $(function() {
   url = "https://park.catchchatchina.com/api/v1/circles/shared_messages";
   param = "?token=" + $.url("?token") + "&callback=?";
   $.getJSON(url + param, function(response) {
-    var attachment, audio_duration, audio_element, content, element, i, j, len, len1, messages, metadata, msg, prefix, ref, topic, topic_attachment, topic_metadata, topic_thumbnail;
+    var attachment, audio_duration, audio_element, content, element, i, j, len, len1, map, messages, metadata, msg, prefix, ref, topic, topic_attachment, topic_metadata, topic_thumbnail;
     topic = response.topic;
     messages = response.messages;
     $(".topic .avatar").css("background-image", "url(" + topic.user.avatar_url + ")");
+    $(".topic .avatar").attr("username", topic.user.username);
     $(".topic .nickname").html(topic.user.nickname);
     $(".topic .time").html($.timeago(topic.circle.created_at * 1000));
-    $(".topic .text").html(topic.body);
+    if (!topic.body) {
+      $(".topic .text").hide();
+    } else {
+      $(".topic .text").html(topic.body);
+    }
     prefix = "data:image/jpeg;base64,";
     ref = topic.attachments;
     for (i = 0, len = ref.length; i < len; i++) {
@@ -84,11 +89,13 @@ $(function() {
     $(".viewer.gallery .slick").children().on("tap", function() {
       return false;
     });
+    $(".chat").css("padding-top", $(".topic").css("height"));
     for (j = 0, len1 = messages.length; j < len1; j++) {
       msg = messages[j];
       element = $(".template.cell").clone().removeClass("template");
       content = element.find(".content");
       element.find(".avatar").css("background-image", "url(" + msg.sender.avatar_url + ")");
+      element.find(".avatar").attr("username", msg.sender.username);
       element.find(".nickname").html(msg.sender.nickname);
       attachment = msg.attachments[0];
       metadata = attachment ? $.parseJSON(attachment.metadata) : void 0;
@@ -120,10 +127,39 @@ $(function() {
           content.addClass("audio").append($("<label/>").html(audio_duration + "″"));
           break;
         case "location":
-          content.addClass("location");
+          map = {
+            key: "P8qeoPmMSc6FKpMvbLKWVrR0",
+            lng: msg.longitude,
+            lat: msg.latitude,
+            address: msg.text_content,
+            width: 200,
+            height: 100,
+            zoom: 16
+          };
+          map.img = "http://api.map.baidu.com/staticimage?center=" + map.lng + "," + map.lat + "&width=" + map.width + "&height=" + map.height + "&zoom=" + map.zoom + "&ak=" + map.key;
+          map.url = "http://maps.google.com/maps?q=" + map.lat + "," + map.lng + "&z=" + map.zoom + "&ll=" + map.lat + "," + map.lng;
+          content.addClass("location").css({
+            width: map.width + "px",
+            height: map.height + "px",
+            backgroundImage: "url(" + map.img + ")"
+          });
+          content.append($("<div/>").addClass("marker"));
+          if (map.address) {
+            content.append($("<div/>").addClass("address").html(map.address));
+          }
+          content.click(function() {
+            return window.open(map.url);
+          });
       }
       element.appendTo(".table");
     }
+    $(".avatar").click(function() {
+      var username;
+      username = $(this).attr("username");
+      if (username) {
+        return window.open("http://soyep.com/" + username);
+      }
+    });
     $(".chat .bubble .image").on("tap", function() {
       var image_src;
       image_src = $(this).find("img").attr("src");

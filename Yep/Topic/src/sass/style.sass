@@ -19,6 +19,14 @@ $gray: #E6E6E6
 =transitionAll($duration:0.25s)
     transition: all $duration ease-out
 
+=centerAnything
+    position: absolute
+    margin: auto
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+
 *, *:before, *:after
     box-sizing: border-box
     -webkit-font-smoothing: antialiased
@@ -58,7 +66,7 @@ html
         width: 100%
         max-width: 768px
         min-width: 320px
-        height: 200px
+        padding-bottom: 10px
         background-color: white
         position: fixed
         box-shadow: inset 0 -1px 0px rgba(black, 0.1)
@@ -88,11 +96,14 @@ html
                 font-size: 14px
 
         .text
-            padding: 10px 10px 10px 60px
+            max-height: 100px
+            overflow-y: scroll
+            display: inline-block
+            padding-left: 60px
+            margin: 10px
+            margin-left: 0
 
         .images
-            margin-top: 10px
-            height: 80px
             padding-left: 60px
             white-space: nowrap
             overflow-x: scroll
@@ -100,8 +111,10 @@ html
             +bounceScroll()
 
             img
-                width: 80px
+                height: 80px
                 margin-right: 5px
+                margin-top: 10px
+                margin-bottom: 10px
 
             img:last-child
                 margin-right: 10px
@@ -170,6 +183,7 @@ html
                                 display: block
                                 max-width: 200px
                                 max-height: 200px
+                                image-orientation: from-image
 
                         .content.audio
                             min-width: 100px
@@ -224,6 +238,27 @@ html
                                 text-align: center
                                 padding-right: 15px
                                 padding-left: 5px
+
+                        .content.location
+                            position: relative
+
+                            .marker
+                                width: 10px
+                                height: 10px
+                                border-radius: 50%
+                                background-color: $blue
+                                box-shadow: 0px 0px 0px 2px white, 0 0 10px 0 black
+                                +centerAnything
+
+                            .address
+                                background-color: rgba(black, 0.5)
+                                color: white
+                                position: absolute
+                                bottom: 0
+                                display: block
+                                width: 100%
+                                text-align: center
+                                padding: 5px
 
             .template
                 display: none
@@ -296,7 +331,6 @@ html
 
         img
             max-width: 80%
-            // min-height: 300px
             margin: 5px
             outline: none
             background-color: rgba(white, 0.1)
@@ -316,9 +350,9 @@ html
 
             li.slick-active
                 background-color: rgba(white, 1)
-    
+
 .media
-    // border: 10px solid red
+
     img
         max-width: 90%
         max-height: 90%
@@ -334,8 +368,3 @@ html
             transform: scale(1)
 
         +transitionAll
-
-    
-    
-
-

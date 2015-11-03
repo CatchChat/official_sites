@@ -27,6 +27,7 @@ $ ->
 
         # Avatar
         $(".topic .avatar").css "background-image", "url(#{topic.user.avatar_url})"
+        $(".topic .avatar").attr "username", topic.user.username
 
         # Nickname
         $(".topic .nickname").html topic.user.nickname
@@ -35,10 +36,13 @@ $ ->
         $(".topic .time").html $.timeago(topic.circle.created_at * 1000)
 
         # Text
-        $(".topic .text").html topic.body
+        if not topic.body
+            $(".topic .text").hide()
+        else
+            $(".topic .text").html topic.body
 
         # Image Tumbnails
-        prefix = "data:image/jpeg;base64,"          
+        prefix = "data:image/jpeg;base64,"
         for topic_attachment in topic.attachments
             topic_metadata = $.parseJSON topic_attachment.metadata
             topic_thumbnail = prefix + topic_metadata.thumbnail_string
@@ -49,6 +53,7 @@ $ ->
             $("<img/>", data_src: topic_attachment.file.url, data_height: topic_metadata.image_height)
             .appendTo(".gallery .slick")
             # End of for loop
+
 
         $(".viewer.gallery .slick").slick(
             speed: 200
@@ -88,12 +93,16 @@ $ ->
 
 
         # Latest Conversations
+        $(".chat").css "padding-top", $(".topic").css "height"
+
         for msg in messages
 
             element = $(".template.cell").clone().removeClass("template")
             content = element.find(".content")
 
             element.find(".avatar").css "background-image", "url(#{msg.sender.avatar_url})"
+            element.find(".avatar").attr "username", msg.sender.username
+
             element.find(".nickname").html(msg.sender.nickname)
 
             attachment = msg.attachments[0]
@@ -119,9 +128,39 @@ $ ->
                     content.addClass("audio").append $("<label/>").html("#{audio_duration}″")
 
                 when "location"
-                    content.addClass("location")
+                    map =
+                        key: "P8qeoPmMSc6FKpMvbLKWVrR0"
+                        lng: msg.longitude
+                        lat: msg.latitude
+                        address: msg.text_content
+                        width: 200
+                        height: 100
+                        zoom: 16
+                    map.img = "http://api.map.baidu.com/staticimage?center=#{map.lng},#{map.lat}&width=#{map.width}&height=#{map.height}&zoom=#{map.zoom}&ak=#{map.key}"
+                    # map.url = "http://www.google.cn/maps/preview/@#{map.lat},#{map.lng},#{map.zoom}z"
+                    map.url = "http://maps.google.com/maps?q=#{map.lat},#{map.lng}&z=#{map.zoom}&ll=#{map.lat},#{map.lng}"
+
+
+                    content.addClass("location").css
+                        width: "#{map.width}px"
+                        height: "#{map.height}px"
+                        backgroundImage: "url(#{map.img})"
+
+                    content.append $("<div/>").addClass("marker")
+                    if map.address then content.append $("<div/>").addClass("address").html map.address
+
+                    content.click ->
+                        window.open map.url
+
+                        
+
 
             element.appendTo(".table")
+
+        # Click avatar goes to profile
+        $(".avatar").click ->
+            username = $(this).attr "username"
+            if username then window.open "http://soyep.com/" + username
 
         # Viewer - Image
         $(".chat .bubble .image").on "tap", ->
