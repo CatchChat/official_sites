@@ -2,6 +2,8 @@
 - var desc = "Meet Genius"
 - var keyw = "Yep, App"
 
+- var cdn = "http://static-catch.qiniudn.com"
+
 - var download_ios = "#"
 - var download_android = "#"
 
@@ -47,13 +49,13 @@ html(lang="en")
                     a.ios(href="#{download_ios}" target="_blank")
                     a.android(href="#{download_android}" target="_blank")
 
-        script(type="application/javascript", src="lib/jquery-2.1.4.min.js")
-        script(type="application/javascript", src="lib/detect.js")
-        script(type="application/javascript", src="lib/url.min.js")
-        script(type="application/javascript", src="lib/slick.min.js")
-        script(type="application/javascript", src="lib/jquery.timeago.js")
-        script(type="application/javascript", src="lib/jquery.finger.min.js")
-        script(type="application/javascript", src="lib/jquery.media.js")
-        script(type="application/javascript", src="js/script.js")
+        script(type="application/javascript", src="#{cdn}/jquery-2.1.4.min.js")
+        script(type="application/javascript", src="#{cdn}/detect.js")
+        script(type="application/javascript", src="#{cdn}/url.min.js")
+        script(type="application/javascript", src="#{cdn}/slick.min.js")
+        script(type="application/javascript", src="#{cdn}/jquery.timeago.js")
+        script(type="application/javascript", src="#{cdn}/jquery.finger.min.js")
+        script(type="application/javascript", src="#{cdn}/jquery.media.js")
+        script(type="application/javascript", src="/js/script.js")
 
 
