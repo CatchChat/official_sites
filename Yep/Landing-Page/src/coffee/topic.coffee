@@ -1,4 +1,4 @@
-# --- UTILITY FUNCTIONS ---
+# --- FUNCTION DECLARE ---
 modulate = (value, fromLow, fromHigh, toLow, toHigh) ->
     result = toLow + (((value - fromLow) / (fromHigh - fromLow)) * (toHigh - toLow))
     if toLow < toHigh
@@ -9,7 +9,10 @@ modulate = (value, fromLow, fromHigh, toLow, toHigh) ->
         return toHigh if result < toHigh
     result
 
-
+viewImage = (image_src) ->
+    $(".media.viewer").html($("<img/>", src: image_src))
+    $(".media.viewer").fadeIn(100)
+    $(".media.viewer").find("img").toggleClass("show")
 
 
 
@@ -46,7 +49,7 @@ $ ->
         for topic_attachment in topic.attachments
             topic_metadata = $.parseJSON topic_attachment.metadata
             topic_thumbnail = prefix + topic_metadata.thumbnail_string
-            $("<img/>", src: topic_thumbnail).appendTo(".images")
+            $("<img/>", src: topic_thumbnail, data_src: topic_attachment.file.url).appendTo(".images")
 
 
         # Image Gallery
@@ -73,15 +76,23 @@ $ ->
                 $(".slick-list").css "top", ($(".gallery").height() - $(".slick-list").height()) / 2
 
         $(".topic .images img").on "tap", ->
-            
-            $(".gallery .slick .slick-track img").each (index, element)->
-                $(element).attr "src", $(element).attr("data_src")
-                $(element).css "height", $(element).attr("data_height") / 2 + "px"
 
-            index = $(this).index()
-            $(".gallery .slick").slick('slickGoTo', index)
-            $(".gallery").fadeIn(100)
-            $(".gallery .slick").toggleClass("show")
+            length = $(".topic .images img").length
+
+            if length > 1
+                # Multiple Images will use Slick
+                $(".gallery .slick .slick-track img").each (index, element)->
+                    $(element).attr "src", $(element).attr("data_src")
+                    $(element).css "height", $(element).attr("data_height") / 2 + "px"
+
+                index = $(this).index()
+                $(".gallery .slick").slick('slickGoTo', index)
+                $(".gallery").fadeIn(100)
+                $(".gallery .slick").toggleClass("show")
+            else
+                # Single Image will use my own image viewer
+                viewImage $(this).attr "data_src"
+
 
 
         $(".viewer.gallery .slick").on "tap", ->
@@ -165,10 +176,8 @@ $ ->
         # Viewer - Image
         $(".chat .bubble .image").on "tap", ->
             image_src = $(this).find("img").attr "src"
+            viewImage image_src
 
-            $(".media.viewer").html($("<img/>", src: image_src))
-            $(".media.viewer").fadeIn(100)
-            $(".media.viewer").find("img").toggleClass("show")
 
         $(".media.viewer").on "tap", ->
             $(".media.viewer").find("img").toggleClass("show")
