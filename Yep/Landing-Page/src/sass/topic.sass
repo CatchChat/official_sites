@@ -1,8 +1,8 @@
 @import "reset"
-@import "responsive"
 
 $blue: #38A6F9
 $gray: #E6E6E6
+$cdn: "http://static-catch.qiniudn.com"
 
 =bounceScroll($value:touch)
     -webkit-overflow-scrolling: $value
@@ -10,7 +10,7 @@ $gray: #E6E6E6
             overflow-scrolling: $value
 
 =ajaxLoader($size:40px)
-    background-image: url("/lib/ajax-loader.gif")
+    background-image: url("#{$cdn}/ajax-loader.gif")
     background-size: $size $size
     background-repeat: no-repeat
     background-position: center center
@@ -206,7 +206,7 @@ html
                                 padding: 0
                                 border: none
                                 background-color: $gray
-                                background-image: url("/img/sprite.svg")
+                                background-image: url("/img/topic-sprite.svg")
                                 background-position: -0px -40px
                                 background-repeat: no-repeat
                                 flex-grow: 1
@@ -308,9 +308,9 @@ html
                 margin-left: 0
 
             .ios
-                background-image: url("/img/button_ios.svg")
+                background-image: url("/img/ios.svg")
             .android
-                background-image: url("/img/button_android.svg")
+                background-image: url("/img/android.svg")
                 
 .viewer
     width: 100%
