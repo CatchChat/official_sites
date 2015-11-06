@@ -46,7 +46,7 @@ updateCardHeight = ->
 
 username = window.location.pathname.split("/")[1]
 # username = "kevinzhow"
-api = "http://park.catchchatchina.com/api/v1/users/#{username}/profile?callback=?"
+api = "https://park.catchchatchina.com/api/v1/users/#{username}/profile?callback=?"
 
 $.getJSON api, (json)->
     $('.avatar').css 'background-image', "url(#{json.avatar_url})"

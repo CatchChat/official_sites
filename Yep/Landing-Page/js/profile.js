@@ -43,7 +43,7 @@ updateCardHeight = function() {
 
 username = window.location.pathname.split("/")[1];
 
-api = "http://park.catchchatchina.com/api/v1/users/" + username + "/profile?callback=?";
+api = "https://park.catchchatchina.com/api/v1/users/" + username + "/profile?callback=?";
 
 $.getJSON(api, function(json) {
   var geoc, icon, index, key, point, ref, ref1, ref2, skill, value;
