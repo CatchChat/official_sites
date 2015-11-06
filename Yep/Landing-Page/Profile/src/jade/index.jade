@@ -2,8 +2,9 @@
 - var desc = "Meet Genius"
 - var keyw = "Yep, App"
 
-- var BDMapKey = "P8qeoPmMSc6FKpMvbLKWVrR0"
-- var iTunesLink = "#"
+- var cdn  = "https://dn-catchinc.qbox.me"
+
+- var iTunesLink = "https://itunes.apple.com/app/id983891256"
 - var AndroidApk = "#"
 
 doctype html
@@ -45,8 +46,8 @@ html(lang="en")
 
 
     script(type="application/javascript", src="../lib/zodiac.min.js")
-    script(type="application/javascript", src="../lib/zepto.min.js")
-    script(type="application/javascript", src="https://api.map.baidu.com/api?v=2.0&ak=#{BDMapKey}")
+    script(type="application/javascript", src="#{cdn}/jquery-2.1.4.min.js")
+    script(type="application/javascript", src="#{cdn}/detect.js")
     script(type="application/javascript", src="../js/profile.js")
 
     //- ----- Google Analytics -----

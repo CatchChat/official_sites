@@ -33,7 +33,7 @@ updateCardHeight = function() {
   $('.container').css({
     minHeight: cardHeight + footHeight + 50 * 2 + 20 * 2
   });
-  if ($.os.phone) {
+  if (os.phone) {
     $('.container').css({
       minHeight: cardHeight + footHeight + 50
     });
@@ -46,7 +46,7 @@ username = window.location.pathname.split("/")[1];
 api = "https://park.catchchatchina.com/api/v1/users/" + username + "/profile?callback=?";
 
 $.getJSON(api, function(json) {
-  var geoc, icon, index, key, point, ref, ref1, ref2, skill, value;
+  var BDMapKey, BDMapUrl, icon, index, key, ref, ref1, ref2, skill, value;
   $('.avatar').css('background-image', "url(" + json.avatar_url + ")");
   $('.nickname').html(json.nickname);
   $('.intro').html(json.introduction);
@@ -55,10 +55,30 @@ $.getJSON(api, function(json) {
   } else {
     $('.badge').css('background-image', "url(/img/badge_" + json.badge + ".png)");
   }
-  point = new BMap.Point(json.longitude, json.latitude);
-  geoc = new BMap.Geocoder();
-  geoc.getLocation(point, function(rs) {
-    return $('.location').html(rs.addressComponents.city);
+  BDMapKey = "P8qeoPmMSc6FKpMvbLKWVrR0";
+  BDMapUrl = "https://api.map.baidu.com/api?v=2.0&ak=" + BDMapKey;
+  $.ajax({
+    url: BDMapUrl,
+    converters: {
+      'text script': function(text) {
+        return text;
+      }
+    },
+    success: function(response) {
+      var regex, result, script;
+      result = response.replace("http://", "https://");
+      regex = /(.*)(javascript" src=")(.*)(\"\>\<\/script\>\'\)\;\}\)\(\)\;)/;
+      script = result.replace(regex, "$3");
+      return $.getScript(script, function() {
+        var geoc, point;
+        window.BMap_loadScriptTime = (new Date).getTime();
+        point = new BMap.Point(json.longitude, json.latitude);
+        geoc = new BMap.Geocoder();
+        return geoc.getLocation(point, function(rs) {
+          return $('.location').html(rs.addressComponents.city);
+        });
+      });
+    }
   });
   ref = json.providers;
   for (key in ref) {
@@ -99,15 +119,15 @@ $.getJSON(api, function(json) {
   return updateCardHeight();
 });
 
-if ($.os.android) {
+if (os.android) {
   $('.ios').remove();
 }
 
-if ($.os.ios) {
+if (os.ios) {
   $('.android').remove();
 }
 
-if ($.os.phone) {
+if (os.phone) {
   $('#zodiac').remove();
   $('.container').css({
     width: "100%",

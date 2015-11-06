@@ -35,7 +35,7 @@ updateCardHeight = ->
     $('.container').css
         minHeight: cardHeight + footHeight + 50 * 2 + 20 * 2
 
-    if $.os.phone
+    if os.phone
         $('.container').css
             minHeight: cardHeight + footHeight + 50
 
@@ -48,6 +48,8 @@ username = window.location.pathname.split("/")[1]
 # username = "kevinzhow"
 api = "https://park.catchchatchina.com/api/v1/users/#{username}/profile?callback=?"
 
+
+
 $.getJSON api, (json)->
     $('.avatar').css 'background-image', "url(#{json.avatar_url})"
     $('.nickname').html json.nickname
@@ -56,10 +58,25 @@ $.getJSON api, (json)->
     if json.badge is null then $('.badge').css('display', 'none')
     else $('.badge').css 'background-image', "url(/img/badge_#{json.badge}.png)"
 
-    point = new BMap.Point(json.longitude, json.latitude)
-    geoc = new BMap.Geocoder()
-    geoc.getLocation point, (rs)->
-        $('.location').html(rs.addressComponents.city)
+    # Baidu Map
+    BDMapKey = "P8qeoPmMSc6FKpMvbLKWVrR0"
+    BDMapUrl = "https://api.map.baidu.com/api?v=2.0&ak=" + BDMapKey
+    
+    $.ajax
+        url: BDMapUrl
+        converters: 'text script': (text)-> return text
+        success: (response)->
+            result = response.replace("http://", "https://")
+            regex = /(.*)(javascript" src=")(.*)(\"\>\<\/script\>\'\)\;\}\)\(\)\;)/
+            script = result.replace regex, "$3"
+
+            $.getScript script, ->            
+                window.BMap_loadScriptTime = (new Date).getTime()
+                point = new BMap.Point(json.longitude, json.latitude)
+                geoc = new BMap.Geocoder()
+                geoc.getLocation point, (rs)->
+                    $('.location').html(rs.addressComponents.city)
+
 
     for key, value of json.providers
         if value isnt null
@@ -91,10 +108,10 @@ $.getJSON api, (json)->
 
 # --- RESPONSIVE LAYOUT ---
 
-if $.os.android then $('.ios').remove()
-if $.os.ios then $('.android').remove()
+if os.android then $('.ios').remove()
+if os.ios then $('.android').remove()
 
-if $.os.phone
+if os.phone
     $('#zodiac').remove()
     $('.container').css
         width: "100%"
