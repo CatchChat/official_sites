@@ -174,6 +174,14 @@ $(function() {
         return window.open("http://soyep.com/" + username);
       }
     });
+    $("<div/>").addClass("bottom").appendTo(".table").append($("<div/>").addClass("bubble").html("下载并安装 Yep 参与此话题"));
+    $(document).scroll(function() {
+      if ($(this).scrollTop() >= $(this).height() - $(window).height() - 100) {
+        return $(".chat .table > .bottom").addClass("show");
+      } else {
+        return $(".chat .table > .bottom").removeClass("show");
+      }
+    });
     $(".chat .bubble .image").on("tap", function() {
       var image_src;
       image_src = $(this).find("img").attr("src");

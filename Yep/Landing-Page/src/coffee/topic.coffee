@@ -173,6 +173,18 @@ $ ->
             username = $(this).attr "username"
             if username then window.open "http://soyep.com/" + username
 
+        # Insert a blue bubble to the bottom of conversations
+        $("<div/>").addClass("bottom").appendTo(".table")
+        .append $("<div/>").addClass("bubble").html("下载并安装 Yep 参与此话题")
+
+        $(document).scroll ->
+            if $(this).scrollTop() >= $(this).height() - $(window).height() - 100
+                $(".chat .table > .bottom").addClass("show")
+            else
+                $(".chat .table > .bottom").removeClass("show")
+
+
+
         # Viewer - Image
         $(".chat .bubble .image").on "tap", ->
             image_src = $(this).find("img").attr "src"
