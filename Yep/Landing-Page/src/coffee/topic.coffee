@@ -146,9 +146,9 @@ $ ->
                         width: 200
                         height: 100
                         zoom: 16
-                    map.img = "http://api.map.baidu.com/staticimage?center=#{map.lng},#{map.lat}&width=#{map.width}&height=#{map.height}&zoom=#{map.zoom}&ak=#{map.key}"
-                    # map.url = "http://www.google.cn/maps/preview/@#{map.lat},#{map.lng},#{map.zoom}z"
-                    map.url = "http://maps.google.cn/maps?q=#{map.lat},#{map.lng}&z=#{map.zoom}&ll=#{map.lat},#{map.lng}"
+                    map.img = "https://api.map.baidu.com/staticimage?center=#{map.lng},#{map.lat}&width=#{map.width}&height=#{map.height}&zoom=#{map.zoom}&ak=#{map.key}"
+                    # map.url = "https://www.google.cn/maps/preview/@#{map.lat},#{map.lng},#{map.zoom}z"
+                    map.url = "https://maps.google.cn/maps?q=#{map.lat},#{map.lng}&z=#{map.zoom}&ll=#{map.lat},#{map.lng}"
 
 
                     content.addClass("location").css
@@ -170,7 +170,7 @@ $ ->
         # Click avatar goes to profile
         $(".avatar").click ->
             username = $(this).attr "username"
-            if username then window.open "http://soyep.com/" + username
+            if username then window.open "https://soyep.com/" + username
 
         # Insert a blue bubble to the bottom of conversations
         $("<div/>").addClass("bottom").appendTo(".table")

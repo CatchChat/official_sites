@@ -74,7 +74,7 @@ $.getJSON(api, function(json) {
           icon.attr("href", value.user.html_url);
           break;
         case "instagram":
-          icon.attr("href", "http://instagram.com/" + value.media[0].user.username);
+          icon.attr("href", "https://instagram.com/" + value.media[0].user.username);
       }
     }
   }

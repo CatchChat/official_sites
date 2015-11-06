@@ -154,8 +154,8 @@ $(function() {
             height: 100,
             zoom: 16
           };
-          map.img = "http://api.map.baidu.com/staticimage?center=" + map.lng + "," + map.lat + "&width=" + map.width + "&height=" + map.height + "&zoom=" + map.zoom + "&ak=" + map.key;
-          map.url = "http://maps.google.cn/maps?q=" + map.lat + "," + map.lng + "&z=" + map.zoom + "&ll=" + map.lat + "," + map.lng;
+          map.img = "https://api.map.baidu.com/staticimage?center=" + map.lng + "," + map.lat + "&width=" + map.width + "&height=" + map.height + "&zoom=" + map.zoom + "&ak=" + map.key;
+          map.url = "https://maps.google.cn/maps?q=" + map.lat + "," + map.lng + "&z=" + map.zoom + "&ll=" + map.lat + "," + map.lng;
           content.addClass("location").css({
             width: map.width + "px",
             height: map.height + "px",
@@ -175,7 +175,7 @@ $(function() {
       var username;
       username = $(this).attr("username");
       if (username) {
-        return window.open("http://soyep.com/" + username);
+        return window.open("https://soyep.com/" + username);
       }
     });
     $("<div/>").addClass("bottom").appendTo(".table").append($("<div/>").addClass("bubble").html("加入 Yep 参与此话题"));
