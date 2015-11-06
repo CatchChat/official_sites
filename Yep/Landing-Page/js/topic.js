@@ -1,4 +1,4 @@
-var modulate, viewImage;
+var isChinese, modulate, viewImage;
 
 modulate = function(value, fromLow, fromHigh, toLow, toHigh) {
   var result;
@@ -27,6 +27,10 @@ viewImage = function(image_src) {
   }));
   $(".media.viewer").fadeIn(100);
   return $(".media.viewer").find("img").toggleClass("show");
+};
+
+isChinese = function() {
+  return window.navigator.language.indexOf("zh") !== -1;
 };
 
 $(function() {
@@ -151,7 +155,7 @@ $(function() {
             zoom: 16
           };
           map.img = "http://api.map.baidu.com/staticimage?center=" + map.lng + "," + map.lat + "&width=" + map.width + "&height=" + map.height + "&zoom=" + map.zoom + "&ak=" + map.key;
-          map.url = "http://maps.google.com/maps?q=" + map.lat + "," + map.lng + "&z=" + map.zoom + "&ll=" + map.lat + "," + map.lng;
+          map.url = "http://maps.google.cn/maps?q=" + map.lat + "," + map.lng + "&z=" + map.zoom + "&ll=" + map.lat + "," + map.lng;
           content.addClass("location").css({
             width: map.width + "px",
             height: map.height + "px",
@@ -174,7 +178,7 @@ $(function() {
         return window.open("http://soyep.com/" + username);
       }
     });
-    $("<div/>").addClass("bottom").appendTo(".table").append($("<div/>").addClass("bubble").html("下载并安装 Yep 参与此话题"));
+    $("<div/>").addClass("bottom").appendTo(".table").append($("<div/>").addClass("bubble").html("加入 Yep 参与此话题"));
     $(document).scroll(function() {
       if ($(this).scrollTop() >= $(this).height() - $(window).height() - 100) {
         return $(".chat .table > .bottom").addClass("show");

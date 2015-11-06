@@ -14,8 +14,7 @@ viewImage = (image_src) ->
     $(".media.viewer").fadeIn(100)
     $(".media.viewer").find("img").toggleClass("show")
 
-
-
+isChinese = -> return window.navigator.language.indexOf("zh") isnt -1
 
 
 $ ->
@@ -149,7 +148,7 @@ $ ->
                         zoom: 16
                     map.img = "http://api.map.baidu.com/staticimage?center=#{map.lng},#{map.lat}&width=#{map.width}&height=#{map.height}&zoom=#{map.zoom}&ak=#{map.key}"
                     # map.url = "http://www.google.cn/maps/preview/@#{map.lat},#{map.lng},#{map.zoom}z"
-                    map.url = "http://maps.google.com/maps?q=#{map.lat},#{map.lng}&z=#{map.zoom}&ll=#{map.lat},#{map.lng}"
+                    map.url = "http://maps.google.cn/maps?q=#{map.lat},#{map.lng}&z=#{map.zoom}&ll=#{map.lat},#{map.lng}"
 
 
                     content.addClass("location").css
@@ -175,7 +174,7 @@ $ ->
 
         # Insert a blue bubble to the bottom of conversations
         $("<div/>").addClass("bottom").appendTo(".table")
-        .append $("<div/>").addClass("bubble").html("下载并安装 Yep 参与此话题")
+        .append $("<div/>").addClass("bubble").html("加入 Yep 参与此话题")
 
         $(document).scroll ->
             if $(this).scrollTop() >= $(this).height() - $(window).height() - 100
