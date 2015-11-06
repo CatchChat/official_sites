@@ -42,6 +42,18 @@ gulp.task('jade', function() {
         .pipe(browserSync.reload({
             stream: true
         }))
+    gulp.src(['groups/share/src/jade/**/*.jade'])
+        .pipe(plumber({
+            errorHandler: function(error) {
+                console.log(error.message);
+                this.emit('end');
+            }
+        }))
+        .pipe(jade())
+        .pipe(gulp.dest('groups/share/'))
+        .pipe(browserSync.reload({
+            stream: true
+        }))
 });
 gulp.task('sass', function() {
     gulp.src(['src/sass/**/*.sass'])
@@ -81,7 +93,7 @@ gulp.task('coffee', function() {
 });
 
 gulp.task('default', ['browser-sync','jade','sass','coffee'], function() {
-    gulp.watch("src/jade/**/*.jade", ['jade']);
+    gulp.watch("**/*.jade", ['jade']);
     gulp.watch("src/sass/**/*.sass", ['sass']);
     gulp.watch("src/coffee/**/*.coffee", ['coffee']);
     gulp.watch("*.html", ['bs-reload']);

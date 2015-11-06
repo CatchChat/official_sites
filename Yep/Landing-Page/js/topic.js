@@ -1,4 +1,4 @@
-var modulate;
+var modulate, viewImage;
 
 modulate = function(value, fromLow, fromHigh, toLow, toHigh) {
   var result;
@@ -19,6 +19,14 @@ modulate = function(value, fromLow, fromHigh, toLow, toHigh) {
     }
   }
   return result;
+};
+
+viewImage = function(image_src) {
+  $(".media.viewer").html($("<img/>", {
+    src: image_src
+  }));
+  $(".media.viewer").fadeIn(100);
+  return $(".media.viewer").find("img").toggleClass("show");
 };
 
 $(function() {
@@ -45,7 +53,8 @@ $(function() {
       topic_metadata = $.parseJSON(topic_attachment.metadata);
       topic_thumbnail = prefix + topic_metadata.thumbnail_string;
       $("<img/>", {
-        src: topic_thumbnail
+        src: topic_thumbnail,
+        data_src: topic_attachment.file.url
       }).appendTo(".images");
       $("<img/>", {
         data_src: topic_attachment.file.url,
@@ -72,15 +81,20 @@ $(function() {
       return $(".slick-list").css("top", ($(".gallery").height() - $(".slick-list").height()) / 2);
     });
     $(".topic .images img").on("tap", function() {
-      var index;
-      $(".gallery .slick .slick-track img").each(function(index, element) {
-        $(element).attr("src", $(element).attr("data_src"));
-        return $(element).css("height", $(element).attr("data_height") / 2 + "px");
-      });
-      index = $(this).index();
-      $(".gallery .slick").slick('slickGoTo', index);
-      $(".gallery").fadeIn(100);
-      return $(".gallery .slick").toggleClass("show");
+      var index, length;
+      length = $(".topic .images img").length;
+      if (length > 1) {
+        $(".gallery .slick .slick-track img").each(function(index, element) {
+          $(element).attr("src", $(element).attr("data_src"));
+          return $(element).css("height", $(element).attr("data_height") / 2 + "px");
+        });
+        index = $(this).index();
+        $(".gallery .slick").slick('slickGoTo', index);
+        $(".gallery").fadeIn(100);
+        return $(".gallery .slick").toggleClass("show");
+      } else {
+        return viewImage($(this).attr("data_src"));
+      }
     });
     $(".viewer.gallery .slick").on("tap", function() {
       $(".gallery").fadeOut(100);
@@ -163,11 +177,7 @@ $(function() {
     $(".chat .bubble .image").on("tap", function() {
       var image_src;
       image_src = $(this).find("img").attr("src");
-      $(".media.viewer").html($("<img/>", {
-        src: image_src
-      }));
-      $(".media.viewer").fadeIn(100);
-      return $(".media.viewer").find("img").toggleClass("show");
+      return viewImage(image_src);
     });
     $(".media.viewer").on("tap", function() {
       $(".media.viewer").find("img").toggleClass("show");
