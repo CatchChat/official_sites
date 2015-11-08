@@ -61,7 +61,7 @@ $.getJSON api, (json)->
     # Baidu Map
     BDMapKey = "P8qeoPmMSc6FKpMvbLKWVrR0"
     BDMapUrl = "https://api.map.baidu.com/api?v=2.0&ak=" + BDMapKey
-    
+
     $.ajax
         url: BDMapUrl
         converters: 'text script': (text)-> return text
@@ -71,7 +71,8 @@ $.getJSON api, (json)->
             script = result.replace regex, "$3"
 
             $.getScript script, ->            
-                window.BMap_loadScriptTime = (new Date).getTime()
+                time = new Date()
+                window.BMap_loadScriptTime = time.getTime()
                 point = new BMap.Point(json.longitude, json.latitude)
                 geoc = new BMap.Geocoder()
                 geoc.getLocation point, (rs)->

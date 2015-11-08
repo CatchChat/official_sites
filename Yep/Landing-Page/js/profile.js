@@ -70,8 +70,9 @@ $.getJSON(api, function(json) {
       regex = /(.*)(javascript" src=")(.*)(\"\>\<\/script\>\'\)\;\}\)\(\)\;)/;
       script = result.replace(regex, "$3");
       return $.getScript(script, function() {
-        var geoc, point;
-        window.BMap_loadScriptTime = (new Date).getTime();
+        var geoc, point, time;
+        time = new Date();
+        window.BMap_loadScriptTime = time.getTime();
         point = new BMap.Point(json.longitude, json.latitude);
         geoc = new BMap.Geocoder();
         return geoc.getLocation(point, function(rs) {
