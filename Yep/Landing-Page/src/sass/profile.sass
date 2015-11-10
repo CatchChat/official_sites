@@ -1,5 +1,7 @@
 @import reset
 
+$blue: #51A7F7
+
 =transitionAll($duration:0.25s)
     transition: all $duration ease-out
 
@@ -69,16 +71,125 @@ canvas
 
 
 .card
-    // width: 100%
-    // width: 80%
     background-color: white
-    height: 600px
-    padding: 10px
+    // height: 600px
+    padding: 50px
+    text-align: center
     
+    .avatar
+        width: 100px
+        height: 100px
+        border-radius: 50%
+        background-size: 100px 100px
+        background-size: cover
+        background-repeat: no-repeat
+        background-color: #f1f1f1
+        margin: 0 auto
+
+    .badge
+        width: 22px
+        height: 22px
+        border-radius: 50%
+        background-size: 15px
+        background-repeat: no-repeat
+        background-position: center
+        margin: 0 auto
+        margin-top: -14px
+        background-color: white
+        // display: none
+
+    .nickname
+        display: block
+        margin: 20px auto
+        text-align: center
+        font-size: 22px
+
+    .location
+        display: inline-block
+        text-indent: 18px
+        margin-bottom: 10px
+        line-height: 20px
+        background-image: url("/img/icon_location.png")
+        background-size: 12px 15px
+        background-position: left
+        background-repeat: no-repeat
+        color: #BFBFBF
+        font-size: 14px
+
+    .links
+        text-align: center
+
+        & > a
+            width: 22px
+            height: 22px
+            background-size: 22px 22px
+            background-repeat: no-repeat
+            display: inline-block
+            margin: 20px 20px 10px
+            // display: none
+            
+
+        .github
+            background-image: url("/img/icon_github.png")
+        .dribbble
+            background-image: url("/img/icon_dribbble.png")
+        .instagram
+            background-image: url("/img/icon_instagram.png")
+        .behance
+            background-image: url("/img/icon_behance.png")
+
+    .intro
+        color: #404040
+        margin-top: 10px
+
+    .skillset
+        text-align: left
     
+        &::before
+            font-size: 20px
+            display: block
+            text-align: left
+            margin: 20px 0 10px
+            text-indent: 6px
+
+        &.master
+            &::before
+                content: 'Master'
+        &.learning
+            &::before
+                content: 'Learning'
+
+        .skill
+            height: 24px
+            line-height: 24px
+            font-size: 14px
+            color: white
+            padding: 0 10px
+            margin: 5px
+            background-color: $blue
+            border-radius: 12px
+            display: inline-block
 
 
 
+
+
+
+.spiner
+    width: 30px
+    height: 30px
+    border-radius: 50%
+    border: 2px solid $blue
+    border-left-color: transparent
+    display: block
+    animation: spin 1000ms infinite linear
+    +centerAnything
+
+@keyframes spin
+    0%
+        transform: rotate(0deg)
+    100%
+        transform: rotate(360deg)
 
 
 
