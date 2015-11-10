@@ -35,7 +35,7 @@ $.getJSON(api, function(json) {
     'display': 'block',
     'background-image': "url(" + json.avatar_url + ")"
   });
-  if (json.badge != null) {
+  if (json.badge) {
     $('.badge').css({
       'display': 'block',
       'background-image': "url(/img/badge_" + json.badge + ".png)"
@@ -51,7 +51,7 @@ $.getJSON(api, function(json) {
   ref = json.providers;
   for (key in ref) {
     value = ref[key];
-    if (value != null) {
+    if (value) {
       icon = $("." + key);
       icon.css("display", "inline-block");
       switch (key) {
@@ -77,10 +77,10 @@ $.getJSON(api, function(json) {
     }
     return results;
   };
-  if (json.master_skills != null) {
+  if (json.master_skills) {
     addSkills(".master", json.master_skills);
   }
-  if (json.learning_skills != null) {
+  if (json.learning_skills) {
     return addSkills(".learning", json.learning_skills);
   }
 });

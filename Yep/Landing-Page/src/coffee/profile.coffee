@@ -33,7 +33,7 @@ $.getJSON api, (json)->
         'background-image': "url(#{json.avatar_url})"
         
     # Badge
-    if json.badge?
+    if json.badge
         $('.badge').css
             'display': 'block'
             'background-image': "url(/img/badge_#{json.badge}.png)"
@@ -50,7 +50,7 @@ $.getJSON api, (json)->
 
     # Links
     for key, value of json.providers
-        if value?
+        if value
             icon = $(".#{key}")
             icon.css "display", "inline-block"
             switch key
@@ -72,6 +72,6 @@ $.getJSON api, (json)->
         for index, skill of data
             $(className).append $('<div>').addClass('skill').html(skill.name)
 
-    if json.master_skills? then addSkills(".master", json.master_skills)
-    if json.learning_skills? then addSkills(".learning", json.learning_skills)
+    if json.master_skills then addSkills(".master", json.master_skills)
+    if json.learning_skills then addSkills(".learning", json.learning_skills)
 
