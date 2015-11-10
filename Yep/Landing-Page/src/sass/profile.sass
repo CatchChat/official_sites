@@ -26,10 +26,56 @@ html
     &, body
         background-color: white
 
-        canvas
-            position: fixed
+canvas
+    z-index: 0
+    width: 100%
+    height: 100%
+    display: none
+
+
+.wrapper
+    z-index: 10
+    position: absolute
+    width: 100%
+    height: 100%
+    
+    .container
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        min-width: 320px
+        max-width: 414px
+        height: 100%
+        margin: 0 auto
+        background-color: rgba(gray, .05)
+
+        .header
             width: 100%
-            height: 100%
+            height: 50px
+            background-color: gold
+            flex-shrink: 0
+
+        .main
+            width: 100%
+            // background-color: rgba(purple, .05)
+            flex-shrink: 0
+
+        .footer
+            width: 100%
+            height: 50px
+            background-color: red
+            flex-shrink: 0
+
+
+
+.card
+    // width: 100%
+    // width: 80%
+    background-color: white
+    height: 600px
+    padding: 10px
+    
+    
 
 
 
@@ -39,6 +85,13 @@ html
 
 
 
+@media screen and (min-width: 414px)
+    // canvas
+        // display: block !important
+
+    .card
+        box-shadow: 0px 50px 50px 0px rgba(20,70,129,0.1)
+        border-radius: 8px
 
 
 
@@ -47,21 +100,3 @@ html
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// @media screen and (min-width: 768px)
