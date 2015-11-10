@@ -16,6 +16,14 @@ new Zodiac('zodiac', {
   linkWidth: 1
 });
 
+if (os.android) {
+  $('.ios').remove();
+}
+
+if (os.ios) {
+  $('.android').remove();
+}
+
 username = window.location.pathname.split("/")[1];
 
 api = "https://park.catchchatchina.com/api/v1/users/" + username + "/profile?callback=?";

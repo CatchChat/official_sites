@@ -14,6 +14,9 @@ new Zodiac 'zodiac',
     linkDistance: 50
     linkWidth: 1
 
+if os.android then $('.ios').remove()
+if os.ios then $('.android').remove()
+
 
 # --- USER DATA RENDERING ---
 username = window.location.pathname.split("/")[1]
