@@ -42,24 +42,11 @@ $.getJSON api, (json)->
     $('.nickname').html json.nickname
 
     # Location
-    BDMapKey = "P8qeoPmMSc6FKpMvbLKWVrR0"
-    BDMapUrl = "https://api.map.baidu.com/api?v=2.0&ak=" + BDMapKey
-    $.ajax
-        url: BDMapUrl
-        converters: 'text script': (text)-> return text
-        success: (response)->
-            result = response.replace("http://", "https://")
-            regex = /(.*)(javascript" src=")(.*)(\"\>\<\/script\>\'\)\;\}\)\(\)\;)/
-            script = result.replace regex, "$3"
-
-            $.getScript script, ->            
-                time = new Date()
-                window.BMap_loadScriptTime = time.getTime()
-                point = new BMap.Point(json.longitude, json.latitude)
-                geoc = new BMap.Geocoder()
-                geoc.getLocation point, (rs)->
-                    $('.location').html(rs.addressComponents.city)
-                    $('.location').css "display", "inline-block"
+    amapKey = "78aaeaa8e19b191499317db67ada8542"
+    amapUrl = "https://restapi.amap.com/v3/geocode/regeo?key=#{amapKey}&location=#{json.longitude},#{json.latitude}"
+    $.getJSON amapUrl, (response)->
+        $(".location").css "display", "inline-block"
+        $(".location").html response.regeocode.addressComponent.city
 
     # Links
     for key, value of json.providers
