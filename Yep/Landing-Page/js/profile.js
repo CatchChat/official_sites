@@ -1,60 +1,47 @@
-var api, dpr, speed, updateCardHeight, username;
-
-dpr = window.devicePixelRatio || 1;
-
-speed = 0.1;
+var api, username;
 
 new Zodiac('zodiac', {
-  dotColor: '#3F87E5',
-  linkColor: '#A8DEFF',
+  dotColor: '#AADBFA',
+  linkColor: '#AADBFA',
   directionX: 0,
   directionY: 0,
-  velocityX: [speed / 2, speed * 2],
-  velocityY: [speed / 2, speed * 2],
-  bounceX: true,
-  bounceY: true,
-  density: 10000 * dpr,
-  dotRadius: [dpr * 1.2, dpr * 1.2],
+  velocityX: [0.2, 0.2],
+  velocityY: [0.2, 0.2],
+  bounceX: false,
+  bounceY: false,
+  density: 6000,
+  dotRadius: [2, 2],
   backgroundColor: '#FAFCFD',
-  linkDistance: 50 + (30 * dpr),
-  linkWidth: dpr
+  linkDistance: 50,
+  linkWidth: 1
 });
 
-updateCardHeight = function() {
-  var cardHeight, footHeight;
-  $('.spinner').remove();
-  $('.skills').css('opacity', '1');
-  $('.location').css('opacity', '1');
-  cardHeight = $('.card').height();
-  footHeight = $('.footer').height();
-  $('.card').css({
-    marginTop: -(cardHeight / 2) - footHeight
-  });
-  $('.container').css({
-    minHeight: cardHeight + footHeight + 50 * 2 + 20 * 2
-  });
-  if (os.phone) {
-    $('.container').css({
-      minHeight: cardHeight + footHeight + 50
-    });
-  }
-  return $('body').css('height', $('.container').height());
-};
+if (os.android) {
+  $('.ios').remove();
+}
+
+if (os.ios) {
+  $('.android').remove();
+}
 
 username = window.location.pathname.split("/")[1];
 
 api = "https://park.catchchatchina.com/api/v1/users/" + username + "/profile?callback=?";
 
 $.getJSON(api, function(json) {
-  var BDMapKey, BDMapUrl, icon, index, key, ref, ref1, ref2, skill, value;
-  $('.avatar').css('background-image', "url(" + json.avatar_url + ")");
-  $('.nickname').html(json.nickname);
-  $('.intro').html(json.introduction);
-  if (json.badge === null) {
-    $('.badge').css('display', 'none');
-  } else {
-    $('.badge').css('background-image', "url(/img/badge_" + json.badge + ".png)");
+  var BDMapKey, BDMapUrl, addSkills, icon, key, ref, value;
+  $('.spiner').remove();
+  $('.avatar').css({
+    'display': 'block',
+    'background-image': "url(" + json.avatar_url + ")"
+  });
+  if (json.badge != null) {
+    $('.badge').css({
+      'display': 'block',
+      'background-image': "url(/img/badge_" + json.badge + ".png)"
+    });
   }
+  $('.nickname').html(json.nickname);
   BDMapKey = "P8qeoPmMSc6FKpMvbLKWVrR0";
   BDMapUrl = "https://api.map.baidu.com/api?v=2.0&ak=" + BDMapKey;
   $.ajax({
@@ -76,7 +63,8 @@ $.getJSON(api, function(json) {
         point = new BMap.Point(json.longitude, json.latitude);
         geoc = new BMap.Geocoder();
         return geoc.getLocation(point, function(rs) {
-          return $('.location').html(rs.addressComponents.city);
+          $('.location').html(rs.addressComponents.city);
+          return $('.location').css("display", "inline-block");
         });
       });
     }
@@ -84,7 +72,7 @@ $.getJSON(api, function(json) {
   ref = json.providers;
   for (key in ref) {
     value = ref[key];
-    if (value !== null) {
+    if (value != null) {
       icon = $("." + key);
       icon.css("display", "inline-block");
       switch (key) {
@@ -99,51 +87,21 @@ $.getJSON(api, function(json) {
       }
     }
   }
-  if (json.learning_skills < 1) {
-    $('.learn').css('display', 'none');
-  } else {
-    ref1 = json.learning_skills;
-    for (index in ref1) {
-      skill = ref1[index];
-      $('.learn').append($('<div>').addClass('skill').html(skill.name));
+  $('.intro').html(json.introduction);
+  addSkills = function(className, data) {
+    var index, results, skill;
+    $(className).css('display', 'block');
+    results = [];
+    for (index in data) {
+      skill = data[index];
+      results.push($(className).append($('<div>').addClass('skill').html(skill.name)));
     }
+    return results;
+  };
+  if (json.master_skills != null) {
+    addSkills(".master", json.master_skills);
   }
-  if (json.master_skills < 1) {
-    $('.master').css('display', 'none');
-  } else {
-    ref2 = json.master_skills;
-    for (index in ref2) {
-      skill = ref2[index];
-      $('.master').append($('<div>').addClass('skill').html(skill.name));
-    }
+  if (json.learning_skills != null) {
+    return addSkills(".learning", json.learning_skills);
   }
-  return updateCardHeight();
 });
-
-if (os.android) {
-  $('.ios').remove();
-}
-
-if (os.ios) {
-  $('.android').remove();
-}
-
-if (os.phone) {
-  $('#zodiac').remove();
-  $('.container').css({
-    width: "100%",
-    height: "100%",
-    margin: 0,
-    left: 0
-  });
-  $('.card').css({
-    padding: "50px 20px",
-    width: "100%",
-    boxShadow: "none",
-    top: 0
-  });
-  $('.footer').css({
-    width: "100%",
-    padding: "0 20px"
-  });
-}

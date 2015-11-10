@@ -17,32 +17,62 @@ html(lang="en")
     meta(name="viewport" content="width=device-width user-scalable=no initial-scale=1 minimum-scale=1 maximum-scale=1")
     link(rel='shortcut icon' href='/favicon.png' type='image/x-icon') 
     link(href='../css/profile.css' type='text/css' rel='stylesheet')
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
   body
-    .container
-      .card
-        .avatar
-        .badge
-        a.nickname &nbsp;
-        .spinner
-        a.location &nbsp;
-        .links
-          a(target="_blank").github
-          a(target="_blank").dribbble
-          a(target="_blank").instagram
-          //- a(target="_blank").behance
-        .intro
-        .skills.master
-        .skills.learn
-
-
-      .footer
-        a(href="#{iTunesLink}", target="_blank").ios
-        a(href="#{AndroidApk}", target="_blank").android
-        img(src="../img/icon-appicon.png").appicon
-        h5 Yep
-        h6 Meet Genius
+    .wrapper
+      .container
+        .header
+        .main
+          .card
+            .spiner
+            .avatar
+            .badge
+            .nickname
+            .location
+            .links
+              a(target="_blank").github
+              a(target="_blank").dribbble
+              a(target="_blank").instagram
+              //- a(target="_blank").behance
+            .intro
+            .skillset.master
+            .skillset.learning
+        .footer
+          .appicon
+          .appname Yep
+          .appdesc Meet Genius
+          .buttons
+            a.ios(href="#{iTunesLink}" target="_blank")
+            a.android(href="#{AndroidApk}" target="_blank")
 
     canvas#zodiac
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     script(type="application/javascript", src="../lib/zodiac.min.js")
