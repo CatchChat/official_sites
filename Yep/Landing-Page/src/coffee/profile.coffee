@@ -59,6 +59,7 @@ $.getJSON api, (json)->
                 geoc = new BMap.Geocoder()
                 geoc.getLocation point, (rs)->
                     $('.location').html(rs.addressComponents.city)
+                    $('.location').css "display", "inline-block"
 
     # Links
     for key, value of json.providers

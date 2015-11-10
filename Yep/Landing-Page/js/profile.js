@@ -63,7 +63,8 @@ $.getJSON(api, function(json) {
         point = new BMap.Point(json.longitude, json.latitude);
         geoc = new BMap.Geocoder();
         return geoc.getLocation(point, function(rs) {
-          return $('.location').html(rs.addressComponents.city);
+          $('.location').html(rs.addressComponents.city);
+          return $('.location').css("display", "inline-block");
         });
       });
     }
