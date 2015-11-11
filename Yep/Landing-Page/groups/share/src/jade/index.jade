@@ -2,11 +2,10 @@
 - var desc = "Meet Genius"
 - var keyw = "Yep, App"
 
-//- - var cdn = "http://static-catch.qiniudn.com"
 - var cdn = "https://dn-catchinc.qbox.me"
 
-- var download_ios = "https://itunes.apple.com/app/id983891256"
-- var download_android = "#"
+- var iTunesLink = "https://itunes.apple.com/app/id983891256"
+- var AndroidApk = "#"
 
 doctype html
 html(lang="en")
@@ -20,6 +19,9 @@ html(lang="en")
         link(href='#{cdn}/slick.css' type='text/css' rel='stylesheet')
         link(href='/css/slick-theme.css' type='text/css' rel='stylesheet')
         link(href='/css/topic.css' type='text/css' rel='stylesheet')
+    
+
+
     body
         .gallery.viewer
             .slick
@@ -47,8 +49,11 @@ html(lang="en")
                 .appname Yep
                 .appdesc Meet Genius
                 .buttons
-                    a.ios(href="#{download_ios}" target="_blank")
-                    //- a.android(href="#{download_android}" target="_blank")
+                    a.ios(href="#{iTunesLink}" target="_blank")
+                    //- a.android(href="#{AndroidApk}" target="_blank")
+
+
+
 
         script(type="application/javascript", src="#{cdn}/jquery-2.1.4.min.js")
         script(type="application/javascript", src="#{cdn}/detect.js")
