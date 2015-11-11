@@ -46,7 +46,7 @@ $.getJSON api, (json)->
 
     # Location
     amapKey = "78aaeaa8e19b191499317db67ada8542"
-    amapUrl = "https://restapi.amap.com/v3/geocode/regeo?key=#{amapKey}&location=#{json.longitude},#{json.latitude}"
+    amapUrl = "https://restapi.amap.com/v3/geocode/regeo?key=#{amapKey}&location=#{json.longitude},#{json.latitude}&callback=?"
     $.getJSON amapUrl, (response)->
         $(".location").css "display", "inline-block"
         $(".location").html response.regeocode.addressComponent.city

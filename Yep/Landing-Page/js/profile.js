@@ -46,7 +46,7 @@ $.getJSON(api, function(json) {
   $('.nickname').html(json.nickname);
   document.title = "Yep - " + json.nickname;
   amapKey = "78aaeaa8e19b191499317db67ada8542";
-  amapUrl = "https://restapi.amap.com/v3/geocode/regeo?key=" + amapKey + "&location=" + json.longitude + "," + json.latitude;
+  amapUrl = "https://restapi.amap.com/v3/geocode/regeo?key=" + amapKey + "&location=" + json.longitude + "," + json.latitude + "&callback=?";
   $.getJSON(amapUrl, function(response) {
     $(".location").css("display", "inline-block");
     return $(".location").html(response.regeocode.addressComponent.city);
