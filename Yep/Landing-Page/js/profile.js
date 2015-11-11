@@ -28,6 +28,8 @@ username = window.location.pathname.split("/")[1];
 
 api = "https://park.catchchatchina.com/api/v1/users/" + username + "/profile?callback=?";
 
+document.title = "Yep - " + username;
+
 $.getJSON(api, function(json) {
   var addSkills, amapKey, amapUrl, icon, key, ref, value;
   $('.spiner').remove();
@@ -42,6 +44,7 @@ $.getJSON(api, function(json) {
     });
   }
   $('.nickname').html(json.nickname);
+  document.title = "Yep - " + json.nickname;
   amapKey = "78aaeaa8e19b191499317db67ada8542";
   amapUrl = "https://restapi.amap.com/v3/geocode/regeo?key=" + amapKey + "&location=" + json.longitude + "," + json.latitude;
   $.getJSON(amapUrl, function(response) {
