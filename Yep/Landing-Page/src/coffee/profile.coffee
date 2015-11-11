@@ -8,10 +8,10 @@ new Zodiac 'zodiac',
     velocityY: [0.2, 0.2]
     bounceX: false
     bounceY: false
-    density: 6000
+    density: 10000
     dotRadius: [2, 2]
     backgroundColor: '#FAFCFD'
-    linkDistance: 50
+    linkDistance: 80
     linkWidth: 1
 
 if os.android then $('.ios').remove()
