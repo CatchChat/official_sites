@@ -121,7 +121,7 @@ $ ->
             switch msg.media_type
                 when "text"
                     content.addClass("text").html(msg.text_content)
-                
+
                 when "image"
                     content.addClass("image")
                     .append $("<img/>", src: attachment.file.url)
@@ -130,7 +130,7 @@ $ ->
                     audio_duration = Math.round metadata.audio_duration
                     audio_element = $("<audio controls>", src: attachment.file.url, preload: "auto")
                     audio_element.append $("<source>", src: attachment.file.url, type: "audio/mpeg")
-                    
+
                     content.addClass("audio").append audio_element
 
                     content.addClass("audio").append $("<button/>")
@@ -162,7 +162,7 @@ $ ->
                     content.click ->
                         window.open map.url
 
-                        
+
 
 
             element.appendTo(".table")
@@ -220,8 +220,3 @@ $ ->
 # --- RESPONSIVE LAYOUT ---
     $(".android").hide() if os.ios
     $(".ios").hide() if os.android
-
-
-
-
-
