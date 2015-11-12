@@ -62,12 +62,13 @@ $(function() {
       }).appendTo(".images");
       $("<img/>", {
         data_src: topic_attachment.file.url,
-        data_height: topic_metadata.image_height
+        data_height: topic_metadata.image_height,
+        data_width: topic_metadata.image_width
       }).appendTo(".gallery .slick");
     }
     $(".viewer.gallery .slick").slick({
       speed: 200,
-      centerPadding: '10%',
+      centerPadding: '15%',
       centerMode: true,
       dots: true,
       arrows: false,
@@ -75,7 +76,7 @@ $(function() {
       focusOnSelect: true,
       responsive: [
         {
-          breakpoint: 1024,
+          breakpoint: 768,
           settings: {
             centerPadding: '30%'
           }
@@ -89,8 +90,7 @@ $(function() {
       length = $(".topic .images img").length;
       if (length > 1) {
         $(".gallery .slick .slick-track img").each(function(index, element) {
-          $(element).attr("src", $(element).attr("data_src"));
-          return $(element).css("height", $(element).attr("data_height") / 2 + "px");
+          return $(element).attr("src", $(element).attr("data_src"));
         });
         index = $(this).index();
         $(".gallery .slick").slick('slickGoTo', index);
@@ -100,12 +100,11 @@ $(function() {
         return viewImage($(this).attr("data_src"));
       }
     });
-    $(".viewer.gallery .slick").on("tap", function() {
-      $(".gallery").fadeOut(100);
-      return $(".gallery .slick").toggleClass("show");
-    });
-    $(".viewer.gallery .slick").children().on("tap", function() {
-      return false;
+    $(".viewer.gallery .slick img").on("tap", function() {
+      if ($(this).hasClass('slick-current')) {
+        $(".gallery").fadeOut(100);
+        return $(".gallery .slick").toggleClass("show");
+      }
     });
     $(".chat").css("padding-top", $(".topic").css("height"));
     for (j = 0, len1 = messages.length; j < len1; j++) {

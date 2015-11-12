@@ -116,6 +116,7 @@ html
         margin-right: 5px
         margin-top: 10px
         margin-bottom: 10px
+        cursor: zoom-in
 
       img:last-child
         margin-right: 10px
@@ -368,11 +369,14 @@ html
     +transitionAll
 
     img
-      max-width: 80%
+      min-height: 80%
       margin: 5px
       outline: none
       background-color: rgba(white, 0.1)
       +ajaxLoader(20px)
+
+    img.slick-current
+      cursor: zoom-out
 
     .slick-dots
       position: fixed
