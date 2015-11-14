@@ -2,71 +2,74 @@
 - var desc = "Meet Genius"
 - var keyw = "Yep, App"
 
-//- - var cdn = "http://static-catch.qiniudn.com"
 - var cdn = "https://dn-catchinc.qbox.me"
 
-- var download_ios = "https://itunes.apple.com/app/id983891256"
-- var download_android = "#"
+- var iTunesLink = "https://itunes.apple.com/app/id983891256"
+- var AndroidApk = "#"
 
 doctype html
 html(lang="en")
-    head
-        title #{name} - #{desc}
-        meta(charset='UTF-8')
-        meta(name="keywords" content="#{keyw}")
-        meta(name='description' content='#{desc}')
-        meta(name="viewport" content="width=device-width height=device-height user-scalable=no initial-scale=1")
-        link(rel='shortcut icon' href='/favicon.png' type='image/x-icon') 
-        link(href='#{cdn}/slick.css' type='text/css' rel='stylesheet')
-        link(href='/css/slick-theme.css' type='text/css' rel='stylesheet')
-        link(href='/css/topic.css' type='text/css' rel='stylesheet')
-    body
-        .gallery.viewer
-            .slick
-        .media.viewer
-        .container
-            .topic
-                .info
-                    .avatar
-                    .nickname
-                    .time
-                .text Loading...
-                .images
-            .chat
-                .table
-                    .cell.template
-                        .avatar
-                        .flex
-                            .nickname
-                            .bubble
-                                .content
-                        .avatar
-        .footer
-            .wrapper
-                .appicon
-                .appname Yep
-                .appdesc Meet Genius
-                .buttons
-                    a.ios(href="#{download_ios}" target="_blank")
-                    //- a.android(href="#{download_android}" target="_blank")
-
-        script(type="application/javascript", src="#{cdn}/jquery-2.1.4.min.js")
-        script(type="application/javascript", src="#{cdn}/detect.js")
-        script(type="application/javascript", src="#{cdn}/url.min.js")
-        script(type="application/javascript", src="#{cdn}/slick.min.js")
-        script(type="application/javascript", src="#{cdn}/jquery.timeago.js")
-        script(type="application/javascript", src="#{cdn}/jquery.finger.min.js")
-        script(type="application/javascript", src="#{cdn}/jquery.media.js")
-        script(type="application/javascript", src="/js/topic.js")
-
-        //- ----- Google Analytics -----
-        script(type='text/javascript').
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-69805568-1', 'auto');
-            ga('send', 'pageview');
+  head
+    title #{name} - #{desc}
+    meta(charset='UTF-8')
+    meta(name="keywords" content="#{keyw}")
+    meta(name='description' content='#{desc}')
+    meta(name="viewport" content="width=device-width height=device-height user-scalable=no initial-scale=1")
+    link(rel='shortcut icon' href='/favicon.png' type='image/x-icon')
+    link(href='#{cdn}/slick.css' type='text/css' rel='stylesheet')
+    link(href='/css/slick-theme.css' type='text/css' rel='stylesheet')
+    link(href='/css/topic.css' type='text/css' rel='stylesheet')
 
 
+  body
+    .gallery.viewer
+      .slick
+    .media.viewer
+    .container
+      .topic
+        .info
+          .avatar
+          .nickname
+          .time
+        .text Loading...
+        .images
+      .chat
+        .table
+          .cell.template
+            .avatar
+            .flex
+              .nickname
+              .bubble
+                .content
+            .avatar
+    .footer
+      .wrapper
+        .appicon
+        .appname Yep
+        .appdesc Meet Genius
+        .buttons
+          a.ios(href="#{iTunesLink}" target="_blank")
+          //- a.android(href="#{AndroidApk}" target="_blank")
+          a.android.soon
+
+
+
+
+    script(type="application/javascript", src="#{cdn}/jquery-2.1.4.min.js")
+    script(type="application/javascript", src="#{cdn}/detect.js")
+    script(type="application/javascript", src="#{cdn}/url.min.js")
+    script(type="application/javascript", src="#{cdn}/slick.min.js")
+    script(type="application/javascript", src="#{cdn}/jquery.timeago.js")
+    script(type="application/javascript", src="#{cdn}/jquery.finger.min.js")
+    script(type="application/javascript", src="#{cdn}/jquery.media.js")
+    script(type="application/javascript", src="/js/topic.js")
+
+    //- ----- Google Analytics -----
+    script(type='text/javascript').
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-69805568-1', 'auto');
+      ga('send', 'pageview');

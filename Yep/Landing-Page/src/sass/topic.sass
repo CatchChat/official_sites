@@ -6,401 +6,407 @@ $gray: #E6E6E6
 $cdn: "https://dn-catchinc.qbox.me"
 
 =bounceScroll($value:touch)
-    -webkit-overflow-scrolling: $value
-       -moz-overflow-scrolling: $value
-            overflow-scrolling: $value
+  -webkit-overflow-scrolling: $value
+    -moz-overflow-scrolling: $value
+      overflow-scrolling: $value
 
 =ajaxLoader($size:40px)
-    background-image: url("#{$cdn}/ajax-loader.gif")
-    background-size: $size $size
-    background-repeat: no-repeat
-    background-position: center center
-    background-color: white
+  background-image: url("#{$cdn}/ajax-loader.gif")
+  background-size: $size $size
+  background-repeat: no-repeat
+  background-position: center center
+  background-color: white
 
 =transitionAll($duration:0.25s)
-    transition: all $duration ease-out
+  transition: all $duration ease-out
 
 =centerAnything
-    position: absolute
-    margin: auto
-    top: 0
-    right: 0
-    bottom: 0
-    left: 0
+  position: absolute
+  margin: auto
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
 
 *, *:before, *:after
-    box-sizing: border-box
-    -webkit-font-smoothing: antialiased
-       -moz-font-smoothing: antialiased
-            font-smoothing: antialiased
-    -moz-osx-font-smoothing: grayscale
+  box-sizing: border-box
+  -webkit-font-smoothing: antialiased
+    -moz-font-smoothing: antialiased
+      font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
 
 ::-webkit-scrollbar
-    // Not sure this will working on all devices and os.
-    display: none !important
-    opacity: 0 !important
+  // Not sure this will working on all devices and os.
+  display: none !important
+  opacity: 0 !important
 
 html
-    font-family: 'PingFang SC', 'SF UI Text', 'Hiragino Sans GB', 'Microsoft Yahei', "Helvetica Neue", Helvetica, Arial, sans-serif
-    font-size: 15px
+  font-family: 'PingFang SC', 'SF UI Text', 'Hiragino Sans GB', 'Microsoft Yahei', "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-size: 15px
 
-    &, body
-        // height: 100%
-        background-color: white
+  &, body
+    height: 100%
+    background-color: white
 
 .avatar
-    border-radius: 50%
-    width: 40px
-    height: 40px
-    background-color: #f1f1f1
-    background-repeat: no-repeat
-    background-size: 100%
+  border-radius: 50%
+  width: 40px
+  height: 40px
+  background-color: #f1f1f1
+  background-repeat: no-repeat
+  background-size: 100%
 
 .container
+  width: 100%
+  height: 100%
+  max-width: 768px
+  box-shadow: 0 -1px 0 1px $gray
+  margin: 0 auto
+
+  .topic
     width: 100%
-    height: 100%
     max-width: 768px
-    box-shadow: 0 0 0 1px $gray
-    margin: 0 auto
+    min-width: 320px
+    padding-bottom: 10px
+    background-color: white
+    position: fixed
+    box-shadow: inset 0 -1px 0px rgba(black, 0.1)
+    z-index: 1
 
-    .topic
+    .info
+      width: 100%
+      height: 40px
+      padding: 0 10px
+      margin-top: 10px
+
+      .avatar
+        float: left
+
+      .nickname
+        float: left
+        margin-left: 10px
+        color: $blue
+        height: 40px
+        line-height: 40px
+
+      .time
+        float: right
+        height: 40px
+        line-height: 40px
+        color: silver
+        font-size: 14px
+
+    .text
+      max-height: 100px
+      // overflow-y: scroll
+      display: inline-block
+      padding-left: 60px
+      margin: 10px
+      margin-left: 0
+
+    .images
+      padding-left: 60px
+      white-space: nowrap
+      overflow-x: scroll
+      overflow-y: hidden
+      +bounceScroll()
+
+      img
+        height: 80px
+        margin-right: 5px
+        margin-top: 10px
+        margin-bottom: 10px
+        cursor: zoom-in
+
+      img:last-child
+        margin-right: 10px
+
+  .chat
+    width: 100%
+    padding-top: 200px
+    padding-bottom: 50px
+
+    .table
+      width: 100%
+      background-color: white
+
+
+      .cell
         width: 100%
-        max-width: 768px
-        min-width: 320px
-        padding-bottom: 10px
-        background-color: white
-        position: fixed
-        box-shadow: inset 0 -1px 0px rgba(black, 0.1)
-        z-index: 1
+        padding-top: 10px
+        display: flex
 
-        .info
+        .avatar
+          margin: 10px
+          margin-top: 0
+          float: left
+
+          &:first-of-type
+            flex-shrink: 0
+          &:last-of-type
+            opacity: 0
+
+        .flex
+          height: 100%
+          width: 50px
+          float: left
+          flex-grow: 1
+          flex-shrink: 0
+
+          .nickname
             width: 100%
-            height: 40px
-            padding: 0 10px
-            margin-top: 10px
+            height: 20px
+            color: #808080
+            padding-left: 14px
+            font-size: 12px
+            line-height: 20px
 
-            .avatar
-                float: left
-
-            .nickname
-                float: left
-                margin-left: 10px
-                color: $blue
-                height: 40px
-                line-height: 40px
-
-            .time
-                float: right
-                height: 40px
-                line-height: 40px
-                color: silver
-                font-size: 14px
-
-        .text
-            max-height: 100px
-            // overflow-y: scroll
+          .bubble
+            max-width: 100%
+            background-color: $gray
             display: inline-block
-            padding-left: 60px
-            margin: 10px
-            margin-left: 0
+            border-radius: 20px
+            overflow: hidden
+            border: 1px solid $gray
+            +ajaxLoader(20px)
 
-        .images
-            padding-left: 60px
-            white-space: nowrap
-            overflow-x: scroll
-            overflow-y: hidden
-            +bounceScroll()
+            .content
+              min-width: 40px
+              min-height: 40px
+              display: block
 
-            img
-                height: 80px
-                margin-right: 5px
-                margin-top: 10px
-                margin-bottom: 10px
+            .content.text
+              color: black
+              display: inline-block
+              line-height: 20px
+              padding: 10px 15px
+              background-color: $gray
 
-            img:last-child
-                margin-right: 10px
+            .content.image
+              img
+                display: block
+                max-width: 200px
+                max-height: 200px
+                image-orientation: from-image
 
-    .chat
-        width: 100%
-        padding-top: 200px
-        padding-bottom: 50px
+            .content.audio
+              min-width: 100px
+              background-color: $gray
+              white-space: nowrap
+              height: 40px
+              overflow: hidden
+              display: flex
 
-        .table
-            width: 100%
-            background-color: white
-
-
-            .cell
-                width: 100%
-                padding-top: 10px
-                display: flex
-
-                .avatar
-                    margin: 10px
-                    margin-top: 0
-                    float: left
-
-                    &:first-of-type
-                        flex-shrink: 0
-                    &:last-of-type
-                        opacity: 0
-
-                .flex
-                    height: 100%
-                    width: 50px
-                    float: left
-                    flex-grow: 1
-                    flex-shrink: 0
-
-                    .nickname
-                        width: 100%
-                        height: 20px
-                        color: #808080
-                        padding-left: 14px
-                        font-size: 12px
-                        line-height: 20px
-
-                    .bubble
-                        max-width: 100%
-                        background-color: $gray
-                        display: inline-block
-                        border-radius: 20px
-                        overflow: hidden
-                        border: 1px solid $gray
-                        +ajaxLoader(20px)
-
-                        .content
-                            min-width: 40px
-                            min-height: 40px
-                            display: block
-
-                        .content.text
-                            color: black
-                            display: inline-block
-                            line-height: 20px
-                            padding: 10px 15px
-                            background-color: $gray
-
-                        .content.image
-                            img
-                                display: block
-                                max-width: 200px
-                                max-height: 200px
-                                image-orientation: from-image
-
-                        .content.audio
-                            min-width: 100px
-                            background-color: $gray
-                            white-space: nowrap
-                            height: 40px
-                            overflow: hidden
-                            display: flex
-
-                            audio
-                                display: none
-
-                            button
-                                display: block
-                                float: left
-                                height: 40px
-                                width: 40px
-                                outline: none
-                                cursor: pointer
-                                padding: 0
-                                border: none
-                                background-color: $gray
-                                background-image: url("/img/topic-sprite.svg")
-                                background-position: -0px -40px
-                                background-repeat: no-repeat
-                                flex-grow: 1
-                                flex-shrink: 0
-                            
-                                &.playing
-                                    background-position: -40px -40px
-                            
-                            progress
-                                float: left
-                                width: 20px
-                                margin: (40px - 4px)/2 6px
-                                height: 4px
-                                -webkit-appearance: none
-                                appearance: none
-                                flex-grow: 1
-                                flex-shrink: 1
-
-                                &::-webkit-progress-bar
-                                    background-color: darken($gray, 10)
-                                &::-webkit-progress-value
-                                    background-color: darken($gray, 30)
-                            
-                            label
-                                float: left
-                                height: 40px
-                                display: inline-block
-                                line-height: 40px
-                                text-align: center
-                                padding-right: 15px
-                                padding-left: 5px
-
-                        .content.location
-                            position: relative
-
-                            .marker
-                                width: 10px
-                                height: 10px
-                                border-radius: 50%
-                                background-color: $blue
-                                box-shadow: 0px 0px 0px 2px white, 0 0 10px 0 black
-                                +centerAnything
-
-                            .address
-                                background-color: rgba(black, 0.5)
-                                color: white
-                                position: absolute
-                                bottom: 0
-                                display: block
-                                width: 100%
-                                text-align: center
-                                padding: 5px
-
-            .bottom
-                width: 100%
-                height: 60px
-                margin-top: 10px
-                text-align: right
-
-                +transitionAll
-                transform-origin: 90% 90%
-                transform: scale(0)
-
-                &.show
-                    transform: scale(1)
-                    
-
-                .bubble
-                    display: inline-block
-                    padding: 15px 20px
-                    background-color: $blue
-                    border-radius: 10px
-                    margin-right: 10px
-                    color: white
-
-                &::after
-                    content: ""
-                    display: block
-                    position: absolute
-                    right: 53px
-                    border: 8px solid transparent
-                    border-top-color: $blue
-
-            .template
+              audio
                 display: none
+
+              button
+                display: block
+                float: left
+                height: 40px
+                width: 40px
+                outline: none
+                cursor: pointer
+                padding: 0
+                border: none
+                background-color: $gray
+                background-image: url("/img/topic-sprite.svg")
+                background-position: -0px -40px
+                background-repeat: no-repeat
+                flex-grow: 1
+                flex-shrink: 0
+
+                &.playing
+                  background-position: -40px -40px
+
+              progress
+                float: left
+                width: 20px
+                margin: (40px - 4px)/2 6px
+                height: 4px
+                -webkit-appearance: none
+                appearance: none
+                flex-grow: 1
+                flex-shrink: 1
+
+                &::-webkit-progress-bar
+                  background-color: darken($gray, 10)
+                &::-webkit-progress-value
+                  background-color: darken($gray, 30)
+
+              label
+                float: left
+                height: 40px
+                display: inline-block
+                line-height: 40px
+                text-align: center
+                padding-right: 15px
+                padding-left: 5px
+
+            .content.location
+              position: relative
+
+              .marker
+                width: 10px
+                height: 10px
+                border-radius: 50%
+                background-color: $blue
+                box-shadow: 0px 0px 0px 2px white, 0 0 10px 0 black
+                +centerAnything
+
+              .address
+                background-color: rgba(black, 0.5)
+                color: white
+                position: absolute
+                bottom: 0
+                display: block
+                width: 100%
+                text-align: center
+                padding: 5px
+
+      .bottom
+        width: 100%
+        height: 60px
+        margin-top: 10px
+        text-align: right
+
+        +transitionAll
+        transform-origin: 90% 90%
+        transform: scale(0)
+
+        &.show
+          transform: scale(1)
+
+
+        .bubble
+          display: inline-block
+          padding: 15px 20px
+          background-color: $blue
+          border-radius: 10px
+          margin-right: 10px
+          color: white
+
+        &::after
+          content: ""
+          display: block
+          position: absolute
+          right: 53px
+          border: 8px solid transparent
+          border-top-color: $blue
+
+      .template
+        display: none
 
 
 
 .footer
-    width: 100%
+  width: 100%
+  height: 50px
+  background-color: white
+  position: fixed
+  bottom: 0
+  box-shadow: inset 0 1px 0px rgba(black, 0.1)
+
+  .wrapper
+    max-width: 768px
+    min-width: 320px
     height: 50px
-    background-color: white
-    position: fixed
-    bottom: 0
-    box-shadow: inset 0 1px 0px rgba(black, 0.1)
+    margin: 0 auto
+    position: relative
 
-    .wrapper
-        max-width: 768px
-        min-width: 320px
-        height: 50px
-        margin: 0 auto
-        position: relative
+    >div
+      float: left
+      height: 50px
+      line-height: 50px
+      font-size: 16px
 
-        >div
-            float: left
-            height: 50px
-            line-height: 50px
-            font-size: 16px
+    .appicon
+      background-image: url("/img/appicon.svg")
+      width: 50px
+      background-size: 100%
+      background-repeat: no-repeat
 
-        .appicon
-            background-image: url("/img/appicon.svg")
-            width: 50px
-            background-size: 100%
-            background-repeat: no-repeat
+    .appname
+      color: #404040
+    .appdesc
+      color: #BFBFBF
+      margin-left: 10px
 
-        .appname
-            color: #404040
-        .appdesc
-            color: #BFBFBF
-            margin-left: 10px
+    .buttons
+      position: absolute
+      right: 0
 
-        .buttons
-            position: absolute
-            right: 0
+      a
+        width: 100px
+        height: 30px
+        display: inline-block
+        margin: 10px
+        margin-left: 0
+        background-size: 100%
 
-            a
-                width: 100px
-                height: 30px
-                display: inline-block
-                margin: 10px
-                margin-left: 0
-                background-size: 100%
+      .ios
+        background-image: url("/img/ios.svg")
+      .android
+        background-image: url("/img/android.svg")
+      .android.soon
+        background-image: url("/img/soon.svg")
 
-            .ios
-                background-image: url("/img/ios.svg")
-            .android
-                background-image: url("/img/android.svg")
-                
 .viewer
-    width: 100%
-    height: 100%
-    position: fixed
-    z-index: 2
-    background-color: rgba(black, 0.9)
-    display: none
+  width: 100%
+  height: 100%
+  position: fixed
+  z-index: 2
+  background-color: rgba(black, 0.9)
+  display: none
 
 .gallery
-    .slick
-        min-height: 100%
-        transform: scale(0)
-        &.show
-            transform: scale(1)
+  .slick
+    min-height: 100%
+    transform: scale(0)
+    &.show
+      transform: scale(1)
 
-        +transitionAll
+    +transitionAll
 
-        img
-            max-width: 80%
-            margin: 5px
-            outline: none
-            background-color: rgba(white, 0.1)
-            +ajaxLoader(20px)
+    img
+      min-height: 80%
+      margin: 5px
+      outline: none
+      background-color: rgba(white, 0.1)
+      +ajaxLoader(20px)
 
-        .slick-dots
-            position: fixed
-            bottom: 20px
+    img.slick-current
+      cursor: zoom-out
 
-            li
-                width: 5px
-                height: 5px
-                border-radius: 50%
-                background-color: rgba(white, 0.25)
-                button::before
-                    content: ''
+    .slick-dots
+      position: fixed
+      bottom: 20px
 
-            li.slick-active
-                background-color: rgba(white, 1)
+      li
+        width: 5px
+        height: 5px
+        border-radius: 50%
+        background-color: rgba(white, 0.25)
+        button::before
+          content: ''
+
+      li.slick-active
+        background-color: rgba(white, 1)
 
 .media
 
-    img
-        max-width: 90%
-        max-height: 90%
-        margin: auto
-        position: absolute
-        top: 0
-        right: 0
-        bottom: 0
-        left: 0
-        transform: scale(0)
+  img
+    max-width: 90%
+    max-height: 90%
+    margin: auto
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    transform: scale(0)
 
-        &.show
-            transform: scale(1)
+    &.show
+      transform: scale(1)
 
-        +transitionAll
+    +transitionAll

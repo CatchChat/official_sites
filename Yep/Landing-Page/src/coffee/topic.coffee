@@ -52,21 +52,21 @@ $ ->
 
 
         # Image Gallery
-            $("<img/>", data_src: topic_attachment.file.url, data_height: topic_metadata.image_height)
+            $("<img/>", data_src: topic_attachment.file.url, data_height: topic_metadata.image_height, data_width: topic_metadata.image_width)
             .appendTo(".gallery .slick")
             # End of for loop
 
 
         $(".viewer.gallery .slick").slick(
             speed: 200
-            centerPadding: '10%'
+            centerPadding: '15%'
             centerMode: true
             dots: true
             arrows: false
             mobileFirst: true
             focusOnSelect: true
             responsive: [
-                breakpoint: 1024
+                breakpoint: 768
                 settings:
                    centerPadding: '30%'
             ]
@@ -82,7 +82,7 @@ $ ->
                 # Multiple Images will use Slick
                 $(".gallery .slick .slick-track img").each (index, element)->
                     $(element).attr "src", $(element).attr("data_src")
-                    $(element).css "height", $(element).attr("data_height") / 2 + "px"
+
 
                 index = $(this).index()
                 $(".gallery .slick").slick('slickGoTo', index)
@@ -93,12 +93,10 @@ $ ->
                 viewImage $(this).attr "data_src"
 
 
-
-        $(".viewer.gallery .slick").on "tap", ->
+        $(".viewer.gallery .slick img").on "tap", ->
+          if $(this).hasClass('slick-current')
             $(".gallery").fadeOut(100)
             $(".gallery .slick").toggleClass("show")
-
-        $(".viewer.gallery .slick").children().on "tap", -> return false
 
 
 
@@ -121,7 +119,7 @@ $ ->
             switch msg.media_type
                 when "text"
                     content.addClass("text").html(msg.text_content)
-                
+
                 when "image"
                     content.addClass("image")
                     .append $("<img/>", src: attachment.file.url)
@@ -130,7 +128,7 @@ $ ->
                     audio_duration = Math.round metadata.audio_duration
                     audio_element = $("<audio controls>", src: attachment.file.url, preload: "auto")
                     audio_element.append $("<source>", src: attachment.file.url, type: "audio/mpeg")
-                    
+
                     content.addClass("audio").append audio_element
 
                     content.addClass("audio").append $("<button/>")
@@ -162,7 +160,7 @@ $ ->
                     content.click ->
                         window.open map.url
 
-                        
+
 
 
             element.appendTo(".table")
@@ -220,8 +218,3 @@ $ ->
 # --- RESPONSIVE LAYOUT ---
     $(".android").hide() if os.ios
     $(".ios").hide() if os.android
-
-
-
-
-

@@ -16,7 +16,7 @@ new Zodiac('zodiac', {
   bounceX: true,
   bounceY: true,
   density: 10000 * dpr,
-  dotRadius: [dpr * 1.2, dpr * 1.2],
+  dotRadius: [dpr * 1.5, dpr * 1.5],
   backgroundColor: '#FAFCFD',
   linkDistance: 50 + (30 * dpr),
   linkWidth: dpr

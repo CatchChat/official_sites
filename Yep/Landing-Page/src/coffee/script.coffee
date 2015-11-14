@@ -17,7 +17,7 @@ new Zodiac 'zodiac',
     # parallax: .5                     # float [0-1...]; 0: no paralax
     # pivot: 1                         # float [0-1...]; pivot level for parallax;
     density: 10000 * dpr                    # px^2 per node
-    dotRadius: [dpr * 1.2, dpr * 1.2] # px value or [minR,maxR]
+    dotRadius: [dpr * 1.5, dpr * 1.5] # px value or [minR,maxR]
     backgroundColor: '#FAFCFD'        # default transparent; use alpha value for motion blur and ghosting
     linkDistance: 50 + (30 * dpr)
     linkWidth: dpr
