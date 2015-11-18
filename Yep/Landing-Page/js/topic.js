@@ -177,12 +177,11 @@ $(function() {
         return window.open("https://soyep.com/" + username);
       }
     });
-    $("<div/>").addClass("bottom").appendTo(".table").append($("<div/>").addClass("bubble").html("加入 Yep 参与此话题"));
     $(document).scroll(function() {
       if ($(this).scrollTop() >= $(this).height() - $(window).height() - 100) {
-        return $(".chat .table > .bottom").addClass("show");
+        return $(".footer .popup").addClass("show");
       } else {
-        return $(".chat .table > .bottom").removeClass("show");
+        return $(".footer .popup").removeClass("show");
       }
     });
     $(".chat .bubble .image").on("tap", function() {
