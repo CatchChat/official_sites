@@ -14,14 +14,14 @@ img{
 
 .container {
   width: 100%;
+  margin: 44px 0;
 }
   .main {
     width: 312px;
-    margin: 44px auto;
+    margin: 0 auto;
     text-align: center;
   }
     .icon {
-      margin-top: 44px;
       margin-bottom: 20px;
     }
     .title {
