@@ -5,6 +5,13 @@
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
+
+img{
+  -webkit-image-rendering: pixelated;
+     -moz-image-rendering: pixelated;
+          image-rendering: pixelated;
+}
+
 .container {
   width: 100%;
 }
