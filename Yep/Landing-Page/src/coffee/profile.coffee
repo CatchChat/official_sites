@@ -33,7 +33,7 @@ $.getJSON api, (json)->
     $('.avatar').css
         'display': 'block'
         'background-image': "url(#{json.avatar_url})"
-        
+
     # Badge
     if json.badge
         $('.badge').css
@@ -65,7 +65,7 @@ $.getJSON api, (json)->
                     icon.attr "href", "https://instagram.com/" + value.media[0].user.username
                 # when "behance"
                     # icon.attr "href", value.
-    
+
     # Introduction
     $('.intro').html json.introduction
 
@@ -77,4 +77,3 @@ $.getJSON api, (json)->
 
     if json.master_skills then addSkills(".master", json.master_skills)
     if json.learning_skills then addSkills(".learning", json.learning_skills)
-
