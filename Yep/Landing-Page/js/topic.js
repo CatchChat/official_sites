@@ -85,6 +85,17 @@ $(function() {
     }).on('setPosition', function() {
       return $(".slick-list").css("top", ($(".gallery").height() - $(".slick-list").height()) / 2);
     });
+    $(".viewer.gallery .slick img").on("tap", function() {
+      if ($(this).hasClass('slick-current')) {
+        $(".gallery").fadeOut(50);
+        return $(".gallery .slick").removeClass("show");
+      }
+    });
+    $("<div/>").addClass("overlay").appendTo(".slick");
+    $(".viewer.gallery .overlay").on("tap", function() {
+      $(".gallery").fadeOut(50);
+      return $(".gallery .slick").removeClass("show");
+    });
     $(".topic .images img").on("tap", function() {
       var index, length;
       length = $(".topic .images img").length;
@@ -98,12 +109,6 @@ $(function() {
         return $(".gallery .slick").toggleClass("show");
       } else {
         return viewImage($(this).attr("data_src"));
-      }
-    });
-    $(".viewer.gallery .slick img").on("tap", function() {
-      if ($(this).hasClass('slick-current')) {
-        $(".gallery").fadeOut(100);
-        return $(".gallery .slick").toggleClass("show");
       }
     });
     $(".chat").css("padding-top", $(".topic").css("height"));
