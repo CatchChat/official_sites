@@ -7,9 +7,17 @@
 }
 
 img{
-  -webkit-image-rendering: pixelated;
-     -moz-image-rendering: pixelated;
-          image-rendering: pixelated;
+  /* Chrome */
+  image-rendering: pixelated;
+
+  /* Safari */
+  image-rendering: -webkit-crisp-edges;
+
+  /* Firefox */
+  image-rendering: -moz-crisp-edges;
+
+  /* Internet Explorer */
+  -ms-interpolation-mode: nearest-neighbor;
 }
 
 .container {
