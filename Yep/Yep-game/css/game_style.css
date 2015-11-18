@@ -21,15 +21,17 @@ img{
     margin: 0 auto;
     text-align: center;
   }
-    .icon {
-      margin-bottom: 20px;
-    }
-    .title {
-      margin-bottom: 20px;
-    }
-    .eg {
-      margin-bottom: 44px;
-    }
-    .solgan {
-      margin-bottom: 20px;
-    }
+    .icon { margin-bottom: 20px; }
+    .icon img{ width: 72px; }
+
+    .title { margin-bottom: 20px; }
+    .title img { width: 20px; }
+
+    .eg { margin-bottom: 44px; }
+    .eg img{ width: 312px; }
+
+    .solgan { margin-bottom: 20px; }
+    .solgan img{ width: 158px; }
+
+    .mail { }
+    .mail img{ width: 28px; }
