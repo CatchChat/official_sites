@@ -8,7 +8,7 @@
 - var AndroidApk = "#"
 
 doctype html
-html(lang="en")
+html(lang="en" prefix="og: http://ogp.me/ns#")
   head
     title #{name} - #{desc}
     meta(charset='UTF-8')
@@ -20,14 +20,18 @@ html(lang="en")
     //- Twitter
     meta(name="twitter:card" content="app")
     meta(name="twitter:description" content="Meet genius around you from Dribbble Github and Instagram!")
-    meta(name="twitter:app:country" content="CN")
+    meta(name="twitter:app:country" content="US")
+    meta(name="twitter:site" content="@soyepapp")
     meta(name="twitter:app:name:iphone" content="Yep")
     meta(name="twitter:app:name:id" content="983891256")
+    meta(name="twitter:text:title" content="Yep - Meet Genius")
+    meta(name="twitter:image" content="http://static-catch.qiniudn.com/icon-iphone.png")
     //- meta(name="twitter:app:name:url" content="yep://")
     //- OpenGraph
     meta(name="og:title" content="Yep")
     meta(name="og:type" content="article")
     meta(name="og:url" content="https://soyep.com")
+    meta(name="og:site_name" content="Yep")
     meta(name="og:image" content="http://static-catch.qiniudn.com/icon-iphone.png")
     meta(name="og:description" content="Meet genius around you from Dribbble Github and Instagram!")
   body
