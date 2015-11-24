@@ -75,7 +75,18 @@ $(function() {
       topic_pswpOptions = {
         index: $(this).index(),
         showHideOpacity: true,
-        bgOpacity: 0.9
+        bgOpacity: 0.9,
+        getThumbBoundsFn: function(index) {
+          var pageYScroll, rect, thumbnail;
+          thumbnail = $(".topic .images img")[index];
+          pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
+          rect = thumbnail.getBoundingClientRect();
+          return {
+            x: rect.left,
+            y: rect.top + pageYScroll,
+            w: rect.width
+          };
+        }
       };
       topc_gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, topic_pswpItems, topic_pswpOptions);
       return delay(10, function() {
@@ -159,7 +170,18 @@ $(function() {
       msg_pswpOptions = {
         index: $(".chat .bubble .image").index($(this)),
         showHideOpacity: true,
-        bgOpacity: 0.9
+        bgOpacity: 0.9,
+        getThumbBoundsFn: function(index) {
+          var pageYScroll, rect, thumbnail;
+          thumbnail = $(".chat .bubble .image")[index];
+          pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
+          rect = thumbnail.getBoundingClientRect();
+          return {
+            x: rect.left,
+            y: rect.top + pageYScroll,
+            w: rect.width
+          };
+        }
       };
       msg_gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, msg_pswpItems, msg_pswpOptions);
       return msg_gallery.init();
