@@ -81,6 +81,7 @@ $ ->
       topic_pswpOptions = {
         index: $(this).index()
         showHideOpacity: true
+        history: false
         bgOpacity: 0.9
         getThumbBoundsFn: (index)->
             thumbnail = $(".topic .images img")[index]
@@ -184,6 +185,7 @@ $ ->
       msg_pswpOptions = {
         index: $(".chat .bubble .image").index($(this))
         showHideOpacity: true
+        history: false
         bgOpacity: 0.9
         getThumbBoundsFn: (index)->
             thumbnail = $(".chat .bubble .image")[index]

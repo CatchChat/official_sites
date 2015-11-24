@@ -75,6 +75,7 @@ $(function() {
       topic_pswpOptions = {
         index: $(this).index(),
         showHideOpacity: true,
+        history: false,
         bgOpacity: 0.9,
         getThumbBoundsFn: function(index) {
           var pageYScroll, rect, thumbnail;
@@ -170,6 +171,7 @@ $(function() {
       msg_pswpOptions = {
         index: $(".chat .bubble .image").index($(this)),
         showHideOpacity: true,
+        history: false,
         bgOpacity: 0.9,
         getThumbBoundsFn: function(index) {
           var pageYScroll, rect, thumbnail;
