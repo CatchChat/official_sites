@@ -60,56 +60,10 @@ $(function() {
         src: topic_thumbnail,
         data_src: topic_attachment.file.url
       }).appendTo(".images");
-      $("<img/>", {
-        data_src: topic_attachment.file.url,
-        data_height: topic_metadata.image_height,
-        data_width: topic_metadata.image_width
-      }).appendTo(".gallery .slick");
     }
-    $(".viewer.gallery .slick").slick({
-      speed: 200,
-      centerPadding: '15%',
-      centerMode: true,
-      dots: true,
-      arrows: false,
-      mobileFirst: true,
-      focusOnSelect: true,
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            centerPadding: '30%'
-          }
-        }
-      ]
-    }).on('setPosition', function() {
-      return $(".slick-list").css("top", ($(".gallery").height() - $(".slick-list").height()) / 2);
-    });
-    $(".viewer.gallery .slick img").on("tap", function() {
-      if ($(this).hasClass('slick-current')) {
-        $(".gallery").fadeOut(50);
-        return $(".gallery .slick").removeClass("show");
-      }
-    });
-    $("<div/>").addClass("overlay").appendTo(".slick");
-    $(".viewer.gallery .overlay").on("tap", function() {
-      $(".gallery").fadeOut(50);
-      return $(".gallery .slick").removeClass("show");
-    });
     $(".topic .images img").on("tap", function() {
-      var index, length;
-      length = $(".topic .images img").length;
-      if (length > 1) {
-        $(".gallery .slick .slick-track img").each(function(index, element) {
-          return $(element).attr("src", $(element).attr("data_src"));
-        });
-        index = $(this).index();
-        $(".gallery .slick").slick('slickGoTo', index);
-        $(".gallery").fadeIn(100);
-        return $(".gallery .slick").toggleClass("show");
-      } else {
-        return viewImage($(this).attr("data_src"));
-      }
+      var index;
+      return index = $(this).index();
     });
     $(".chat").css("padding-top", $(".topic").css("height"));
     for (j = 0, len1 = messages.length; j < len1; j++) {
