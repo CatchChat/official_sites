@@ -1,4 +1,4 @@
-var isChinese, modulate, viewImage;
+var isChinese, modulate;
 
 modulate = function(value, fromLow, fromHigh, toLow, toHigh) {
   var result;
@@ -21,14 +21,6 @@ modulate = function(value, fromLow, fromHigh, toLow, toHigh) {
   return result;
 };
 
-viewImage = function(image_src) {
-  $(".media.viewer").html($("<img/>", {
-    src: image_src
-  }));
-  $(".media.viewer").fadeIn(100);
-  return $(".media.viewer").find("img").toggleClass("show");
-};
-
 isChinese = function() {
   return window.navigator.language.indexOf("zh") !== -1;
 };
@@ -38,7 +30,7 @@ $(function() {
   url = "https://park.catchchatchina.com/api/v1/circles/shared_messages";
   param = "?token=" + $.url("?token") + "&callback=?";
   $.getJSON(url + param, function(response) {
-    var attachment, audio_duration, audio_element, content, element, i, j, len, len1, map, messages, metadata, msg, prefix, ref, topic, topic_attachment, topic_metadata, topic_thumbnail;
+    var attachment, audio_duration, audio_element, content, element, i, j, len, len1, map, messages, metadata, msg, prefix, pswpElement, pswpItem, pswpItems, ref, topic, topic_attachment, topic_metadata, topic_thumbnail;
     topic = response.topic;
     messages = response.messages;
     $(".topic .avatar").css("background-image", "url(" + topic.user.avatar_url + ")");
@@ -51,19 +43,31 @@ $(function() {
       $(".topic .text").html(topic.body);
     }
     prefix = "data:image/jpeg;base64,";
+    pswpItems = [];
     ref = topic.attachments;
     for (i = 0, len = ref.length; i < len; i++) {
       topic_attachment = ref[i];
       topic_metadata = $.parseJSON(topic_attachment.metadata);
       topic_thumbnail = prefix + topic_metadata.thumbnail_string;
       $("<img/>", {
-        src: topic_thumbnail,
-        data_src: topic_attachment.file.url
+        src: topic_thumbnail
       }).appendTo(".images");
+      pswpItem = {
+        msrc: topic_thumbnail,
+        src: topic_attachment.file.url,
+        w: topic_metadata.image_width,
+        h: topic_metadata.image_height
+      };
+      pswpItems.push(pswpItem);
     }
+    pswpElement = $('.pswp')[0];
     $(".topic .images img").on("tap", function() {
-      var index;
-      return index = $(this).index();
+      var gallery, pswpOptions;
+      pswpOptions = {
+        index: $(this).index()
+      };
+      gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, pswpItems, pswpOptions);
+      return gallery.init();
     });
     $(".chat").css("padding-top", $(".topic").css("height"));
     for (j = 0, len1 = messages.length; j < len1; j++) {

@@ -9,11 +9,6 @@ modulate = (value, fromLow, fromHigh, toLow, toHigh) ->
     return toHigh if result < toHigh
   result
 
-viewImage = (image_src) ->
-  $(".media.viewer").html($("<img/>", src: image_src))
-  $(".media.viewer").fadeIn(100)
-  $(".media.viewer").find("img").toggleClass("show")
-
 isChinese = -> return window.navigator.language.indexOf("zh") isnt -1
 
 
@@ -45,54 +40,27 @@ $ ->
 
     # Image Tumbnails
     prefix = "data:image/jpeg;base64,"
+    pswpItems = []
     for topic_attachment in topic.attachments
       topic_metadata = $.parseJSON topic_attachment.metadata
       topic_thumbnail = prefix + topic_metadata.thumbnail_string
-      $("<img/>", src: topic_thumbnail, data_src: topic_attachment.file.url).appendTo(".images")
+      $("<img/>", src: topic_thumbnail).appendTo(".images")
 
+      pswpItem = {
+        msrc: topic_thumbnail
+        src:  topic_attachment.file.url
+        w:    topic_metadata.image_width
+        h:    topic_metadata.image_height
+      }
+      pswpItems.push pswpItem
+    # End of for loop
 
     # Image Gallery
-      # $("<img/>", data_src: topic_attachment.file.url, data_height: topic_metadata.image_height, data_width: topic_metadata.image_width)
-      # .appendTo(".gallery .slick")
-      # End of for loop
-
-
-    # $(".viewer.gallery .slick").slick(
-    #   speed: 200
-    #   centerPadding: '15%'
-    #   centerMode: true
-    #   dots: true
-    #   arrows: false
-    #   mobileFirst: true
-    #   focusOnSelect: true
-    #   responsive: [
-    #     breakpoint: 768
-    #     settings:
-    #       centerPadding: '30%'
-    #   ]
-    #   )
-    #   .on 'setPosition', ->
-    #     # Center align vertically
-    #     $(".slick-list").css "top", ($(".gallery").height() - $(".slick-list").height()) / 2
-
-
-      #
-      # $(".viewer.gallery .slick img").on "tap", ->
-      #   if $(this).hasClass('slick-current')
-      #     $(".gallery").fadeOut(50)
-      #     $(".gallery .slick").removeClass("show")
-      #
-      # $("<div/>").addClass("overlay").appendTo ".slick"
-      # $(".viewer.gallery .overlay").on "tap", ->
-      #   $(".gallery").fadeOut(50)
-      #   $(".gallery .slick").removeClass("show")
-
+    pswpElement = $('.pswp')[0]
     $(".topic .images img").on "tap", ->
-      index = $(this).index()
-
-
-
-
+      pswpOptions = { index: $(this).index() }
+      gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, pswpItems, pswpOptions)
+      gallery.init()
 
 
     # Latest Conversations
