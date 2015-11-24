@@ -13,8 +13,22 @@ isChinese = -> return window.navigator.language.indexOf("zh") isnt -1
 
 delay = (ms, func) -> setTimeout func, ms
 
-$ ->
 
+
+
+
+# --- VARIABLES ---
+base64Prefix = "data:image/jpeg;base64,"
+
+pswpElement = $('.pswp')[0]
+topic_pswpItems = []
+msg_pswpItems = []
+
+
+
+
+
+$ ->
 # --- DATA RENDERING ---
   url = "https://park.catchchatchina.com/api/v1/circles/shared_messages"
   param = "?token=" + $.url("?token") + "&callback=?"
@@ -42,32 +56,38 @@ $ ->
 
 
 
+
     # Image Tumbnails
-    prefix = "data:image/jpeg;base64,"
-    pswpItems = []
     for topic_attachment in topic.attachments
       topic_metadata = $.parseJSON topic_attachment.metadata
-      topic_thumbnail = prefix + topic_metadata.thumbnail_string
+      topic_thumbnail = base64Prefix + topic_metadata.thumbnail_string
       $("<img/>", src: topic_thumbnail).appendTo(".images")
 
-      pswpItem = {
+      topic_pswpItem = {
         msrc: topic_thumbnail
         src:  topic_attachment.file.url
         w:    topic_metadata.image_width
         h:    topic_metadata.image_height
       }
-      pswpItems.push pswpItem
-    # End of loop for Tumbnails
+      topic_pswpItems.push topic_pswpItem
+
 
 
 
 
     # Image Gallery
-    pswpElement = $('.pswp')[0]
     $(".topic .images img").on "tap", ->
-      pswpOptions = { index: $(this).index() }
-      gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, pswpItems, pswpOptions)
-      delay 10, -> gallery.init()
+
+      topic_pswpOptions = {
+        index: $(this).index()
+        showHideOpacity: true
+        bgOpacity: 0.9
+      }
+      topc_gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, topic_pswpItems, topic_pswpOptions)
+      delay 10, -> topc_gallery.init()
+
+
+
 
 
     # Latest Conversations
@@ -83,21 +103,36 @@ $ ->
 
       element.find(".nickname").html(msg.sender.nickname)
 
-      attachment = msg.attachments[0]
-      metadata = if attachment then $.parseJSON attachment.metadata else undefined
+      msg_attachment = msg.attachments[0]
+      msg_metadata = if msg_attachment then $.parseJSON msg_attachment.metadata else undefined
+
 
       switch msg.media_type
         when "text"
           content.addClass("text").html(msg.text_content)
 
         when "image"
+          msg_img_metadata = $.parseJSON msg_attachment.metadata
+          msg_img_thumbnail_blur = base64Prefix + msg_img_metadata.blurred_thumbnail_string
+
           content.addClass("image")
-          .append $("<img/>", src: attachment.file.url)
+          .append $("<img/>", src: msg_attachment.file.url)
+          .css 'background-image', "url(#{msg_img_thumbnail_blur})"
+
+
+          # Image Gallery - Conversation
+          msg_pswpItem = {
+            msrc: msg_img_thumbnail_blur
+            src:  msg_attachment.file.url
+            w: msg_img_metadata.image_width
+            h: msg_img_metadata.image_height
+          }
+          msg_pswpItems.push msg_pswpItem
 
         when "audio"
-          audio_duration = Math.round metadata.audio_duration
-          audio_element = $("<audio controls>", src: attachment.file.url, preload: "auto")
-          audio_element.append $("<source>", src: attachment.file.url, type: "audio/mpeg")
+          audio_duration = Math.round msg_metadata.audio_duration
+          audio_element = $("<audio controls>", src: msg_attachment.file.url, preload: "auto")
+          audio_element.append $("<source>", src: msg_attachment.file.url, type: "audio/mpeg")
 
           content.addClass("audio").append audio_element
 
@@ -114,10 +149,14 @@ $ ->
             width: 200
             height: 100
             zoom: 16
-          map.img = "https://api.map.baidu.com/staticimage?center=#{map.lng},#{map.lat}&width=#{map.width}&height=#{map.height}&zoom=#{map.zoom}&ak=#{map.key}"
-          # map.url = "https://www.google.cn/maps/preview/@#{map.lat},#{map.lng},#{map.zoom}z"
-          map.url = "https://maps.google.cn/maps?q=#{map.lat},#{map.lng}&z=#{map.zoom}&ll=#{map.lat},#{map.lng}"
 
+          map.img = "https://api.map.baidu.com/staticimage?center=#{map.lng},#{map.lat}&width=#{map.width}&height=#{map.height}&zoom=#{map.zoom}&ak=#{map.key}"
+          map.url = "https://maps.google.cn/maps?q=#{map.lat},#{map.lng}&z=#{map.zoom}&ll=#{map.lat},#{map.lng}"
+          # alternative:
+          # map.url = "https://www.google.cn/maps/preview/@#{map.lat},#{map.lng},#{map.zoom}z"
+
+          content.attr "href", map.url
+          content.attr "target", "_blank"
 
           content.addClass("location").css
             width: "#{map.width}px"
@@ -126,19 +165,37 @@ $ ->
 
           content.append $("<div/>").addClass("marker")
           if map.address then content.append $("<div/>").addClass("address").html map.address
-
-          content.click ->
-            window.open map.url
-
-
-
+      # End of Switch
 
       element.appendTo(".table")
+    # End of Conversation Loop
+
+
+
+
+
+    # Image Gallery - Conversation
+    $(".chat .bubble .image").on "tap", ->
+      msg_pswpOptions = {
+        index: $(".chat .bubble .image").index($(this))
+        showHideOpacity: true
+        bgOpacity: 0.9
+      }
+      msg_gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, msg_pswpItems, msg_pswpOptions)
+      msg_gallery.init()
+
+
+
+
 
     # Click avatar goes to profile
     $(".avatar").click ->
       username = $(this).attr "username"
       if username then window.open "https://soyep.com/" + username
+
+
+
+
 
     # Show blue popup bubble when scroll reached the bottom of conversations
     $(document).scroll ->
@@ -147,14 +204,9 @@ $ ->
       else
         $(".footer .popup").removeClass("show")
 
-    # Viewer - Image
-    $(".chat .bubble .image").on "tap", ->
-      image_src = $(this).find("img").attr "src"
-      viewImage image_src
 
-    $(".media.viewer").on "tap", ->
-      $(".media.viewer").find("img").toggleClass("show")
-      $(this).fadeOut(100)
+
+
 
     # Player - Voice
     $(".chat .bubble .audio").on "tap", ->
@@ -178,6 +230,10 @@ $ ->
       voice.time ->
         progress = modulate this.time(), 0, this.duration(), 0, 100
         bar.attr "value", progress
+
+
+
+
 
 # --- RESPONSIVE LAYOUT ---
   $(".android").hide() if os.ios
