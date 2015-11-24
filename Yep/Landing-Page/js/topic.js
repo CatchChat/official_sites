@@ -1,4 +1,4 @@
-var isChinese, modulate;
+var delay, isChinese, modulate;
 
 modulate = function(value, fromLow, fromHigh, toLow, toHigh) {
   var result;
@@ -23,6 +23,10 @@ modulate = function(value, fromLow, fromHigh, toLow, toHigh) {
 
 isChinese = function() {
   return window.navigator.language.indexOf("zh") !== -1;
+};
+
+delay = function(ms, func) {
+  return setTimeout(func, ms);
 };
 
 $(function() {
@@ -67,9 +71,9 @@ $(function() {
         index: $(this).index()
       };
       gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, pswpItems, pswpOptions);
-      return setTimeout((function() {
+      return delay(10, function() {
         return gallery.init();
-      }), 10);
+      });
     });
     $(".chat").css("padding-top", $(".topic").css("height"));
     for (j = 0, len1 = messages.length; j < len1; j++) {

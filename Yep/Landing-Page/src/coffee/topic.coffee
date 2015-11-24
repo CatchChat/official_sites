@@ -11,6 +11,7 @@ modulate = (value, fromLow, fromHigh, toLow, toHigh) ->
 
 isChinese = -> return window.navigator.language.indexOf("zh") isnt -1
 
+delay = (ms, func) -> setTimeout func, ms
 
 $ ->
 
@@ -66,9 +67,7 @@ $ ->
     $(".topic .images img").on "tap", ->
       pswpOptions = { index: $(this).index() }
       gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, pswpItems, pswpOptions)
-      setTimeout ( ->
-        gallery.init()
-      ), 10
+      delay 10, -> gallery.init()
 
 
     # Latest Conversations
