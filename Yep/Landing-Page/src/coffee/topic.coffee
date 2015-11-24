@@ -38,6 +38,9 @@ $ ->
     else
       $(".topic .text").html topic.body
 
+
+
+
     # Image Tumbnails
     prefix = "data:image/jpeg;base64,"
     pswpItems = []
@@ -53,14 +56,19 @@ $ ->
         h:    topic_metadata.image_height
       }
       pswpItems.push pswpItem
-    # End of for loop
+    # End of loop for Tumbnails
+
+
+
 
     # Image Gallery
     pswpElement = $('.pswp')[0]
     $(".topic .images img").on "tap", ->
       pswpOptions = { index: $(this).index() }
       gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, pswpItems, pswpOptions)
-      gallery.init()
+      setTimeout ( ->
+        gallery.init()
+      ), 10
 
 
     # Latest Conversations

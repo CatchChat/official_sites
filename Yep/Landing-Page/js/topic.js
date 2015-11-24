@@ -67,7 +67,9 @@ $(function() {
         index: $(this).index()
       };
       gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, pswpItems, pswpOptions);
-      return gallery.init();
+      return setTimeout((function() {
+        return gallery.init();
+      }), 10);
     });
     $(".chat").css("padding-top", $(".topic").css("height"));
     for (j = 0, len1 = messages.length; j < len1; j++) {
