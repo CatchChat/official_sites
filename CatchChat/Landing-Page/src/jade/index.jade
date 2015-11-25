@@ -1,0 +1,50 @@
+- var name = "CatchChat"
+- var desc = "The next generation chat app"
+- var keyw = "CatchChat"
+
+- var cdn = "https://dn-catchinc.qbox.me/catchchat"
+
+- var iTunesLink = "https://itunes.apple.com/app/id890404699"
+- var AndroidApk = "http://catch-static.b0.upaiyun.com/catchchat-universal-release.apk"
+
+doctype html
+html(lang="en")
+  head
+    title #{name} - #{desc}
+    meta(name="keywords" content="#{keyw}")
+    meta(name='description' content='#{desc}')
+    meta(charset='UTF-8')
+    meta(name="viewport" content="width=device-width height=device-height user-scalable=no initial-scale=1")
+    link(rel='shortcut icon' href='#{cdn}/favicon.png' type='image/x-icon') 
+    link(href='./css/style.css' type='text/css' rel='stylesheet')
+  body
+    .wrapper
+      .middle
+        .container
+          .main
+            .appicon: img(src="#{cdn}/appicon.png")
+            .appname #{name}
+            .appdesc #{desc}
+            .qrcode
+              img(src="#{cdn}/qrcode.png")
+              .icon
+            img.devices(src="#{cdn}/devices.jpg")
+            .download
+              a.ios(href="#{iTunesLink}"): img(src="#{cdn}/../button_ios.svg", alt="")
+              a.android(href="#{AndroidApk}"): img(src="#{cdn}/../button_android.svg", alt="")
+          img.devices(src="#{cdn}/devices.jpg")
+    .footer © 2014 Catch Inc., Made in Canton, Inspired by TapTalk
+    
+    script(type="application/javascript", src="#{cdn}/../detect.js")
+    script(type="application/javascript", src="./js/script.js")
+    
+  
+    //- ----- Google Analytics -----
+    script(type='text/javascript').
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-69805568-1', 'auto');
+      ga('send', 'pageview');
