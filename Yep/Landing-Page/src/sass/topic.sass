@@ -11,7 +11,7 @@ $cdn: "https://dn-catchinc.qbox.me"
       overflow-scrolling: $value
 
 =ajaxLoader($size:40px)
-  background-image: url("#{$cdn}/ajax-loader.gif")
+  background-image: url("#{$cdn}/loading.gif")
   background-size: $size $size
   background-repeat: no-repeat
   background-position: center center
@@ -323,11 +323,11 @@ html
         background-size: 100%
 
       .ios
-        background-image: url("/img/ios.svg")
+        background-image: url($cdn + "/button_ios.svg")
       .android
-        background-image: url("/img/android.svg")
+        background-image: url($cdn + "/button_android.svg")
       .android.soon
-        background-image: url("/img/soon.svg")
+        background-image: url($cdn + "/button_soon.svg")
 
     .popup
       width: 100%

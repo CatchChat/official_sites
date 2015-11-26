@@ -1,4 +1,4 @@
-var api, username;
+var api, cdn, username;
 
 new Zodiac('zodiac', {
   dotColor: '#AADBFA',
@@ -24,6 +24,8 @@ if (os.ios) {
   $('.android').remove();
 }
 
+cdn = "https://dn-catchinc.qbox.me";
+
 username = window.location.pathname.split("/")[1];
 
 api = "https://park.catchchatchina.com/api/v1/users/" + username + "/profile?callback=?";
@@ -40,7 +42,7 @@ $.getJSON(api, function(json) {
   if (json.badge) {
     $('.badge').css({
       'display': 'block',
-      'background-image': "url(/img/badge_" + json.badge + ".png)"
+      'background-image': "url(" + cdn + "/badge_" + json.badge + ".png)"
     });
   }
   $('.nickname').html(json.nickname);
