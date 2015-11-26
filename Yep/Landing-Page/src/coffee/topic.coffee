@@ -61,7 +61,10 @@ $ ->
     for topic_attachment in topic.attachments
       topic_metadata = $.parseJSON topic_attachment.metadata
       topic_thumbnail = base64Prefix + topic_metadata.thumbnail_string
-      $("<img/>", src: topic_thumbnail).appendTo(".images")
+      $("<div/>")
+      .addClass "thumbnail"
+      .css "background-image", "url(#{topic_thumbnail})"
+      .appendTo(".images .thumbnails")
 
       topic_pswpItem = {
         msrc: topic_thumbnail
@@ -76,7 +79,7 @@ $ ->
 
 
     # Image Gallery
-    $(".topic .images img").on "tap", ->
+    $(".topic .images .thumbnails .thumbnail").on "tap", ->
 
       topic_pswpOptions = {
         index: $(this).index()
@@ -84,7 +87,7 @@ $ ->
         history: false
         bgOpacity: 0.9
         getThumbBoundsFn: (index)->
-            thumbnail = $(".topic .images img")[index]
+            thumbnail = $(".topic .images .thumbnails .thumbnail")[index]
             pageYScroll = window.pageYOffset || document.documentElement.scrollTop
             rect = thumbnail.getBoundingClientRect()
             return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}

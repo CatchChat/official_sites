@@ -59,9 +59,7 @@ $(function() {
       topic_attachment = ref[i];
       topic_metadata = $.parseJSON(topic_attachment.metadata);
       topic_thumbnail = base64Prefix + topic_metadata.thumbnail_string;
-      $("<img/>", {
-        src: topic_thumbnail
-      }).appendTo(".images");
+      $("<div/>").addClass("thumbnail").css("background-image", "url(" + topic_thumbnail + ")").appendTo(".images .thumbnails");
       topic_pswpItem = {
         msrc: topic_thumbnail,
         src: topic_attachment.file.url,
@@ -70,7 +68,7 @@ $(function() {
       };
       topic_pswpItems.push(topic_pswpItem);
     }
-    $(".topic .images img").on("tap", function() {
+    $(".topic .images .thumbnails .thumbnail").on("tap", function() {
       var topc_gallery, topic_pswpOptions;
       topic_pswpOptions = {
         index: $(this).index(),
@@ -79,7 +77,7 @@ $(function() {
         bgOpacity: 0.9,
         getThumbBoundsFn: function(index) {
           var pageYScroll, rect, thumbnail;
-          thumbnail = $(".topic .images img")[index];
+          thumbnail = $(".topic .images .thumbnails .thumbnail")[index];
           pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
           rect = thumbnail.getBoundingClientRect();
           return {

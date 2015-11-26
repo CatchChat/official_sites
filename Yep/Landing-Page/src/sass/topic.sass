@@ -106,21 +106,30 @@ html
       margin-left: 0
 
     .images
-      padding-left: 60px
-      white-space: nowrap
+      max-height: 100px
       overflow-x: scroll
       overflow-y: hidden
       +bounceScroll()
 
-      img
-        height: 80px
-        margin-right: 5px
-        margin-top: 10px
-        margin-bottom: 10px
-        cursor: zoom-in
+      .thumbnails
+        max-height: 100px
+        padding-left: 60px
+        white-space: nowrap
+        min-width: 80px
 
-      img:last-child
-        margin-right: 10px
+        .thumbnail
+          height: 80px
+          width: 80px
+          margin-right: 5px
+          margin-top: 10px
+          margin-bottom: 10px
+          cursor: zoom-in
+          display: inline-block
+          background-position: center center
+
+        .thumbnail:last-child
+          margin-right: 10px
+
 
   .chat
     width: 100%
