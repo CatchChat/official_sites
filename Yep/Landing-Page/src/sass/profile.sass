@@ -20,6 +20,7 @@ $blue: #51A7F7
             font-smoothing: antialiased
     -moz-osx-font-smoothing: grayscale
 
+$cdn: "https://dn-catchinc.qbox.me"
 
 html
     font-family: 'PingFang SC', 'SF UI Text', 'Hiragino Sans GB', 'Microsoft Yahei', "Helvetica Neue", Helvetica, Arial, sans-serif
@@ -105,7 +106,7 @@ canvas
         text-indent: 18px
         margin-bottom: 10px
         line-height: 20px
-        background-image: url("/img/icon_location.png")
+        background-image: url($cdn + "/icon_location.png")
         background-size: 12px 15px
         background-position: left
         background-repeat: no-repeat
@@ -126,13 +127,13 @@ canvas
 
 
         .github
-            background-image: url("/img/icon_github.png")
+            background-image: url($cdn + "/icon_github.png")
         .dribbble
-            background-image: url("/img/icon_dribbble.png")
+            background-image: url($cdn + "/icon_dribbble.png")
         .instagram
-            background-image: url("/img/icon_instagram.png")
+            background-image: url($cdn + "/icon_instagram.png")
         .behance
-            background-image: url("/img/icon_behance.png")
+            background-image: url($cdn + "/icon_behance.png")
 
     .intro
         color: hsl(0, 0%, 75%)
@@ -209,12 +210,12 @@ canvas
             background-size: 100%
 
         .ios
-            background-image: url("/img/ios.svg")
+            background-image: url($cdn + "/button_ios.svg")
         .android
-            background-image: url("/img/android.svg")
+            background-image: url($cdn + "/button_android.svg")
             margin-left: 10px
         .android.soon
-            background-image: url("/img/soon.svg")
+            background-image: url($cdn + "/button_soon.svg")
             margin-left: 10px
 
 

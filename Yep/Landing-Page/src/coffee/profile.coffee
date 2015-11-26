@@ -17,6 +17,8 @@ new Zodiac 'zodiac',
 if os.android then $('.ios').remove()
 if os.ios then $('.android').remove()
 
+cdn = "https://dn-catchinc.qbox.me"
+
 
 # --- USER DATA RENDERING ---
 username = window.location.pathname.split("/")[1]
@@ -38,7 +40,7 @@ $.getJSON api, (json)->
     if json.badge
         $('.badge').css
             'display': 'block'
-            'background-image': "url(/img/badge_#{json.badge}.png)"
+            'background-image': "url(#{cdn}/badge_#{json.badge}.png)"
 
     # Nickname
     $('.nickname').html json.nickname
