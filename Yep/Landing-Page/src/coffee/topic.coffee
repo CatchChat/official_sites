@@ -30,12 +30,14 @@ msg_pswpItems = []
 
 $ ->
 # --- DATA RENDERING ---
-  url = "https://park.catchchatchina.com/api/v1/circles/shared_messages"
+  url = "https://park.catchchatchina.com/api/v2/circles/shared_messages"
   param = "?token=" + $.url("?token") + "&callback=?"
 
   $.getJSON url + param, (response) ->
+    circle = response.circle
     topic = response.topic
     messages = response.messages
+    kind = topic.kind
 
     # Avatar
     $(".topic .avatar").css "background-image", "url(#{topic.user.avatar_url})"
@@ -45,55 +47,65 @@ $ ->
     $(".topic .nickname").html topic.user.nickname
 
     # Time
-    $(".topic .time").html $.timeago(topic.circle.created_at * 1000)
+    $(".topic .time").html $.timeago(circle.created_at * 1000)
 
     # Text
-    if not topic.body
-      $(".topic .text").hide()
-    else
-      $(".topic .text").html topic.body
+    if not topic.body then $(".topic .text").hide()
+    else $(".topic .text").html topic.body
+
+    if kind isnt "image" then $(".topic .images").remove()
+
+    switch kind
+      # when "text"
+      when "image"
+        # Image Tumbnails
+        for topic_attachment in topic.attachments
+          topic_metadata = $.parseJSON topic_attachment.metadata
+          topic_thumbnail = base64Prefix + topic_metadata.thumbnail_string
+          $("<div/>")
+          .addClass "thumbnail"
+          .css "background-image", "url(#{topic_thumbnail})"
+          .appendTo(".images .thumbnails")
+
+          topic_pswpItem = {
+            msrc: topic_thumbnail
+            src:  topic_attachment.file.url
+            w:    topic_metadata.image_width
+            h:    topic_metadata.image_height
+          }
+          topic_pswpItems.push topic_pswpItem
+
+        # Image Gallery
+        $(".topic .images .thumbnails .thumbnail").on "tap", ->
+
+          topic_pswpOptions = {
+            index: $(this).index()
+            showHideOpacity: true
+            history: false
+            bgOpacity: 0.9
+            getThumbBoundsFn: (index)->
+              thumbnail = $(".topic .images .thumbnails .thumbnail")[index]
+              pageYScroll = window.pageYOffset || document.documentElement.scrollTop
+              rect = thumbnail.getBoundingClientRect()
+              return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}
+          }
+          topc_gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, topic_pswpItems, topic_pswpOptions)
+          delay 10, -> topc_gallery.init()
+
+      # when "video"
+      # when "audio"
+      # when "location"
+      # when "dribbble"
+      # when "github"
+      # when "apple_music"
+      # when "apple_movie"
+      # when "apple_ebook"
 
 
 
 
 
-    # Image Tumbnails
-    for topic_attachment in topic.attachments
-      topic_metadata = $.parseJSON topic_attachment.metadata
-      topic_thumbnail = base64Prefix + topic_metadata.thumbnail_string
-      $("<div/>")
-      .addClass "thumbnail"
-      .css "background-image", "url(#{topic_thumbnail})"
-      .appendTo(".images .thumbnails")
 
-      topic_pswpItem = {
-        msrc: topic_thumbnail
-        src:  topic_attachment.file.url
-        w:    topic_metadata.image_width
-        h:    topic_metadata.image_height
-      }
-      topic_pswpItems.push topic_pswpItem
-
-
-
-
-
-    # Image Gallery
-    $(".topic .images .thumbnails .thumbnail").on "tap", ->
-
-      topic_pswpOptions = {
-        index: $(this).index()
-        showHideOpacity: true
-        history: false
-        bgOpacity: 0.9
-        getThumbBoundsFn: (index)->
-            thumbnail = $(".topic .images .thumbnails .thumbnail")[index]
-            pageYScroll = window.pageYOffset || document.documentElement.scrollTop
-            rect = thumbnail.getBoundingClientRect()
-            return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}
-      }
-      topc_gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, topic_pswpItems, topic_pswpOptions)
-      delay 10, -> topc_gallery.init()
 
 
 
@@ -191,10 +203,10 @@ $ ->
         history: false
         bgOpacity: 0.9
         getThumbBoundsFn: (index)->
-            thumbnail = $(".chat .bubble .image")[index]
-            pageYScroll = window.pageYOffset || document.documentElement.scrollTop
-            rect = thumbnail.getBoundingClientRect()
-            return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}
+          thumbnail = $(".chat .bubble .image")[index]
+          pageYScroll = window.pageYOffset || document.documentElement.scrollTop
+          rect = thumbnail.getBoundingClientRect()
+          return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}
       }
       msg_gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, msg_pswpItems, msg_pswpOptions)
       msg_gallery.init()
