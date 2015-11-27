@@ -95,7 +95,14 @@ $ ->
       # when "video"
       # when "audio"
       # when "location"
-      # when "dribbble"
+      when "dribbble"
+        shot = topic.attachments[0]
+
+        $(".topic .dribbble").show()
+
+        $(".topic .dribbble img.shot").attr "src", shot.media_url
+        $(".topic .dribbble a.link").html shot.title
+        .attr "href", shot.url
       # when "github"
       # when "apple_music"
       # when "apple_movie"

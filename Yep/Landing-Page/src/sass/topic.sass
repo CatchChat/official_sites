@@ -130,6 +130,60 @@ html
         .thumbnail:last-child
           margin-right: 10px
 
+    .dribbble
+      display: none
+      width: 200px
+      height: 150px + 30px
+      margin-left: 60px
+      margin-bottom: 10px
+      overflow: hidden
+      border-radius: 5px
+
+      &:before
+        content: ''
+        width: 200px
+        height: 150px + 30px
+        border: 1px solid rgba(black, 0.1)
+        position: absolute
+        border-radius: 5px
+
+      img.shot
+        display: block
+        width: 200px
+        height: 150px
+
+      a.link
+        display: block
+        width: 100%
+        height: 30px
+        line-height: 30px
+        border-top: 1px solid rgba(black, 0.1)
+        text-decoration: none
+        color: gray
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
+        padding: 0 30px
+        text-indent: 5px
+        position: relative
+        font-size: 12px
+
+        &:before, &:after
+          content: ''
+          display: inline-block
+          width: 20px
+          height: 20px
+          position: absolute
+          background-image: url("/img/topic-sprite.svg")
+          margin: 5px
+
+        &:before
+          left: 0
+          background-position: -140px 0
+        &:after
+          right: 0
+          background-position: -120px 0
+
 
   .chat
     width: 100%
