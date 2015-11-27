@@ -13,16 +13,37 @@ isChinese = -> return window.navigator.language.indexOf("zh") isnt -1
 
 delay = (ms, func) -> setTimeout func, ms
 
+topic_pswpItems = []
+msg_pswpItems = []
+pswpItems = []
 
+viewImage = (pswpItems, pswpIndex, thumbnailElements) ->
+  pswpElement = $('.pswp')[0]
 
+  pswpOptions = {
+    index: pswpIndex
+    showHideOpacity: true
+    history: false
+    bgOpacity: 0.9
+    getThumbBoundsFn: (index)->
+      thumbnail = thumbnailElements[index]
+      pageYScroll = window.pageYOffset || document.documentElement.scrollTop
+      rect = thumbnail.getBoundingClientRect()
+      return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}
+  }
 
+  topc_gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, pswpItems, pswpOptions)
+  delay 10, -> topc_gallery.init()
 
 # --- VARIABLES ---
 base64Prefix = "data:image/jpeg;base64,"
 
-pswpElement = $('.pswp')[0]
-topic_pswpItems = []
-msg_pswpItems = []
+
+
+
+
+
+
 
 
 
@@ -77,32 +98,29 @@ $ ->
 
         # Image Gallery
         $(".topic .images .thumbnails .thumbnail").on "tap", ->
+          viewImage(topic_pswpItems, $(this).index(), $(".topic .images .thumbnails .thumbnail"))
 
-          topic_pswpOptions = {
-            index: $(this).index()
-            showHideOpacity: true
-            history: false
-            bgOpacity: 0.9
-            getThumbBoundsFn: (index)->
-              thumbnail = $(".topic .images .thumbnails .thumbnail")[index]
-              pageYScroll = window.pageYOffset || document.documentElement.scrollTop
-              rect = thumbnail.getBoundingClientRect()
-              return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}
-          }
-          topc_gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, topic_pswpItems, topic_pswpOptions)
-          delay 10, -> topc_gallery.init()
 
       # when "video"
       # when "audio"
       # when "location"
       when "dribbble"
         shot = topic.attachments[0]
-
         $(".topic .dribbble").show()
-
         $(".topic .dribbble img.shot").attr "src", shot.media_url
         $(".topic .dribbble a.link").html shot.title
         .attr "href", shot.url
+        .attr "target", "_blank"
+
+        pswpItems.push {
+          src:  shot.media_url
+          w:    400
+          h:    300
+        }
+
+        $(".topic .dribbble .shot").on "tap", ->
+          viewImage(pswpItems, 0, $(this))
+
       # when "github"
       # when "apple_music"
       # when "apple_movie"
@@ -149,13 +167,13 @@ $ ->
 
 
           # Image Gallery - Conversation
-          msg_pswpItem = {
+          msg_pswpItems.push {
             msrc: msg_img_thumbnail_blur
             src:  msg_attachment.file.url
             w: msg_img_metadata.image_width
             h: msg_img_metadata.image_height
           }
-          msg_pswpItems.push msg_pswpItem
+
 
         when "audio"
           audio_duration = Math.round msg_metadata.audio_duration
@@ -204,20 +222,7 @@ $ ->
 
     # Image Gallery - Conversation
     $(".chat .bubble .image").on "tap", ->
-      msg_pswpOptions = {
-        index: $(".chat .bubble .image").index($(this))
-        showHideOpacity: true
-        history: false
-        bgOpacity: 0.9
-        getThumbBoundsFn: (index)->
-          thumbnail = $(".chat .bubble .image")[index]
-          pageYScroll = window.pageYOffset || document.documentElement.scrollTop
-          rect = thumbnail.getBoundingClientRect()
-          return {x:rect.left, y:rect.top + pageYScroll, w:rect.width}
-      }
-      msg_gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, msg_pswpItems, msg_pswpOptions)
-      msg_gallery.init()
-
+      viewImage(msg_pswpItems, $(".chat .bubble .image").index($(this)), $(".chat .bubble .image"))
 
 
 
