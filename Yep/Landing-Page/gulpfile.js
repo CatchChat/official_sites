@@ -100,7 +100,7 @@ gulp.task('coffee', function() {
     .pipe(sourcemaps.init())
     .pipe(coffee({bare: true }))
     .pipe(uglify())
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('js/'))
     .pipe(browserSync.reload({
       stream: true
