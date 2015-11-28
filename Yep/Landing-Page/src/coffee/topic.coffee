@@ -122,7 +122,15 @@ $ ->
         $(".topic .dribbble .shot").on "tap", ->
           viewImage(pswpItems, 0, $(this))
 
-      # when "github"
+      when "github"
+        repo = topic.attachments[0]
+
+        $(".topic .github").css "display", "table"
+        .attr "href", repo.url
+        .attr "target", "_blank"
+        $(".topic .github .name").html repo.name
+        $(".topic .github .desc").html repo.description
+
       # when "apple_music"
       # when "apple_movie"
       # when "apple_ebook"
@@ -214,7 +222,7 @@ $ ->
           if map.address then content.append $("<div/>").addClass("address").html map.address
       # End of Switch
 
-      element.appendTo(".table")
+      element.appendTo(".chat .table")
     # End of Conversation Loop
 
 
