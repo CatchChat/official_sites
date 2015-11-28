@@ -68,7 +68,7 @@ html
     width: 100%
     max-width: 768px
     min-width: 320px
-    padding-bottom: 10px
+    padding-bottom: 20px
     background-color: white
     position: fixed
     box-shadow: inset 0 -1px 0px rgba(black, 0.1)
@@ -129,6 +129,126 @@ html
 
         .thumbnail:last-child
           margin-right: 10px
+
+    .dribbble:before, .github:before
+      content: ''
+      width: 100%
+      height: 100%
+      border: 1px solid rgba(black, 0.1)
+      position: absolute
+      border-radius: 5px
+      pointer-events: none
+
+    .dribbble
+      display: none
+      width: 200px
+      height: 150px + 30px
+      margin-left: 60px
+      overflow: hidden
+      border-radius: 5px
+      position: relative
+
+
+      img.shot
+        display: block
+        width: 200px
+        height: 150px
+        cursor: zoom-in
+
+      a.link
+        display: block
+        width: 100%
+        height: 30px
+        line-height: 30px - 1px
+        border-top: 1px solid rgba(black, 0.1)
+        text-decoration: none
+        color: gray
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
+        padding: 0 30px
+        text-indent: 5px
+        position: relative
+        font-size: 12px
+
+        &:before, &:after
+          content: ''
+          display: inline-block
+          width: 20px
+          height: 20px
+          position: absolute
+          background-image: url("/img/topic-sprite.svg")
+          margin: 5px
+
+        &:before
+          left: 0
+          background-position: -140px -1px
+        &:after
+          right: 0
+          background-position: -120px -1px
+
+    .github
+      display: none
+      width: 250px
+      height: 80px
+      margin-left: 60px
+      overflow: hidden
+      border-radius: 5px
+      position: relative
+      text-decoration: none
+
+      // background-color: purple
+
+      .table
+        display: table-cell
+        vertical-align: middle
+
+        &:after
+          // icon: ">"
+          content: ''
+          position: absolute
+          height: 20px
+          width: 20px
+          display: block
+          right: 10px
+          top: 50%
+          margin-top: -10px
+          background-image: url('/img/topic-sprite.svg')
+          background-repeat: no-repeat
+          background-position: -120px 0
+
+
+        & > div
+          width: 245px
+          padding-right: 30px
+          color: #404040
+          overflow: hidden
+          white-space: nowrap
+          text-overflow: ellipsis
+          float: left
+          display: inline-block
+
+        .name
+          line-height: 40px
+          font-size: 16px
+
+          &:before
+            // icon: repo
+            content: ''
+            height: 40px
+            width: 40px
+            float: left
+            display: inline-block
+            background-image: url('/img/topic-sprite.svg')
+            background-repeat: no-repeat
+            background-position: -120px -40px
+
+        .desc
+          padding-left: 40px
+          height: 25px
+          color: #808080
+          font-size: 12px
+
 
 
   .chat

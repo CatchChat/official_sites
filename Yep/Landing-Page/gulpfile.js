@@ -4,6 +4,8 @@ var rename = require('gulp-rename');
 var autoprefixer = require('gulp-autoprefixer');
 var jade = require('gulp-jade');
 var coffee = require('gulp-coffee');
+var sourcemaps = require('gulp-sourcemaps');
+var coffeelint = require('gulp-coffeelint');
 var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
@@ -11,7 +13,7 @@ var browserSync = require('browser-sync');
 
 gulp.task('browser-sync', function() {
   browserSync({
-    // open: false
+    open: false,
     browser: "google chrome",
     ghostMode: false,
     server: {
@@ -85,6 +87,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('coffee', function() {
+  console.log("\n================================================================================\n")
   return gulp.src('src/coffee/**/*.coffee')
     .pipe(plumber({
       errorHandler: function(error) {
@@ -92,10 +95,12 @@ gulp.task('coffee', function() {
         this.emit('end');
       }
     }))
+    .pipe(coffeelint({opt: {max_line_length: {value: 1024, level: 'ignore'}}}))
+    .pipe(coffeelint.reporter())
+    .pipe(sourcemaps.init())
     .pipe(coffee({bare: true }))
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
-    // .pipe(uglify())
+    .pipe(uglify())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('js/'))
     .pipe(browserSync.reload({
       stream: true
