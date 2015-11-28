@@ -1,8 +1,4 @@
 .DS_Store
 config.codekit
 *.sketch
-<<<<<<< HEAD
 *.js.map
-=======
-*.js.map
->>>>>>> 0ec1e6a830197b453f0995a80fe74a40cabab262
