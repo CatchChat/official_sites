@@ -112,11 +112,12 @@ $ ->
         .attr "href", shot.url
         .attr "target", "_blank"
 
-        pswpItems.push {
-          src:  shot.media_url
-          w:    400
-          h:    300
-        }
+        pswpItems = [{
+          msrc:  shot.media_url
+          src:  shot.media_url.replace "_1x.","."
+          w:    400*2
+          h:    300*2
+        }]
 
         $(".topic .dribbble .shot").on "tap", ->
           viewImage(pswpItems, 0, $(this))
