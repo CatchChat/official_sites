@@ -1,78 +1,33 @@
 @import reset
 
-*
-    box-sizing: border-box
-    outline: none
+$blue: #38A6F9
+$gray: #E6E6E6
+
+$cdn: "https://dn-catchinc.qbox.me"
+
+=transitionAll($duration:.5s)
+  transition: all $duration ease-out
+
+=centerAnything
+  position: absolute
+  margin: auto
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+
+*, *:before, *:after
+  box-sizing: border-box
+  -webkit-font-smoothing: antialiased
+  -moz-font-smoothing: antialiased
+  font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  outline: none
+  margin: 0
+  padding: 0
+  line-height: 1
 
 html
-    &, body, canvas
-        width: 100%
-        height: 100%
-        z-index: -1
-    body
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-        background-color: #FBFCFD
+  font-family: 'PingFang SC', 'SF UI Text', 'Hiragino Sans GB', 'Microsoft Yahei', "Helvetica Neue", Helvetica, Arial, sans-serif
 
-=centerX($width, $mLeft)
-    position: absolute
-    left: 50%
-    margin-left: -($width / 2) + $mLeft
-
-=centerY($height, $mTop)
-    position: absolute
-    top: 50%
-    margin-top: -($height / 2) + $mTop
-
-// canvas
-    // display: none
-
-.container
-    width: 600px
-    height: 460px
-    position: absolute
-    +centerX(600px,0)
-    +centerY(460px,-100px)
-    z-index: 1
-    text-align: center
-
-    .icon
-        width: 240px
-        height: 240px
-        margin: 0 180px
-        filter: drop-shadow(0px 50px 50px rgba(20,70,129,0.1))
-
-    h1
-        font-size: 80px
-        color: #404040
-        margin-top: 50px
-        font-weight: 200
-
-    h5
-        font-size: 40px
-        color: #808080
-        margin-top: 20px
-        font-weight: 200
-
-.buttons
-    position: absolute
-    bottom: 100px
-    width: 600px
-    +centerX(600px,0)
-    text-align: center
-    z-index: 1
-    display: none
-
-    img
-        width: 400px
-
-.scale
-    transform: scale(0.5)
-    &.buttons
-        width: 1000px
-        +centerX(1000px,0)
-        .android
-            margin-left: 100px
-
-
-
-
+  body

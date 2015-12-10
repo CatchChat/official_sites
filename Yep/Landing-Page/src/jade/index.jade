@@ -38,28 +38,49 @@ html(lang="en" prefix="og: http://ogp.me/ns#")
     meta(name="og:description" content="Meet genius around you from Dribbble Github and Instagram!")
 
   body
-    .container
-      img(src="img/icon.svg").icon
-      h1 Yep
-      h5 Meet Genius
-
-    .buttons
-      a(href="#{iTunesLink}", target="_blank").ios
-        img(src="#{cdn}/button_ios.svg")
-      //- a(href="#{AndroidApk}", target="_blank").android
-        //- img(src="#{cdn}/button_android.svg")
-      a.android: img(src="#{cdn}/button_soon.svg")
-
-
-    canvas#zodiac
-
-
-
+    .wrapper
+      .header
+        .hero
+          .intro
+            .icon
+            .name
+            .desc
+          .download
+            a(href="#{iTunesLink}", target="_blank").ios
+            a(href="#{AndroidApk}", target="_blank").android.soon
+        .device
+          .screen
+          
+        
+      
+      .main
+        .container
+          ul
+            li
+              img(src="")
+              h1
+              h2
+            li
+              img(src="")
+              h1
+              h2
+            li
+              img(src="")
+              h1
+              h2
+  
+  
+      
+      .footer
+        .top
+        .links
+        .copyright
+    
+  
 
 
 
     script(type="application/javascript", src="#{cdn}/detect.js")
-    script(type="application/javascript", src="#{cdn}/zodiac.min.js")
     script(type="application/javascript", src="/js/script.js")
 
     //- ----- Google Analytics -----

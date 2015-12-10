@@ -1,2 +1,1 @@
-var dpr,scaleElements,speed;window.$=document.querySelectorAll.bind(document),dpr=window.devicePixelRatio||1,speed=.1,new Zodiac("zodiac",{dotColor:"#3F87E5",linkColor:"#A8DEFF",directionX:0,directionY:0,velocityX:[speed/2,2*speed],velocityY:[speed/2,2*speed],bounceX:!0,bounceY:!0,density:1e4*dpr,dotRadius:[1.5*dpr,1.5*dpr],backgroundColor:"#FAFCFD",linkDistance:50+30*dpr,linkWidth:dpr}),os.android&&($(".ios")[0].style.display="none"),os.ios&&($(".android")[0].style.display="none"),$(".buttons")[0].style.display="block",scaleElements=function(){return $(".container")[0].classList.add("scale"),$(".buttons")[0].classList.add("scale")},os.phone||os.tablet||!(dpr=2)||scaleElements();
-//# sourceMappingURL=script.js.map
+window.$ = document.querySelectorAll.bind(document);

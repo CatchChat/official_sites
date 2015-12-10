@@ -1,2 +1,91 @@
-var api,cdn,username;new Zodiac("zodiac",{dotColor:"#AADBFA",linkColor:"#AADBFA",directionX:0,directionY:0,velocityX:[.2,.2],velocityY:[.2,.2],bounceX:!1,bounceY:!1,density:1e4,dotRadius:[2,2],backgroundColor:"#FAFCFD",linkDistance:80,linkWidth:1}),os.android&&$(".ios").remove(),os.ios&&$(".android").remove(),cdn="https://dn-catchinc.qbox.me",username=window.location.pathname.split("/")[1],api="https://park.catchchatchina.com/api/v1/users/"+username+"/profile?callback=?",document.title="Yep - "+username,$.getJSON(api,function(a){var e,i,n,t,r,o,s;$(".spiner").remove(),$(".avatar").css({display:"block","background-image":"url("+a.avatar_url+")"}),a.badge&&$(".badge").css({display:"block","background-image":"url("+cdn+"/badge_"+a.badge+".png)"}),$(".nickname").html(a.nickname),document.title="Yep - "+a.nickname,i="78aaeaa8e19b191499317db67ada8542",n="https://restapi.amap.com/v3/geocode/regeo?key="+i+"&location="+a.longitude+","+a.latitude+"&callback=?",$.getJSON(n,function(a){return $(".location").css("display","inline-block"),$(".location").html(a.regeocode.addressComponent.city)}),o=a.providers;for(r in o)if(s=o[r])switch(t=$("."+r),t.css("display","inline-block"),r){case"github":t.attr("href",s.user.html_url);break;case"dribbble":t.attr("href",s.user.html_url);break;case"instagram":t.attr("href","https://instagram.com/"+s.media[0].user.username)}return $(".intro").html(a.introduction),e=function(a,e){var i,n,t;$(a).css("display","block"),n=[];for(i in e)t=e[i],n.push($(a).append($("<div>").addClass("skill").html(t.name)));return n},a.master_skills&&e(".master",a.master_skills),a.learning_skills?e(".learning",a.learning_skills):void 0});
-//# sourceMappingURL=profile.js.map
+var api, cdn, username;
+
+new Zodiac('zodiac', {
+  dotColor: '#AADBFA',
+  linkColor: '#AADBFA',
+  directionX: 0,
+  directionY: 0,
+  velocityX: [0.2, 0.2],
+  velocityY: [0.2, 0.2],
+  bounceX: false,
+  bounceY: false,
+  density: 10000,
+  dotRadius: [2, 2],
+  backgroundColor: '#FAFCFD',
+  linkDistance: 80,
+  linkWidth: 1
+});
+
+if (os.android) {
+  $('.ios').remove();
+}
+
+if (os.ios) {
+  $('.android').remove();
+}
+
+cdn = "https://dn-catchinc.qbox.me";
+
+username = window.location.pathname.split("/")[1];
+
+api = "https://park.catchchatchina.com/api/v1/users/" + username + "/profile?callback=?";
+
+document.title = "Yep - " + username;
+
+$.getJSON(api, function(json) {
+  var addSkills, amapKey, amapUrl, icon, key, ref, value;
+  $('.spiner').remove();
+  $('.avatar').css({
+    'display': 'block',
+    'background-image': "url(" + json.avatar_url + ")"
+  });
+  if (json.badge) {
+    $('.badge').css({
+      'display': 'block',
+      'background-image': "url(" + cdn + "/badge_" + json.badge + ".png)"
+    });
+  }
+  $('.nickname').html(json.nickname);
+  document.title = "Yep - " + json.nickname;
+  amapKey = "78aaeaa8e19b191499317db67ada8542";
+  amapUrl = "https://restapi.amap.com/v3/geocode/regeo?key=" + amapKey + "&location=" + json.longitude + "," + json.latitude + "&callback=?";
+  $.getJSON(amapUrl, function(response) {
+    $(".location").css("display", "inline-block");
+    return $(".location").html(response.regeocode.addressComponent.city);
+  });
+  ref = json.providers;
+  for (key in ref) {
+    value = ref[key];
+    if (value) {
+      icon = $("." + key);
+      icon.css("display", "inline-block");
+      switch (key) {
+        case "github":
+          icon.attr("href", value.user.html_url);
+          break;
+        case "dribbble":
+          icon.attr("href", value.user.html_url);
+          break;
+        case "instagram":
+          icon.attr("href", "https://instagram.com/" + value.media[0].user.username);
+      }
+    }
+  }
+  $('.intro').html(json.introduction);
+  addSkills = function(className, data) {
+    var index, results, skill;
+    $(className).css('display', 'block');
+    results = [];
+    for (index in data) {
+      skill = data[index];
+      results.push($(className).append($('<div>').addClass('skill').html(skill.name)));
+    }
+    return results;
+  };
+  if (json.master_skills) {
+    addSkills(".master", json.master_skills);
+  }
+  if (json.learning_skills) {
+    return addSkills(".learning", json.learning_skills);
+  }
+});
