@@ -1,6 +1,7 @@
 window.$ = document.querySelectorAll.bind(document)
 
 # --- LOOK AND FEEL ---
+
 window.mySwipe = new Swipe $('#slider')[0],
   startSlide: 0
   speed: 0
@@ -8,7 +9,6 @@ window.mySwipe = new Swipe $('#slider')[0],
   continuous: true
   disableScroll: false
   stopPropagation: false
-
 
 
 

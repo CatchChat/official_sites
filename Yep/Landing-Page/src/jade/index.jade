@@ -2,7 +2,7 @@
 - var desc = "Meet Genius"
 - var keyw = "Yep, App"
 
-- var cdn  = "https://dn-catchinc.qbox.me"
+- var cdn  = "http://static-catch.qiniudn.com"
 
 - var iTunesLink = "https://itunes.apple.com/app/id983891256"
 - var AndroidApk = "#"
@@ -14,7 +14,7 @@ html(lang="en" prefix="og: http://ogp.me/ns#")
     meta(charset='UTF-8')
     meta(name="keywords" content="#{keyw}")
     meta(name='description' content='#{desc}')
-    meta(name="viewport" content="width=device-width height=device-height user-scalable=no initial-scale=0.5 minimum-scale=0.5 maximum-scale=0.5 target-densitydpi=device-dpi")
+    meta(name="viewport" content="width=device-width height=device-height user-scalable=no initial-scale=1")
     link(rel='shortcut icon' href='/favicon.png' type='image/x-icon')
     link(href='/css/style.css' type='text/css' rel='stylesheet')
 
@@ -54,20 +54,20 @@ html(lang="en" prefix="og: http://ogp.me/ns#")
         
       
       .main
-        .container
-          ul
+        .container.swipe#slider
+          ul.swipe-wrap
             li
-              img(src="")
-              h1
-              h2
+              img(src="#{cdn}/yep_genius.svg")
+              h1 lorem ipsum
+              h2 lorem ipsum lorem ipsum lorem ipsum
             li
-              img(src="")
-              h1
-              h2
+              img(src="#{cdn}/yep_match.svg")
+              h1 lorem ipsum
+              h2 lorem ipsum lorem ipsum lorem ipsum
             li
-              img(src="")
-              h1
-              h2
+              img(src="#{cdn}/yep_build.svg")
+              h1 lorem ipsum
+              h2 lorem ipsum lorem ipsum lorem ipsum
   
   
       
