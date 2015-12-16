@@ -32,8 +32,6 @@ $.ready().then ->
       console.log index
 
   $(".top")._.addEventListener "click", ->
-    # $("body")._.transition({opacity: 0}, 500)
-    # window.scrollTo 0,0
     scrollTo(document.body, 0, 100)
 
   # --- RESPONSIVE LAYOUT ---
