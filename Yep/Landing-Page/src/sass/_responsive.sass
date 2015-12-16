@@ -1,26 +1,75 @@
+// Tablet
+@media screen and (max-width: 1024px)
+  body
+    .wrapper
+      .main
+        .swipe
+        .features
+          .feature
+          zoom: 80%
+      .footer
+
+// iPhone 6
 @media screen and (max-width: 768px)
   body
     .wrapper
       .header
         height: 470px
+        padding-bottom: 130px
+        height: auto
         .hero
+          width: 100%
           .intro
+            position: static
+            width: 100%
+            text-align: center
+            height: auto
+            margin-top: 40px
+
             .icon
+              width: 100px
+              height: 100px
+              display: block
+              margin: 0 auto
             .name
+              display: block
+              margin: 0
+              margin-top: 20px
+              line-height: 1
+              height: auto
+              font-size: 32px
             .desc
+              display: block
+              font-size: 18px
+              margin-top: 10px
           .download
+            position: static
+            margin-top: 40px
+            width: 100%
+            text-align: center
+            height: auto
+            overflow: auto
+            white-space: normal
+
+
+            a
+              float: none
+              margin: 10px
+
         .device
-          .iphone
-            .screen
+          display: none
 
       .main
         .swipe
           display: block
+          .feature
         .features
           display: none
+          .feature
 
       .footer
         .top
+          display: none
         .links
           padding: 0
           a
@@ -29,24 +78,18 @@
           font-size: 12px
           padding: 10px 0
 
-@media screen and (max-width: 1024px)
-  body
-    .wrapper
-      .main
-        .features
-          zoom: 80%
-
-      .footer
-        .top
-          display: none
-
+// iPhone 5
 @media screen and (max-width: 320px)
   body
     .wrapper
       .main
         .swipe
-          img
-            zoom: 80%
+          .feature
+            img
+              zoom: 80%
+            h2
+              font-size: 16px
+              line-height: 20px
 
       .footer
         zoom: 80%
