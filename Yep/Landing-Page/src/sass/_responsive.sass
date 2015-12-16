@@ -19,9 +19,34 @@
         .features
           display: none
 
+      .footer
+        .top
+        .links
+          padding: 0
+          a
+            margin: 10px
+        .copyright
+          font-size: 12px
+          padding: 10px 0
+
 @media screen and (max-width: 1024px)
   body
     .wrapper
       .main
         .features
           zoom: 80%
+
+      .footer
+        .top
+          display: none
+
+@media screen and (max-width: 320px)
+  body
+    .wrapper
+      .main
+        .swipe
+          img
+            zoom: 80%
+
+      .footer
+        zoom: 80%

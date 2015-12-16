@@ -1,29 +1,41 @@
-# --- LOOK AND FEEL ---
 
+scrollTo = (element, to, duration) ->
+  if duration <= 0 then return
+  difference = to - (element.scrollTop)
+  perTick = difference / duration * 10
+  setTimeout (->
+    element.scrollTop = element.scrollTop + perTick
+    if element.scrollTop == to then return
+    scrollTo element, to, duration - 10
+  ), 10
 
+$.ready().then ->
 
-swipe_wrap =  $.clone $(".features ul")
-swipe_wrap.classList.add "swipe-wrap"
+  swipe_wrap =  $.clone $(".features ul")
+  swipe_wrap.classList.add "swipe-wrap"
 
-slider = $.create "div",
-  className: "swipe"
-  id: "slider"
+  slider = $.create "div",
+    className: "swipe"
+    id: "slider"
 
-swipe_wrap._.inside slider
-slider._.before $(".features")
+  swipe_wrap._.inside slider
+  slider._.before $(".features")
 
-window.mySwipe = new Swipe $('#slider'),
-  startSlide: 0
-  speed: 0
-  auto: 0
-  continuous: true
-  disableScroll: false
-  stopPropagation: false
-  callback: (index, elem) ->
-    console.log index
+  window.mySwipe = new Swipe $('#slider'),
+    startSlide: 0
+    speed: 0
+    auto: 0
+    continuous: true
+    disableScroll: false
+    stopPropagation: false
+    callback: (index, elem) ->
+      console.log index
 
+  $(".top")._.addEventListener "click", ->
+    # $("body")._.transition({opacity: 0}, 500)
+    # window.scrollTo 0,0
+    scrollTo(document.body, 0, 100)
 
-
-# --- RESPONSIVE LAYOUT ---
-# if os.android then $('.ios')[0].style.display = "none"
-# if os.ios then $('.android')[0].style.display = "none"
+  # --- RESPONSIVE LAYOUT ---
+  # if os.android then $('.ios')[0].style.display = "none"
+  # if os.ios then $('.android')[0].style.display = "none"

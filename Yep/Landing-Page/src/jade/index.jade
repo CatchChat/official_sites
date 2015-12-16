@@ -1,5 +1,5 @@
 - var name = "Yep"
-- var desc = "Meet Genius"
+- var desc = "A community where genius meet"
 - var keyw = "Yep, App"
 
 - var cdn  = "https://dn-catchinc.qbox.me"
@@ -43,11 +43,11 @@ html(lang="en" prefix="og: http://ogp.me/ns#")
         .hero
           .intro
             .icon
-            .name
-            .desc
+            .name #{name}
+            .desc #{desc}
           .download
             a(href="#{iTunesLink}", target="_blank").ios
-            a(href="#{AndroidApk}", target="_blank").android.soon
+            a(href="#{AndroidApk}", target="_blank").android
         .device
           .iphone
             .screen
@@ -89,7 +89,11 @@ html(lang="en" prefix="og: http://ogp.me/ns#")
       .footer
         .top
         .links
-        .copyright
+          a(href="/about") About Yep
+          a(href="/blog") Blog
+          a(href="/press") Press
+          a(href="/privacy") Term of Services
+        .copyright Copyright &copy; 2015-2016 Catch Inc. All Rights Seserved
     
   
 
