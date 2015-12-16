@@ -59,16 +59,42 @@ body
 
 
 .main
+  .swipe
+    display: none
+    margin-top: -150px
+
+    ul.swipe-wrap
+      width: 100%
+
+      li
+        text-align: center
+
+        .card
+          margin: 50px auto
+          width: 85%
+          box-shadow: 0 10px 10px black
+          background-color: white
+          border-radius: 10px
+          box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.10)
+          padding: 40px 0
+
+          img
+          h1
+            font-size: 36px
+            color: $blue
+            line-height: 50px
+          h2
+            font-size: 18px
+            color: #808080
+            line-height: 24px
+            margin-top: 10px
+
   .container
-    // width: 300px
     ul
-      // width: 300px
       text-align: center
       li
-        // width: 300px
         border: 1px solid red
-        float: left
-        position: relative
+        display: inline-block
 
         img
         h1

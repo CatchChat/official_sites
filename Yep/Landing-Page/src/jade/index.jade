@@ -54,20 +54,34 @@ html(lang="en" prefix="og: http://ogp.me/ns#")
         
       
       .main
-        .container.swipe#slider
-          ul.swipe-wrap
+        .container
+          ul
             li
-              img(src="#{cdn}/yep_genius.svg")
-              h1 lorem ipsum
-              h2 lorem ipsum lorem ipsum lorem ipsum
+              .card
+                img(src="#{cdn}/yep_genius.svg")
+                h1 Discover
+                h2
+                  | Find genius around you
+                  br
+                  | and chat up
+                  
             li
-              img(src="#{cdn}/yep_match.svg")
-              h1 lorem ipsum
-              h2 lorem ipsum lorem ipsum lorem ipsum
+              .card
+                img(src="#{cdn}/yep_match.svg")
+                h1 Match
+                h2
+                  | Meet different people and
+                  br
+                  | content depends on your choice
             li
-              img(src="#{cdn}/yep_build.svg")
-              h1 lorem ipsum
-              h2 lorem ipsum lorem ipsum lorem ipsum
+              .card
+                img(src="#{cdn}/yep_build.svg")
+                h1 Meet
+                h2
+                  | Find meetup and get
+                  br
+                  | inspired
+                  
   
   
       
@@ -80,6 +94,7 @@ html(lang="en" prefix="og: http://ogp.me/ns#")
 
 
 
+    script(type="application/javascript", src="#{cdn}/bliss.min.js")
     script(type="application/javascript", src="#{cdn}/detect.js")
     script(type="application/javascript", src="#{cdn}/swipe.js")
     script(type="application/javascript", src="/js/script.js")

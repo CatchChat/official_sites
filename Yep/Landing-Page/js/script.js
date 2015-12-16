@@ -1,2 +1,2 @@
-window.$=document.querySelectorAll.bind(document),window.mySwipe=new Swipe($("#slider")[0],{startSlide:0,speed:0,auto:0,continuous:!0,disableScroll:!1,stopPropagation:!1});
+var slider,swipe_wrap;swipe_wrap=$.clone($(".container ul")),swipe_wrap.classList.add("swipe-wrap"),slider=$.create("div",{className:"swipe",id:"slider"}),swipe_wrap._.inside(slider),slider._.before($(".container")),window.mySwipe=new Swipe($("#slider"),{startSlide:0,speed:0,auto:0,continuous:!0,disableScroll:!1,stopPropagation:!1,callback:function(e,i){return console.log(e)}});
 //# sourceMappingURL=script.js.map
