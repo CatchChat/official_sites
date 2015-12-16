@@ -2,7 +2,7 @@
 - var desc = "Meet Genius"
 - var keyw = "Yep, App"
 
-- var cdn  = "http://static-catch.qiniudn.com"
+- var cdn  = "https://dn-catchinc.qbox.me"
 
 - var iTunesLink = "https://itunes.apple.com/app/id983891256"
 - var AndroidApk = "#"
@@ -49,15 +49,16 @@ html(lang="en" prefix="og: http://ogp.me/ns#")
             a(href="#{iTunesLink}", target="_blank").ios
             a(href="#{AndroidApk}", target="_blank").android.soon
         .device
-          .screen
+          .iphone
+            .screen
           
         
       
       .main
-        .container
+        .features
           ul
             li
-              .card
+              .feature
                 img(src="#{cdn}/yep_genius.svg")
                 h1 Discover
                 h2
@@ -66,7 +67,7 @@ html(lang="en" prefix="og: http://ogp.me/ns#")
                   | and chat up
                   
             li
-              .card
+              .feature
                 img(src="#{cdn}/yep_match.svg")
                 h1 Match
                 h2
@@ -74,7 +75,7 @@ html(lang="en" prefix="og: http://ogp.me/ns#")
                   br
                   | content depends on your choice
             li
-              .card
+              .feature
                 img(src="#{cdn}/yep_build.svg")
                 h1 Meet
                 h2

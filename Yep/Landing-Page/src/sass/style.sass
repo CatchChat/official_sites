@@ -59,6 +59,19 @@ body
 
 
 .main
+  .swipe, .features
+    img
+      height: 250px
+    h1
+      font-size: 36px
+      color: $blue
+      line-height: 50px
+    h2
+      font-size: 18px
+      color: #808080
+      line-height: 24px
+      margin-top: 10px
+
   .swipe
     display: none
     margin-top: -150px
@@ -69,7 +82,7 @@ body
       li
         text-align: center
 
-        .card
+        .feature
           margin: 50px auto
           width: 85%
           box-shadow: 0 10px 10px black
@@ -78,28 +91,18 @@ body
           box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.10)
           padding: 40px 0
 
-          img
-          h1
-            font-size: 36px
-            color: $blue
-            line-height: 50px
-          h2
-            font-size: 18px
-            color: #808080
-            line-height: 24px
-            margin-top: 10px
 
-  .container
+  .features
+    white-space: nowrap
+    margin: 50px 0
+    overflow: hidden
+
     ul
       text-align: center
       li
-        border: 1px solid red
+        // border: 1px solid red
         display: inline-block
-
-        img
-        h1
-          font-size: 36px
-        h2
+        .feature
 
 
 

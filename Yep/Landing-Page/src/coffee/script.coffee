@@ -2,7 +2,7 @@
 
 
 
-swipe_wrap =  $.clone $(".container ul")
+swipe_wrap =  $.clone $(".features ul")
 swipe_wrap.classList.add "swipe-wrap"
 
 slider = $.create "div",
@@ -10,7 +10,7 @@ slider = $.create "div",
   id: "slider"
 
 swipe_wrap._.inside slider
-slider._.before $(".container")
+slider._.before $(".features")
 
 window.mySwipe = new Swipe $('#slider'),
   startSlide: 0
