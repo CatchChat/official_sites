@@ -43,18 +43,62 @@ body
   width: 100%
   height: 700px
   background-image: linear-gradient(45deg, #69D2FD 0%, #38A6F9 100%)
+  text-align: center
+  white-space: nowrap
+  overflow: hidden
+
+  & > div
+    display: inline-block
+    width: 1024/2 + px
+    height: 100%
+    overflow: hidden
 
   .hero
+    background-color: rgb(235, 139, 97)
+    position: relative
+
     .intro
+      background-color: rgb(47, 108, 50)
+      position: absolute
+      top: 250px
+      left: 50px
+      width: 370px
+      height: 130px
       .icon
       .name
       .desc
     .download
+      background-color: rgb(66, 145, 63)
+      position: absolute
+      top: 500px
+      left: 50px
+      width: 450px
+      height: 60px
       a.ios
       a.android
       .soon
   .device
-    .screen
+    background-color: rgb(26, 60, 121)
+    position: relative
+
+    .iphone
+      position: relative
+      top: 100px
+      left: 140px
+      transform: scale(0.75)
+      transform-origin: 0% 0%
+      width: 432px
+      height: 881px
+      background-image: url("#{$cdn}/iphone6_silver.svg")
+      background-repeat: no-repeat
+      padding: 27px
+      padding-top: 108px
+
+      .screen
+        width: 375px
+        height: 667px
+        margin-left: 2px
+
 
 
 
