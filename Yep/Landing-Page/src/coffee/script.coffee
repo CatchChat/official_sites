@@ -37,5 +37,5 @@ $.ready().then ->
     scrollTo(document.body, 0, 100)
 
   # --- RESPONSIVE LAYOUT ---
-  # if os.android then $('.ios')[0].style.display = "none"
-  # if os.ios then $('.android')[0].style.display = "none"
+  if os.android then $('.ios').style.display = "none"
+  if os.ios then $('.android').style.display = "none"
