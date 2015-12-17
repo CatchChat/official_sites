@@ -1,40 +1,42 @@
-window.$ = document.querySelectorAll.bind(document)
 
-# --- LOOK AND FEEL ---
+scrollTo = (element, to, duration) ->
+  if duration <= 0 then return
+  difference = to - (element.scrollTop)
+  perTick = difference / duration * 10
+  setTimeout (->
+    element.scrollTop = element.scrollTop + perTick
+    if element.scrollTop == to then return
+    scrollTo element, to, duration - 10
+  ), 10
 
-dpr   = window.devicePixelRatio || 1
-speed = 0.1
+$.ready().then ->
 
-new Zodiac 'zodiac',
-  dotColor: '#3F87E5'
-  linkColor: '#A8DEFF'
-  directionX: 0                     # -1:left;0:random;1:right
-  directionY: 0                     # -1:up;0:random;1:down
-  velocityX: [speed / 2, speed * 2]               # [minX,maxX]
-  velocityY: [speed / 2, speed * 2]               # [minY,maxY]
-  bounceX: true                     # bounce at left and right edge
-  bounceY: true                     # bounce at top and bottom edge
-  # parallax: .5                     # float [0-1...]; 0: no paralax
-  # pivot: 1                         # float [0-1...]; pivot level for parallax;
-  density: 10000 * dpr                    # px^2 per node
-  dotRadius: [dpr * 1.5, dpr * 1.5] # px value or [minR,maxR]
-  backgroundColor: '#FAFCFD'        # default transparent; use alpha value for motion blur and ghosting
-  linkDistance: 50 + (30 * dpr)
-  linkWidth: dpr
+  window.screenshots = new Swipe $('#screen'),
+    speed: 300
+    auto: 3000
+
+  swipe_wrap =  $.clone $(".features ul")
+  swipe_wrap.classList.add "swipe-wrap"
+
+  slider = $.create "div",
+    className: "swipe"
+    id: "slider"
+
+  swipe_wrap._.inside slider
+  slider._.before $(".features")
+
+  window.features = new Swipe $('#slider'),
+    speed: 0
+    auto: 0
+    callback: (index, elem) ->
+      dots = $$(".dots .dot")
+      dots.forEach (dot) -> dot.classList.remove "active"
+      dots[index].classList.add "active"
 
 
+  $(".top")._.addEventListener "click", ->
+    scrollTo(document.body, 0, 100)
 
-
-# --- RESPONSIVE LAYOUT ---
-
-if os.android then $('.ios')[0].style.display = "none"
-if os.ios then $('.android')[0].style.display = "none"
-$('.buttons')[0].style.display = "block"
-
-scaleElements = ->
-  $('.container')[0].classList.add('scale')
-  $('.buttons')[0].classList.add('scale')
-
-if not os.phone and not os.tablet and dpr = 2
-  # Non-Retina Desktops
-  scaleElements()
+  # --- RESPONSIVE LAYOUT ---
+  if os.android then $('.ios').style.display = "none"
+  if os.ios then $('.android').style.display = "none"

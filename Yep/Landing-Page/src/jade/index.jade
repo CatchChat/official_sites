@@ -1,5 +1,5 @@
 - var name = "Yep"
-- var desc = "Meet Genius"
+- var desc = "A community where genius meet"
 - var keyw = "Yep, App"
 
 - var cdn  = "https://dn-catchinc.qbox.me"
@@ -14,7 +14,7 @@ html(lang="en" prefix="og: http://ogp.me/ns#")
     meta(charset='UTF-8')
     meta(name="keywords" content="#{keyw}")
     meta(name='description' content='#{desc}')
-    meta(name="viewport" content="width=device-width height=device-height user-scalable=no initial-scale=0.5 minimum-scale=0.5 maximum-scale=0.5 target-densitydpi=device-dpi")
+    meta(name="viewport" content="width=device-width height=device-height user-scalable=no initial-scale=1")
     link(rel='shortcut icon' href='/favicon.png' type='image/x-icon')
     link(href='/css/style.css' type='text/css' rel='stylesheet')
 
@@ -38,28 +38,86 @@ html(lang="en" prefix="og: http://ogp.me/ns#")
     meta(name="og:description" content="Meet genius around you from Dribbble Github and Instagram!")
 
   body
-    .container
-      img(src="img/icon.svg").icon
-      h1 Yep
-      h5 Meet Genius
+    .wrapper
+      .header
+        .hero
+          .intro
+            .icon
+            .name #{name}
+            .desc #{desc}
+          .download
+            a(href="#{iTunesLink}", target="_blank").ios
+            a(href="#{AndroidApk}", target="_blank").android
+        .device
+          .iphone
+            #screen.swipe
+              .swipe-wrap
+                .img(style="background-image: url(#{cdn}/yep_discussion.jpg);")
+                .img(style="background-image: url(#{cdn}/yep_profile.jpg);")
+                .img(style="background-image: url(#{cdn}/yep_feeds2.jpg);")
+                .img(style="background-image: url(#{cdn}/yep_discover.jpg);")
+                .img(style="background-image: url(#{cdn}/yep_feeds1.jpg);")
 
-    .buttons
-      a(href="#{iTunesLink}", target="_blank").ios
-        img(src="#{cdn}/button_ios.svg")
-      //- a(href="#{AndroidApk}", target="_blank").android
-        //- img(src="#{cdn}/button_android.svg")
-      a.android: img(src="#{cdn}/button_soon.svg")
-
-
-    canvas#zodiac
 
 
 
 
+        
+      
+      .main
+        .features
+          ul
+            li
+              .feature
+                img(src="#{cdn}/yep_genius.svg")
+                h1 Discover
+                h2
+                  | Find genius around you
+                  br
+                  | and chat up
+                  
+            li
+              .feature
+                img(src="#{cdn}/yep_match.svg")
+                h1 Match
+                h2
+                  | Meet different people and
+                  br
+                  | content depends on your choice
+            li
+              .feature
+                img(src="#{cdn}/yep_build.svg")
+                h1 Meet
+                h2
+                  | Find meetup and get
+                  br
+                  | inspired
+        
+        .dots
+          .dot.active
+          .dot
+          .dot
+          
+        .top
+  
+  
+  
+  
+      .footer
+        .links
+          a(href="/about") About Yep
+          a(href="/blog") Blog
+          a(href="/press") Press
+          a(href="/privacy") Term of Services
+        .copyright Copyright &copy; 2015-2016 Catch Inc. All Rights Seserved
+    
+  
 
 
+
+    script(type="application/javascript", src="#{cdn}/bliss.min.js")
     script(type="application/javascript", src="#{cdn}/detect.js")
-    script(type="application/javascript", src="#{cdn}/zodiac.min.js")
+    script(type="application/javascript", src="#{cdn}/swipe.js")
     script(type="application/javascript", src="/js/script.js")
 
     //- ----- Google Analytics -----

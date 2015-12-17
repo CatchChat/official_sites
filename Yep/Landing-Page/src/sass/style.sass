@@ -1,78 +1,234 @@
 @import reset
+@import swipe
+@import responsive
 
-*
-    box-sizing: border-box
-    outline: none
+$blue: #38A6F9
+$gray: #E6E6E6
+
+$cdn: "https://dn-catchinc.qbox.me"
+
+=transitionAll($duration:.5s)
+  transition: all $duration ease-out
+
+=centerAnything
+  position: absolute
+  margin: auto
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+
+*, *:before, *:after
+  box-sizing: border-box
+  -webkit-font-smoothing: antialiased
+  -moz-font-smoothing: antialiased
+  font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  outline: none
+  margin: 0
+  padding: 0
+  line-height: 1
 
 html
-    &, body, canvas
-        width: 100%
-        height: 100%
-        z-index: -1
-    body
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-        background-color: #FBFCFD
+  font-family: 'PingFang SC', 'SF UI Text', 'Hiragino Sans GB', 'Microsoft Yahei', "Helvetica Neue", Helvetica, Arial, sans-serif
 
-=centerX($width, $mLeft)
-    position: absolute
-    left: 50%
-    margin-left: -($width / 2) + $mLeft
+body
+  background-color: white
+  min-width: 300px
+  position: relative
 
-=centerY($height, $mTop)
-    position: absolute
-    top: 50%
-    margin-top: -($height / 2) + $mTop
+.wrapper
+  width: 100%
 
-// canvas
-    // display: none
 
-.container
-    width: 600px
-    height: 460px
-    position: absolute
-    +centerX(600px,0)
-    +centerY(460px,-100px)
-    z-index: 1
-    text-align: center
+.header
+  width: 100%
+  height: 700px
+  background-image: linear-gradient(180deg, #69D2FD 0%, #38A6F9 100%)
+  text-align: center
+  white-space: nowrap
+  overflow: hidden
 
-    .icon
-        width: 240px
-        height: 240px
-        margin: 0 180px
-        filter: drop-shadow(0px 50px 50px rgba(20,70,129,0.1))
+  & > div
+    display: inline-block
+    width: 1024/2 + px
+    height: 100%
+    overflow: hidden
 
-    h1
-        font-size: 80px
-        color: #404040
-        margin-top: 50px
-        font-weight: 200
+  .hero
+    position: relative
 
-    h5
-        font-size: 40px
-        color: #808080
+    .intro
+      position: absolute
+      top: 250px
+      left: 50px
+      width: 450px
+      height: 130px
+      text-align: left
+      .icon
+        width: 80px
+        height: 80px
+        display: inline-block
+        background-image: url("#{$cdn}/yep_icon_rounded.svg")
+        background-size: 100%
+      .name
+        font-size: 64px
+        line-height: 80px
+        color: white
+        display: inline-block
+        font-weight: 300
+        vertical-align: top
+        height: 80px
+        margin-left: 20px
+      .desc
+        color: white
+        font-size: 24px
         margin-top: 20px
-        font-weight: 200
 
-.buttons
-    position: absolute
-    bottom: 100px
-    width: 600px
-    +centerX(600px,0)
-    text-align: center
-    z-index: 1
-    display: none
+    .download
+      position: absolute
+      top: 500px
+      left: 50px
+      width: 450px
+      height: 60px
 
+      a
+        display: inline-block
+        width: 200px
+        height: 60px
+        background-repeat: no-repeat
+        background-size: 100%
+        float: left
+
+        &.ios
+          background-image: url('#{$cdn}/button_ios.svg')
+        &.android
+          background-image: url('#{$cdn}/button_android.svg')
+          margin-left: 50px
+        &.android.soon
+          background-image: url('#{$cdn}/button_soon.svg')
+  .device
+    position: relative
+
+    .iphone
+      position: absolute
+      top: 100px
+      right: 50px
+      width: 432px
+      height: 881px
+      background-image: url("#{$cdn}/iphone6_silver.svg")
+      background-repeat: no-repeat
+      background-size: 75%
+      background-position: top right
+
+      #screen
+        position: absolute
+        right: 21px
+        top: 80px
+        width: 281px
+        height: 500px
+
+        .swipe-wrap
+          white-space: nowrap
+          .img
+            width: 281px
+            height: 500px
+            background-size: 100%
+
+
+
+
+.main
+  .swipe, .features
     img
-        width: 400px
+      width: 300px
+      height: 250px
+    h1
+      font-size: 36px
+      color: $blue
+      line-height: 50px
+    h2
+      font-size: 18px
+      color: #808080
+      line-height: 24px
+      margin-top: 10px
+      white-space: nowrap
 
-.scale
-    transform: scale(0.5)
-    &.buttons
-        width: 1000px
-        +centerX(1000px,0)
-        .android
-            margin-left: 100px
+  .swipe
+    display: none
+    margin-top: -150px
+
+    ul.swipe-wrap
+      width: 100%
+
+      li
+        text-align: center
+
+        .feature
+          margin: 50px auto
+          width: 85%
+          box-shadow: 0 10px 10px black
+          background-color: white
+          border-radius: 10px
+          box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.10)
+          padding: 40px 0
+          overflow: hidden
+
+  .features
+    white-space: nowrap
+    margin: 50px 0 0
+    overflow: hidden
+
+    ul
+      text-align: center
+      li
+        display: inline-block
+        margin: 20px
+
+        .feature
+
+  .top
+    width: 50px
+    height: 50px
+    margin: 60px auto
+    background-image: url("#{$cdn}/icon_scrolltop.svg")
+
+  .dots
+    display: none
+    text-align: center
+    font-size: 0
+    margin: 10px auto
+    margin-top: -30px
+    margin-bottom: 30px
+    .dot
+      width: 7px
+      height: 7px
+      background-color: hsl(0, 0, 30)
+      border-radius: 50%
+      margin: 4.5px
+      display: inline-block
+      &:not(.active)
+        opacity: 0.45
 
 
 
+.footer
+  width: 100%
+  padding-bottom: 10px
 
+  .links
+    white-space: nowrap
+    padding: 10px
+    text-align: center
+    width: 100%
+    font-size: 14px
+    a
+      color: $blue
+      text-decoration: none
+      margin: 0 20px
+
+  .copyright
+    font-size: 14px
+    text-align: center
+    padding: 10px
+    color: hsl(0, 0%, 75%)

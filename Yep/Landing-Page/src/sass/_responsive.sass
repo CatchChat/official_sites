@@ -1,0 +1,124 @@
+// Tablet
+@media screen and (max-width: 1024px)
+  body
+    .wrapper
+      .header
+        .hero
+          width: 50%
+          overflow: visible
+
+          .intro
+            .icon
+            .name
+            .desc
+              font-size: 22px
+          .download
+            white-space: normal
+            overflow: auto
+            height: auto
+            width: 100%
+            top: 450px
+            a
+              display: inline-block
+              margin: 10px
+              margin-left: 0
+              margin-right: 20px
+
+        .device
+          width: 50%
+
+      .main
+        .swipe
+        .features
+          zoom: 75%
+          ul
+            li
+              margin: 3%
+      .footer
+
+// iPhone 6
+@media screen and (max-width: 768px)
+  body
+    .wrapper
+      .header
+        height: 470px
+        padding-bottom: 130px
+        height: auto
+        .hero
+          width: 100%
+          .intro
+            position: static
+            width: 100%
+            text-align: center
+            height: auto
+            margin-top: 40px
+
+            .icon
+              width: 100px
+              height: 100px
+              display: block
+              margin: 0 auto
+            .name
+              display: block
+              margin: 0
+              margin-top: 20px
+              line-height: 1
+              height: auto
+              font-size: 32px
+            .desc
+              display: block
+              font-size: 18px
+              margin-top: 10px
+          .download
+            position: static
+            margin-top: 40px
+            width: 100%
+            text-align: center
+            height: auto
+            overflow: auto
+            white-space: normal
+
+            a
+              float: none
+              margin: 10px
+
+        .device
+          display: none
+
+      .main
+        .swipe
+          display: block
+          ul
+            li
+              .feature
+        .features
+          display: none
+        .top
+          display: none
+        .dots
+          display: block
+
+      .footer
+        .links
+          padding: 0
+          a
+            margin: 10px
+        .copyright
+          font-size: 12px
+          padding: 10px 0
+
+// iPhone 5
+@media screen and (max-width: 320px)
+  body
+    .wrapper
+      .main
+        .swipe
+          .feature
+            img
+              zoom: 80%
+            h2
+              font-size: 16px
+              line-height: 20px
+
+      .footer
+        zoom: 80%
