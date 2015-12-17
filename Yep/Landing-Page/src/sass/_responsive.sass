@@ -2,10 +2,38 @@
 @media screen and (max-width: 1024px)
   body
     .wrapper
+      .header
+        .hero
+          width: 50%
+          overflow: visible
+
+          .intro
+            .icon
+            .name
+            .desc
+              font-size: 22px
+          .download
+            white-space: normal
+            overflow: auto
+            height: auto
+            width: 100%
+            top: 450px
+            a
+              display: inline-block
+              margin: 10px
+              margin-left: 0
+              margin-right: 20px
+
+        .device
+          width: 50%
+
       .main
         .swipe
         .features
-          .feature
+          zoom: 75%
+          ul
+            li
+              margin: 3%
       .footer
 
 // iPhone 6
@@ -49,7 +77,6 @@
             height: auto
             overflow: auto
             white-space: normal
-
 
             a
               float: none
