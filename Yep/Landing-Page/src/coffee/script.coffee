@@ -29,7 +29,10 @@ $.ready().then ->
     disableScroll: false
     stopPropagation: false
     callback: (index, elem) ->
-      console.log index
+      dots = $$(".dots .dot")
+      dots.forEach (dot) -> dot.classList.remove "active"
+      dots[index].classList.add "active"
+
 
   $(".top")._.addEventListener "click", ->
     scrollTo(document.body, 0, 100)

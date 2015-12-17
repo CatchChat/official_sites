@@ -167,7 +167,6 @@ body
           padding: 40px 0
           overflow: hidden
 
-
   .features
     white-space: nowrap
     margin: 50px 0 0
@@ -186,6 +185,23 @@ body
     height: 50px
     margin: 60px auto
     background-image: url("#{$cdn}/icon_scrolltop.svg")
+
+  .dots
+    display: none
+    text-align: center
+    font-size: 0
+    margin: 10px auto
+    margin-top: -30px
+    margin-bottom: 30px
+    .dot
+      width: 7px
+      height: 7px
+      background-color: hsl(0, 0, 30)
+      border-radius: 50%
+      margin: 4.5px
+      display: inline-block
+      &:not(.active)
+        opacity: 0.45
 
 
 
