@@ -11,6 +11,10 @@ scrollTo = (element, to, duration) ->
 
 $.ready().then ->
 
+  window.screenshots = new Swipe $('#screen'),
+    speed: 300
+    auto: 3000
+
   swipe_wrap =  $.clone $(".features ul")
   swipe_wrap.classList.add "swipe-wrap"
 
@@ -21,13 +25,9 @@ $.ready().then ->
   swipe_wrap._.inside slider
   slider._.before $(".features")
 
-  window.mySwipe = new Swipe $('#slider'),
-    startSlide: 0
+  window.features = new Swipe $('#slider'),
     speed: 0
     auto: 0
-    continuous: true
-    disableScroll: false
-    stopPropagation: false
     callback: (index, elem) ->
       dots = $$(".dots .dot")
       dots.forEach (dot) -> dot.classList.remove "active"

@@ -114,19 +114,23 @@ body
       position: absolute
       top: 100px
       right: 50px
-      transform: scale(0.75)
-      transform-origin: 100% 0%
       width: 432px
       height: 881px
       background-image: url("#{$cdn}/iphone6_silver.svg")
       background-repeat: no-repeat
-      padding: 27px
-      padding-top: 108px
+      background-size: 75%
+      background-position: top right
 
-      .screen
-        width: 375px
-        height: 667px
-        margin-left: 2px
+      #screen
+        position: absolute
+        right: 21px
+        top: 80px
+        width: 375px * 0.75
+        height: 667px  * 0.75
+
+        .swipe-wrap
+          white-space: nowrap
+          img
 
 
 
