@@ -30,7 +30,7 @@ $.ready().then ->
     auto: 0
     callback: (index, elem) ->
       dots = $$(".dots .dot")
-      dots.forEach (dot) -> dot.classList.remove "active"
+      dot.classList.remove "active" for dot in dots
       dots[index].classList.add "active"
 
 
