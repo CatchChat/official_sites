@@ -22,8 +22,8 @@ $.ready().then ->
     className: "swipe"
     id: "slider"
 
-  swipe_wrap._.inside slider
-  slider._.before $(".features")
+  $.inside swipe_wrap, slider
+  $.before slider, $(".features")
 
   window.features = new Swipe $('#slider'),
     speed: 0
@@ -34,7 +34,7 @@ $.ready().then ->
       dots[index].classList.add "active"
 
 
-  $(".top")._.addEventListener "click", ->
+  $(".top").addEventListener "click", ->
     scrollTo(document.body, 0, 100)
 
   # --- RESPONSIVE LAYOUT ---
