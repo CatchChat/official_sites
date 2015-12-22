@@ -26,8 +26,8 @@ $.ready().then ->
   $.before slider, $(".features")
 
   window.features = new Swipe $('#slider'),
-    speed: 0
-    auto: 0
+    speed: 300
+    auto: if os.phone then 0 else 3000
     callback: (index, elem) ->
       dots = $$(".dots .dot")
       dot.classList.remove "active" for dot in dots
