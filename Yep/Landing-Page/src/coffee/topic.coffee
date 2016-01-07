@@ -51,7 +51,7 @@ base64Prefix = "data:image/jpeg;base64,"
 
 $ ->
 # --- DATA RENDERING ---
-  url = "https://park.catchchatchina.com/api/v2/circles/shared_messages"
+  url = "https://api.soyep.com/v1/circles/shared_messages"
   param = "?token=" + $.url("?token") + "&callback=?"
 
   $.getJSON url + param, (response) ->
@@ -61,7 +61,7 @@ $ ->
     kind = topic.kind
 
     # Avatar
-    $(".topic .avatar").css "background-image", "url(#{topic.user.avatar_url})"
+    $(".topic .avatar").css "background-image", "url(#{topic.user.avatar.thumb_url})"
     $(".topic .avatar").attr "username", topic.user.username
 
     # Nickname
@@ -153,7 +153,7 @@ $ ->
       element = $(".template.cell").clone().removeClass("template")
       content = element.find(".content")
 
-      element.find(".avatar").css "background-image", "url(#{msg.sender.avatar_url})"
+      element.find(".avatar").css "background-image", "url(#{msg.sender.avatar.thumb_url})"
       element.find(".avatar").attr "username", msg.sender.username
 
       element.find(".nickname").html(msg.sender.nickname)
