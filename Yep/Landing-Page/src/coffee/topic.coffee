@@ -83,10 +83,9 @@ $ ->
         for topic_attachment in topic.attachments
           topic_metadata = $.parseJSON topic_attachment.metadata
           topic_thumbnail = base64Prefix + topic_metadata.thumbnail_string
-          $("<div/>")
-          .addClass "thumbnail"
-          .css "background-image", "url(#{topic_thumbnail})"
-          .appendTo(".images .thumbnails")
+          $("<div/>", class: "thumbnail")
+            .css "background-image", "url(#{topic_thumbnail})"
+            .appendTo(".images .thumbnails")
 
           topic_pswpItem = {
             msrc: topic_thumbnail
@@ -150,78 +149,84 @@ $ ->
 
     for msg in messages
 
-      element = $(".template.cell").clone().removeClass("template")
-      content = element.find(".content")
+      if msg.deleted
+        console.log "deleted!"
+        element = $("<div/>", class: "cell")
+        content = $("<div/>", class: "narrator").html(msg.sender.nickname + " recalled a message")
+        content.appendTo element
+      else
+        element = $(".template.cell").clone().removeClass("template")
+        content = element.find(".content")
 
-      element.find(".avatar").css "background-image", "url(#{msg.sender.avatar.thumb_url})"
-      element.find(".avatar").css "cursor", "pointer" if msg.sender.username
-      element.find(".avatar").attr "username", msg.sender.username
+        element.find(".avatar").css "background-image", "url(#{msg.sender.avatar.thumb_url})"
+        element.find(".avatar").css "cursor", "pointer" if msg.sender.username
+        element.find(".avatar").attr "username", msg.sender.username
 
-      element.find(".nickname").html(msg.sender.nickname)
+        element.find(".nickname").html(msg.sender.nickname)
 
-      msg_attachment = msg.attachments[0]
-      msg_metadata = if msg_attachment then $.parseJSON msg_attachment.metadata else undefined
-
-
-      switch msg.media_type
-        when "text"
-          content.addClass("text").html(msg.text_content)
-
-        when "image"
-          msg_img_metadata = $.parseJSON msg_attachment.metadata
-          msg_img_thumbnail_blur = base64Prefix + msg_img_metadata.blurred_thumbnail_string
-
-          content.addClass("image")
-          .append $("<img/>", src: msg_attachment.file.thumb_url)
-          .css 'background-image', "url(#{msg_img_thumbnail_blur})"
+        msg_attachment = msg.attachments[0]
+        msg_metadata = if msg_attachment then $.parseJSON msg_attachment.metadata else undefined
 
 
-          # Image Gallery - Conversation
-          msg_pswpItems.push {
-            msrc: msg_attachment.file.thumb_url
-            src:  msg_attachment.file.url
-            w: msg_img_metadata.image_width
-            h: msg_img_metadata.image_height
-          }
+        switch msg.media_type
+          when "text"
+            content.addClass("text").html(msg.text_content)
+
+          when "image"
+            msg_img_metadata = $.parseJSON msg_attachment.metadata
+            msg_img_thumbnail_blur = base64Prefix + msg_img_metadata.blurred_thumbnail_string
+
+            content.addClass("image")
+            .append $("<img/>", src: msg_attachment.file.thumb_url)
+            .css 'background-image', "url(#{msg_img_thumbnail_blur})"
 
 
-        when "audio"
-          audio_duration = Math.round msg_metadata.audio_duration
-          audio_element = $("<audio controls>", src: msg_attachment.file.url, preload: "auto")
-          audio_element.append $("<source>", src: msg_attachment.file.url, type: "audio/mpeg")
+            # Image Gallery - Conversation
+            msg_pswpItems.push {
+              msrc: msg_attachment.file.thumb_url
+              src:  msg_attachment.file.url
+              w: msg_img_metadata.image_width
+              h: msg_img_metadata.image_height
+            }
 
-          content.addClass("audio").append audio_element
 
-          content.addClass("audio").append $("<button/>")
-          content.addClass("audio").append $("<progress/>", max: 100, value: 0).css "width", "#{audio_duration * 20}px"
-          content.addClass("audio").append $("<label/>").html("#{audio_duration}″")
+          when "audio"
+            audio_duration = Math.round msg_metadata.audio_duration
+            audio_element = $("<audio controls>", src: msg_attachment.file.url, preload: "auto")
+            audio_element.append $("<source>", src: msg_attachment.file.url, type: "audio/mpeg")
 
-        when "location"
-          map =
-            key: "P8qeoPmMSc6FKpMvbLKWVrR0"
-            lng: msg.longitude
-            lat: msg.latitude
-            address: msg.text_content
-            width: 200
-            height: 100
-            zoom: 16
+            content.addClass("audio").append audio_element
 
-          map.img = "https://api.map.baidu.com/staticimage?center=#{map.lng},#{map.lat}&width=#{map.width}&height=#{map.height}&zoom=#{map.zoom}&ak=#{map.key}"
-          map.url = "https://maps.google.cn/maps?q=#{map.lat},#{map.lng}&z=#{map.zoom}&ll=#{map.lat},#{map.lng}"
-          # alternative:
-          # map.url = "https://www.google.cn/maps/preview/@#{map.lat},#{map.lng},#{map.zoom}z"
+            content.addClass("audio").append $("<button/>")
+            content.addClass("audio").append $("<progress/>", max: 100, value: 0).css "width", "#{audio_duration * 20}px"
+            content.addClass("audio").append $("<label/>").html("#{audio_duration}″")
 
-          content.attr "href", map.url
-          content.attr "target", "_blank"
+          when "location"
+            map =
+              key: "P8qeoPmMSc6FKpMvbLKWVrR0"
+              lng: msg.longitude
+              lat: msg.latitude
+              address: msg.text_content
+              width: 200
+              height: 100
+              zoom: 16
 
-          content.addClass("location").css
-            width: "#{map.width}px"
-            height: "#{map.height}px"
-            backgroundImage: "url(#{map.img})"
+            map.img = "https://api.map.baidu.com/staticimage?center=#{map.lng},#{map.lat}&width=#{map.width}&height=#{map.height}&zoom=#{map.zoom}&ak=#{map.key}"
+            map.url = "https://maps.google.cn/maps?q=#{map.lat},#{map.lng}&z=#{map.zoom}&ll=#{map.lat},#{map.lng}"
+            # alternative:
+            # map.url = "https://www.google.cn/maps/preview/@#{map.lat},#{map.lng},#{map.zoom}z"
 
-          content.append $("<div/>").addClass("marker")
-          if map.address then content.append $("<div/>").addClass("address").html map.address
-      # End of Switch
+            content.attr "href", map.url
+            content.attr "target", "_blank"
+
+            content.addClass("location").css
+              width: "#{map.width}px"
+              height: "#{map.height}px"
+              backgroundImage: "url(#{map.img})"
+
+            content.append $("<div/>", class: "marker")
+            if map.address then content.append $("<div/>", class: "address").html map.address
+        # End of Switch
 
       element.appendTo(".chat .table")
     # End of Conversation Loop
