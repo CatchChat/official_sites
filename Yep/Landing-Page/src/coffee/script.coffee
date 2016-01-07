@@ -9,6 +9,10 @@ scrollTo = (element, to, duration) ->
     scrollTo element, to, duration - 10
   ), 10
 
+getDisplay = (element) ->
+  return if element.currentStyle then element.currentStyle.display else getComputedStyle(element, null).display
+
+
 $.ready().then ->
 
   window.screenshots = new Swipe $('#screen'),
@@ -29,9 +33,10 @@ $.ready().then ->
     speed: 300
     auto: if os.phone then 0 else 3000
     callback: (index, elem) ->
-      dots = $$(".dots .dot")
-      dot.classList.remove "active" for dot in dots
-      dots[index].classList.add "active"
+      if getDisplay($("#slider")) isnt "none"
+        dots = $$(".dots .dot")
+        dot.classList.remove "active" for dot in dots
+        dots[index].classList.add "active"
 
 
   $(".top").addEventListener "click", ->
