@@ -8,38 +8,32 @@ scrollTo = (element, to, duration) ->
     if element.scrollTop == to then return
     scrollTo element, to, duration - 10
   ), 10
+  
 
-getDisplay = (element) ->
-  return if element.currentStyle then element.currentStyle.display else getComputedStyle(element, null).display
-
-
-$.ready().then ->
-
-  window.screenshots = new Swipe $('#screen'),
+$ ->
+  window.screenshots = new Swipe $('#screen')[0],
     speed: 300
     auto: 3000
 
-  swipe_wrap =  $.clone $(".features ul")
-  swipe_wrap.classList.add "swipe-wrap"
-
-  slider = $.create "div",
-    className: "swipe"
+  $("<div />",
+    class: "swipe"
     id: "slider"
+  ).insertBefore $(".features")
 
-  $.inside swipe_wrap, slider
-  $.before slider, $(".features")
+  $(".features ul")
+    .clone()
+    .addClass("swipe-wrap")
+    .appendTo(slider)
 
-  window.features = new Swipe $('#slider'),
+  window.features = new Swipe $('#slider')[0],
     speed: 300
     auto: if os.phone then 0 else 3000
-    callback: (index, elem) ->
-      if getDisplay($("#slider")) isnt "none"
-        dots = $$(".dots .dot")
-        dot.classList.remove "active" for dot in dots
-        dots[index].classList.add "active"
+    transitionEnd: (index, elem) ->
+      $(".dot").removeClass "active"
+      $(".dot").eq(index).addClass "active"
 
 
-  $(".top").addEventListener "click", ->
+  $(".top").on "click", ->
     scrollTo(document.body, 0, 100)
 
   # --- RESPONSIVE LAYOUT ---
