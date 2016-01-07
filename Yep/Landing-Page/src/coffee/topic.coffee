@@ -280,6 +280,7 @@ $ ->
       voice.ended ->
         button.removeClass("playing")
         voice.stop()
+        bar.attr "value", 0
 
       voice.time ->
         progress = modulate this.time(), 0, this.duration(), 0, 100
