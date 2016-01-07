@@ -154,6 +154,7 @@ $ ->
       content = element.find(".content")
 
       element.find(".avatar").css "background-image", "url(#{msg.sender.avatar.thumb_url})"
+      element.find(".avatar").css "cursor", "pointer" if msg.sender.username
       element.find(".avatar").attr "username", msg.sender.username
 
       element.find(".nickname").html(msg.sender.nickname)
@@ -171,13 +172,13 @@ $ ->
           msg_img_thumbnail_blur = base64Prefix + msg_img_metadata.blurred_thumbnail_string
 
           content.addClass("image")
-          .append $("<img/>", src: msg_attachment.file.url)
+          .append $("<img/>", src: msg_attachment.file.thumb_url)
           .css 'background-image', "url(#{msg_img_thumbnail_blur})"
 
 
           # Image Gallery - Conversation
           msg_pswpItems.push {
-            msrc: msg_img_thumbnail_blur
+            msrc: msg_attachment.file.thumb_url
             src:  msg_attachment.file.url
             w: msg_img_metadata.image_width
             h: msg_img_metadata.image_height
