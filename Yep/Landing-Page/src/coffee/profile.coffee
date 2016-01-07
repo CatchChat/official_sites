@@ -22,7 +22,7 @@ cdn = "https://dn-catchinc.qbox.me"
 
 # --- USER DATA RENDERING ---
 username = window.location.pathname.split("/")[1]
-api = "https://park.catchchatchina.com/api/v1/users/#{username}/profile?callback=?"
+api = "https://api.soyep.com/v1/users/#{username}/profile?callback=?"
 
 document.title = "Yep - #{username}"
 
@@ -34,7 +34,7 @@ $.getJSON api, (json)->
   # Avatar
   $('.avatar').css
     'display': 'block'
-    'background-image': "url(#{json.avatar_url})"
+    'background-image': "url(#{json.avatar.thumb_url})"
 
   # Badge
   if json.badge
