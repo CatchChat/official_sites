@@ -76,7 +76,7 @@ gulp.task('sass', function() {
       }
     }))
     .pipe(sass({
-      sourceComments: 'normal',
+      // sourceComments: 'normal',
       outputStyle: 'compressed'
     }))
     .pipe(autoprefixer('last 5 versions'))
