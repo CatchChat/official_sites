@@ -3,220 +3,220 @@
 $blue: #51A7F7
 
 =transitionAll($duration:0.25s)
-    transition: all $duration ease-out
+  transition: all $duration ease-out
 
 =centerAnything
-    position: absolute
-    margin: auto
-    top: 0
-    right: 0
-    bottom: 0
-    left: 0
+  position: absolute
+  margin: auto
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
 
 *, *:before, *:after
-    box-sizing: border-box
-    -webkit-font-smoothing: antialiased
-       -moz-font-smoothing: antialiased
-            font-smoothing: antialiased
-    -moz-osx-font-smoothing: grayscale
+  box-sizing: border-box
+  -webkit-font-smoothing: antialiased
+    -moz-font-smoothing: antialiased
+      font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
 
 $cdn: "https://dn-catchinc.qbox.me"
 
 html
-    font-family: 'PingFang SC', 'SF UI Text', 'Hiragino Sans GB', 'Microsoft Yahei', "Helvetica Neue", Helvetica, Arial, sans-serif
-    font-size: 15px
+  font-family: 'PingFang SC', 'SF UI Text', 'Hiragino Sans GB', 'Microsoft Yahei', "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-size: 15px
 
-    &, body
-        background-color: white
-        width: 100%
-        height: 100%
-
-canvas
-    z-index: 0
+  &, body
+    background-color: white
     width: 100%
     height: 100%
-    position: fixed
-    display: none
+
+canvas
+  z-index: 0
+  width: 100%
+  height: 100%
+  position: fixed
+  display: none
 
 
 .wrapper
-    z-index: 10
-    position: absolute
-    width: 100%
+  z-index: 10
+  position: absolute
+  width: 100%
+  height: 100%
+
+  .container
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    min-width: 320px
+    max-width: 414px
     height: 100%
+    margin: 0 auto
 
-    .container
-        display: flex
-        flex-direction: column
-        justify-content: space-between
-        min-width: 320px
-        max-width: 414px
-        height: 100%
-        margin: 0 auto
+    .header
+      width: 100%
+      flex-shrink: 0
 
-        .header
-            width: 100%
-            flex-shrink: 0
+    .main
+      width: 100%
+      flex-shrink: 0
 
-        .main
-            width: 100%
-            flex-shrink: 0
-
-        .footer
-            width: 100%
-            flex-shrink: 0
+    .footer
+      width: 100%
+      flex-shrink: 0
 
 
 .card
+  background-color: white
+  padding: 30px
+  text-align: center
+  min-height: 300px
+
+  .avatar
+    width: 100px
+    height: 100px
+    border-radius: 50%
+    background-size: 100px 100px
+    background-size: cover
+    background-repeat: no-repeat
+    background-color: #f1f1f1
+    margin: 0 auto
+    display: none
+
+  .badge
+    width: 22px
+    height: 22px
+    border-radius: 50%
+    background-size: 15px
+    background-repeat: no-repeat
+    background-position: center
+    margin: 0 auto
+    margin-top: -14px
     background-color: white
-    padding: 30px
+    display: none
+
+  .nickname
+    display: block
+    margin: 20px auto
     text-align: center
-    min-height: 300px
+    font-size: 22px
 
-    .avatar
-        width: 100px
-        height: 100px
-        border-radius: 50%
-        background-size: 100px 100px
-        background-size: cover
-        background-repeat: no-repeat
-        background-color: #f1f1f1
-        margin: 0 auto
-        display: none
+  .location
+    text-indent: 18px
+    margin-bottom: 10px
+    line-height: 20px
+    background-image: url($cdn + "/icon_location.png")
+    background-size: 12px 15px
+    background-position: left
+    background-repeat: no-repeat
+    color: #BFBFBF
+    font-size: 14px
+    display: none
 
-    .badge
-        width: 22px
-        height: 22px
-        border-radius: 50%
-        background-size: 15px
-        background-repeat: no-repeat
-        background-position: center
-        margin: 0 auto
-        margin-top: -14px
-        background-color: white
-        display: none
+  .links
+    text-align: center
 
-    .nickname
-        display: block
-        margin: 20px auto
-        text-align: center
-        font-size: 22px
-
-    .location
-        text-indent: 18px
-        margin-bottom: 10px
-        line-height: 20px
-        background-image: url($cdn + "/icon_location.png")
-        background-size: 12px 15px
-        background-position: left
-        background-repeat: no-repeat
-        color: #BFBFBF
-        font-size: 14px
-        display: none
-
-    .links
-        text-align: center
-
-        & > a
-            width: 22px
-            height: 22px
-            background-size: 22px 22px
-            background-repeat: no-repeat
-            margin: 20px 20px 10px
-            display: none
+    & > a
+      width: 22px
+      height: 22px
+      background-size: 22px 22px
+      background-repeat: no-repeat
+      margin: 20px 20px 10px
+      display: none
 
 
-        .github
-            background-image: url($cdn + "/icon_github.png")
-        .dribbble
-            background-image: url($cdn + "/icon_dribbble.png")
-        .instagram
-            background-image: url($cdn + "/icon_instagram.png")
-        .behance
-            background-image: url($cdn + "/icon_behance.png")
+    .github
+      background-image: url($cdn + "/icon_github.png")
+    .dribbble
+      background-image: url($cdn + "/icon_dribbble.png")
+    .instagram
+      background-image: url($cdn + "/icon_instagram.png")
+    .behance
+      background-image: url($cdn + "/icon_behance.png")
 
-    .intro
-        color: hsl(0, 0%, 75%)
-        margin-top: 10px
+  .intro
+    color: hsl(0, 0%, 75%)
+    margin-top: 10px
 
-    .skillset
-        text-align: left
-        display: none
+  .skillset
+    text-align: left
+    display: none
 
-        &::before
-            font-size: 20px
-            display: block
-            text-align: left
-            margin: 30px 0 10px
-            text-indent: 6px
+    &::before
+      font-size: 20px
+      display: block
+      text-align: left
+      margin: 30px 0 10px
+      text-indent: 6px
 
-        &.master
-            &::before
-                content: 'Master'
-        &.learning
-            &::before
-                content: 'Learning'
+    &.master
+      &::before
+        content: 'Master'
+    &.learning
+      &::before
+        content: 'Learning'
 
-        .skill
-            height: 24px
-            line-height: 24px
-            font-size: 14px
-            color: white
-            padding: 0 10px
-            margin: 5px
-            background-color: $blue
-            border-radius: 12px
-            display: inline-block
+    .skill
+      height: 24px
+      line-height: 24px
+      font-size: 14px
+      color: white
+      padding: 0 10px
+      margin: 5px
+      background-color: $blue
+      border-radius: 12px
+      display: inline-block
 
 
 .footer
-    display: flex
-    flex-direction: row
-    box-shadow: inset 0 1px 0 0 #f1f1f1
-    margin-top: 10px
+  display: flex
+  flex-direction: row
+  box-shadow: inset 0 1px 0 0 #f1f1f1
+  margin-top: 10px
 
-    >div
-        display: inline-block
-        height: 50px
-        line-height: 50px
-        font-size: 16px
+  >div
+    display: inline-block
+    height: 50px
+    line-height: 50px
+    font-size: 16px
 
-    .appicon
-        background-image: url("/img/appicon.svg")
-        width: 50px
-        background-size: 100%
-        background-repeat: no-repeat
-        flex-shrink: 0
+  .appicon
+    background-image: url($cdn + "/yep_icon_margin_border.svg")
+    width: 50px
+    background-size: 100%
+    background-repeat: no-repeat
+    flex-shrink: 0
 
-    .appname
-        color: #404040
-        flex-shrink: 0
+  .appname
+    color: #404040
+    flex-shrink: 0
 
-    .appdesc
-        color: #BFBFBF
-        padding-left: 10px
-        flex-shrink: 0
+  .appdesc
+    color: #BFBFBF
+    padding-left: 10px
+    flex-shrink: 0
 
-    .buttons
-        flex-grow: 1
-        padding: 10px
-        text-align: right
-        overflow: hidden
+  .buttons
+    flex-grow: 1
+    padding: 10px
+    text-align: right
+    overflow: hidden
 
-        a
-            width: 100px
-            height: 30px
-            display: inline-block
-            background-size: 100%
+    a
+      width: 100px
+      height: 30px
+      display: inline-block
+      background-size: 100%
 
-        .ios
-            background-image: url($cdn + "/button_ios.svg")
-        .android
-            background-image: url($cdn + "/button_android.svg")
-            margin-left: 10px
-        .android.soon
-            background-image: url($cdn + "/button_soon.svg")
-            margin-left: 10px
+    .ios
+      background-image: url($cdn + "/button_ios.svg")
+    .android
+      background-image: url($cdn + "/button_android.svg")
+      margin-left: 10px
+    .android.soon
+      background-image: url($cdn + "/button_soon.svg")
+      margin-left: 10px
 
 
 
@@ -224,38 +224,38 @@ canvas
 
 
 .spiner
-    width: 30px
-    height: 30px
-    border-radius: 50%
-    border: 2px solid $blue
-    border-left-color: transparent
-    display: block
-    animation: spin 1000ms infinite linear
-    +centerAnything
+  width: 30px
+  height: 30px
+  border-radius: 50%
+  border: 2px solid $blue
+  border-left-color: transparent
+  display: block
+  animation: spin 1000ms infinite linear
+  +centerAnything
 
 @keyframes spin
-    0%
-        transform: rotate(0deg)
-    100%
-        transform: rotate(360deg)
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
 
 
 
 
 
 @media screen and (max-width: 320px)
-    .card
-        padding: 20px
+  .card
+    padding: 20px
 
 @media screen and (min-width: 414px)
-    canvas
-        display: block !important
+  canvas
+    display: block !important
 
-    .header
-        height: 50px
+  .header
+    height: 50px
 
-    .card
-        box-shadow: 0px 50px 50px 0px rgba(20,70,129,0.1)
-        border-radius: 8px
-    .footer
-        box-shadow: none
+  .card
+    box-shadow: 0px 50px 50px 0px rgba(20,70,129,0.1)
+    border-radius: 8px
+  .footer
+    box-shadow: none
