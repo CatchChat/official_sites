@@ -37,7 +37,7 @@ gulp.task('jade', function() {
         this.emit('end');
       }
     }))
-    .pipe(jade())
+    .pipe(jade({ pretty: true }))
     .pipe(gulp.dest('./'))
     .pipe(browserSync.reload({
       stream: true
