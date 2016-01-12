@@ -150,7 +150,6 @@ $ ->
     for msg in messages
 
       if msg.deleted
-        console.log "deleted!"
         element = $("<div/>", class: "cell")
         content = $("<div/>", class: "narrator").html(msg.sender.nickname + " recalled a message")
         content.appendTo element
