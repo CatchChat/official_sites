@@ -8,7 +8,7 @@ scrollTo = (element, to, duration) ->
     if element.scrollTop == to then return
     scrollTo element, to, duration - 10
   ), 10
-  
+
 
 $ ->
   window.screenshots = new Swipe $('#screen')[0],
@@ -37,5 +37,5 @@ $ ->
     scrollTo(document.body, 0, 100)
 
   # --- RESPONSIVE LAYOUT ---
-  if os.android then $('.ios').style.display = "none"
-  if os.ios then $('.android').style.display = "none"
+  $(".android").hide() if os.ios
+  $(".ios").hide() if os.android
