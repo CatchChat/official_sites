@@ -235,7 +235,9 @@ $ ->
 
 
     # Image Gallery - Conversation
-    $(".chat .bubble .image").on "tap", ->
+    $(".chat .bubble .image").click ->
+    # $(".chat .bubble .image").on "tap", ->
+    # Tap is not working at this momment, don't know why.
       viewImage(msg_pswpItems, $(".chat .bubble .image").index($(this)), $(".chat .bubble .image"))
 
 
@@ -295,3 +297,9 @@ $ ->
 # --- RESPONSIVE LAYOUT ---
   $(".android").hide() if os.ios
   $(".ios").hide() if os.android
+
+
+  if "-webkit-backdrop-filter" of document.body.style
+    $(".footer").addClass "bfblur"
+    $(".container .topic").addClass "bfblur"
+    $(".pswp__bg").addClass "bfblur dark"

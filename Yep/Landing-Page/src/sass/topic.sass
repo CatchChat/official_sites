@@ -456,7 +456,7 @@ html
     .appname
       color: #404040
     .appdesc
-      color: #BFBFBF
+      color: rgba(black, 0.25)
       margin-left: 10px
 
     .buttons
@@ -509,3 +509,12 @@ html
         right: 53px
         border: 8px solid transparent
         border-top-color: $blue
+
+
+.bfblur
+  background-color: rgba(white, 0.9) !important
+  opacity: 1 !important
+  backdrop-filter: blur(10px)
+  -webkit-backdrop-filter: blur(10px)
+  &.dark
+    background-color: rgba(black, 0.85) !important
