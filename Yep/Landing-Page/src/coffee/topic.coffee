@@ -147,6 +147,9 @@ $ ->
     # Latest Conversations
     $(".chat").css "padding-top", $(".topic").css "height"
 
+    if messages.length then $(".nomsg").hide()
+    else $(".footer .popup").addClass("show")
+
     for msg in messages
 
       if msg.deleted
