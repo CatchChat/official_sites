@@ -77,7 +77,8 @@ $ ->
     if kind isnt "image" then $(".topic .images").remove()
 
     switch kind
-      # when "text"
+      when "text"
+        $(".topic .text").show()
       when "image"
         # Image Tumbnails
         for topic_attachment in topic.attachments
@@ -118,9 +119,39 @@ $ ->
 
         content.parent().show()
 
+      when "location"
+        location_attachment = topic.attachments[0]
+
+        map =
+          key: "P8qeoPmMSc6FKpMvbLKWVrR0"
+          lng: location_attachment.longitude
+          lat: location_attachment.latitude
+          place: location_attachment.place
+          width: 200
+          height: 100 - 20
+          zoom: 16
+
+        map.img = "https://api.map.baidu.com/staticimage?center=#{map.lng},#{map.lat}&width=#{map.width}&height=#{map.height}&zoom=#{map.zoom}&ak=#{map.key}"
+        map.url = "https://maps.google.cn/maps?q=#{map.lat},#{map.lng}&z=#{map.zoom}&ll=#{map.lat},#{map.lng}"
+        # alternative:
+        # map.url = "https://www.google.cn/maps/preview/@#{map.lat},#{map.lng},#{map.zoom}z"
+
+        content = $(".topic .location")
+
+        content.attr "href", map.url
+        content.attr "target", "_blank"
+
+        mapimg = $("<img/>", src: map.img).css
+          width: "#{map.width}px"
+          height: "#{map.height}px"
+          # backgroundImage: "url(#{map.img})"
+
+        content.append mapimg
+        content.append $("<div/>", class: "marker")
+        content.css "display", "block"
+        if map.place then content.append $("<div/>", class: "place").html map.place
 
 
-      # when "location"
       when "dribbble"
         shot = topic.attachments[0]
         $(".topic .dribbble").show()
