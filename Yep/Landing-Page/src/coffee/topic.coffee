@@ -346,6 +346,11 @@ $ ->
     # Parse links
     $(".text").linkify()
 
+    # Clickable @username
+    regex_url = new RegExp("(\@)([a-z|0-9|_|\-]+)")
+    $(".text").each (idx, ele) ->
+      $(ele).html ele.innerHTML.replace(regex_url,"<a href='/$2' target='_blank'>$&</a>")
+
 # --- RESPONSIVE LAYOUT ---
   $(".android").hide() if os.ios
   $(".ios").hide() if os.android
