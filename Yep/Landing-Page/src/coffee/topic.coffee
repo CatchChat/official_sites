@@ -129,9 +129,9 @@ $ ->
           place: location_attachment.place
           width: 200
           height: 100 - 20
-          zoom: 16
+          zoom: 18
 
-        map.img = "https://api.map.baidu.com/staticimage?center=#{map.lng},#{map.lat}&width=#{map.width}&height=#{map.height}&zoom=#{map.zoom}&ak=#{map.key}"
+        map.img = "https://api.map.baidu.com/staticimage?center=#{map.lng},#{map.lat}&width=#{map.width*2}&height=#{map.height*2}&zoom=#{map.zoom}&ak=#{map.key}"
         map.url = "https://maps.google.cn/maps?q=#{map.lat},#{map.lng}&z=#{map.zoom}&ll=#{map.lat},#{map.lng}"
         # alternative:
         # map.url = "https://www.google.cn/maps/preview/@#{map.lat},#{map.lng},#{map.zoom}z"
@@ -260,9 +260,9 @@ $ ->
               address: msg.text_content
               width: 200
               height: 100
-              zoom: 16
+              zoom: 18
 
-            map.img = "https://api.map.baidu.com/staticimage?center=#{map.lng},#{map.lat}&width=#{map.width}&height=#{map.height}&zoom=#{map.zoom}&ak=#{map.key}"
+            map.img = "https://api.map.baidu.com/staticimage?center=#{map.lng},#{map.lat}&width=#{map.width*2}&height=#{map.height*2}&zoom=#{map.zoom}&ak=#{map.key}"
             map.url = "https://maps.google.cn/maps?q=#{map.lat},#{map.lng}&z=#{map.zoom}&ll=#{map.lat},#{map.lng}"
             # alternative:
             # map.url = "https://www.google.cn/maps/preview/@#{map.lat},#{map.lng},#{map.zoom}z"

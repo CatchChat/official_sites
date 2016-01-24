@@ -356,6 +356,7 @@ html
         line-height: 20px
         padding-left: 5px
         text-overflow: ellipsis
+        overflow: hidden
 
 
   .chat
@@ -491,6 +492,7 @@ html
 
             .content.location
               position: relative
+              background-size: 100%
 
               .marker
                 width: 10px
@@ -509,6 +511,10 @@ html
                 width: 100%
                 text-align: center
                 padding: 5px
+                white-space: nowrap
+                text-overflow: ellipsis
+                overflow: hidden
+                font-size: 12px
 
         .narrator
           margin: 5px 0
