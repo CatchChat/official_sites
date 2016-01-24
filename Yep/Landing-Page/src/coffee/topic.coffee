@@ -94,7 +94,7 @@ $ ->
             h:    topic_metadata.image_height
           }
           topic_pswpItems.push topic_pswpItem
-
+        $(".topic .images").show()
         # Image Gallery
         $(".topic .images .thumbnails .thumbnail").on "tap", ->
           viewImage(topic_pswpItems, $(this).index(), $(".topic .images .thumbnails .thumbnail"))
@@ -109,14 +109,16 @@ $ ->
         audio_element = $("<audio controls>", src: audio_attachment.file.url, preload: "auto")
         audio_element.append $("<source>", src: audio_attachment.file.url, type: "audio/mpeg")
 
-        content = $(".topic .audio")
-        content.addClass("audio").append audio_element
+        content = $(".topic .audio .player")
+        content.append audio_element
 
-        content.addClass("audio").append $("<button/>")
-        content.addClass("audio").append $("<progress/>", max: 100, value: 0).css "width", "#{audio_duration * 20}px"
-        content.addClass("audio").append $("<label/>").html("#{audio_duration}″")
+        content.append $("<button/>")
+        content.append $("<progress/>", max: 100, value: 0).css "width", "#{audio_duration * 20}px"
+        content.append $("<label/>").html("#{audio_duration}″")
 
-        content.appendTo ".topic .audio"
+        content.parent().show()
+
+
 
       # when "location"
       when "dribbble"
