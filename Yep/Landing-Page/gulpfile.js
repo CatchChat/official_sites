@@ -13,7 +13,7 @@ var browserSync = require('browser-sync');
 
 gulp.task('browser-sync', function() {
   browserSync({
-    open: false,
+    // open: false,
     browser: "google chrome",
     ghostMode: false,
     server: {
@@ -49,7 +49,7 @@ gulp.task('jade', function() {
         this.emit('end');
       }
     }))
-    .pipe(jade())
+    .pipe(jade({ pretty: true }))
     .pipe(gulp.dest('Profile/'))
     .pipe(browserSync.reload({
       stream: true
@@ -61,7 +61,7 @@ gulp.task('jade', function() {
         this.emit('end');
       }
     }))
-    .pipe(jade())
+    .pipe(jade({ pretty: true }))
     .pipe(gulp.dest('groups/share/'))
     .pipe(browserSync.reload({
       stream: true
