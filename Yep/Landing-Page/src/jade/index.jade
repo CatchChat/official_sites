@@ -47,7 +47,8 @@ html(lang="en" prefix="og: http://ogp.me/ns#")
             .desc #{desc}
           .download
             a(href="#{iTunesLink}").ios
-            a(href="#{AndroidApk}").android
+            //- a(href="#{AndroidApk}").android
+            a.android.soon
         .device
           .iphone
             #screen.swipe
