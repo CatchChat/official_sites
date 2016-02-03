@@ -36,6 +36,10 @@ $ ->
   $(".top").on "click", ->
     scrollTo(document.body, 0, 100)
 
+  # $(".ghbtns")
+    # .clone()
+    # .appendTo ".hero"
+
   # --- RESPONSIVE LAYOUT ---
   $(".android").hide() if os.ios
   $(".ios").hide() if os.android
